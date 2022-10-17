@@ -1,0 +1,9 @@
+.intro__link-text {
+  font-family: inter;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 16px;
+  color: #FFF;
+  margin: auto;
+  text-decoration: none;
+}

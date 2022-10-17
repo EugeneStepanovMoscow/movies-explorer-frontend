@@ -1,0 +1,10 @@
+.headerLogin__nav-movies {
+  margin: 0 16px 0 0;
+  font-family: inter;
+  font-weight: 500;
+  font-size: 13px;
+  line-height: 18px;
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}

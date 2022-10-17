@@ -1,0 +1,23 @@
+.intro__link {
+  width: 96px;
+  height: 36px;
+  display: flex;
+  border-radius: 10px;
+  background-color: #E8E8E8;
+}
+@media screen and (max-width: 768px) {
+  .intro__link {
+    font-weight: 400;
+    font-size: 40px;
+    line-height: 52px;
+  }
+}
+@media screen and (max-width: 320px) {
+  .intro__link {
+    width: 50px;
+    height: 26px;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 16px;
+  }
+}

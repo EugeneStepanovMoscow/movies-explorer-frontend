@@ -1,0 +1,6 @@
+.section-title {
+  box-sizing: border-box;
+  height: 160px;
+  padding-top: 110px;
+  border-bottom: 1px solid #000;
+}

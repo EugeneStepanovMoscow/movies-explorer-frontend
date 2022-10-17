@@ -1,0 +1,15 @@
+.intro__nav {
+  width: 308px;
+  margin: 0 0 30px 0;
+  list-style-type: none;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+@media screen and (max-width: 320px) {
+  .intro__nav {
+    width: 200px;
+
+  }
+}

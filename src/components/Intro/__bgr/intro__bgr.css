@@ -1,0 +1,10 @@
+.intro__bgr {
+  height: 493px;
+  margin: 20px 40px 0 40px;
+  background-color: #F5F5F5;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: baseline;
+  align-items: center;
+}

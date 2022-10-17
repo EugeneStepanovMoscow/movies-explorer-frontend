@@ -1,0 +1,5 @@
+.about-me__text-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}

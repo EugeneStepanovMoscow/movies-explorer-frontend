@@ -1,0 +1,12 @@
+.err-page__exit {
+  margin: 0 0 60px 0;
+  border: 0;
+  border-radius: 0;
+  background-color: #FFF;
+  font-family: inter;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 16.94px;
+  color: #000;
+  cursor: pointer;
+}

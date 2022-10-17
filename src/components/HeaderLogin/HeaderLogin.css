@@ -1,0 +1,8 @@
+.headerLogin {
+  max-width: 1280px;
+  height: 74px;
+  display: flex;
+  margin: 0 auto;
+  justify-content: space-between;
+  align-items: center;
+}
