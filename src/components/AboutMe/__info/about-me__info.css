@@ -1,0 +1,11 @@
+.about-me__info {
+  margin: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items:center
+}
+@media screen and (max-width: 321px) {
+  .about-me__info {
+    flex-direction: column;
+  }
+}

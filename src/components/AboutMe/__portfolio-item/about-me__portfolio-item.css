@@ -1,0 +1,13 @@
+.about-me__portfolio-item {
+  font-family: inter;
+  font-weight: 400;
+  font-size: 30px;
+  line-height: 50px;
+  letter-spacing: -0.04em;
+  border-bottom: 1px solid #E8E8E8;
+}
+
+.about-me__portfolio-item:last-of-type{
+  border-bottom: 0;
+  margin-bottom: 125px;
+}

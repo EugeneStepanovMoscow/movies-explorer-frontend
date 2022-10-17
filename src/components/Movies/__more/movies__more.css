@@ -1,0 +1,6 @@
+.movies__more {
+  margin: 0 auto;
+  max-width: 1280px;
+  height: 166px;
+  display: flex;
+ }

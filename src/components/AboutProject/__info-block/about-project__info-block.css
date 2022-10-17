@@ -1,0 +1,5 @@
+.about-project__info-block {
+  max-width: 550px;
+  display: flex;
+  flex-direction: column;
+}
