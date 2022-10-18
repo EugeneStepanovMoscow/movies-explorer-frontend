@@ -1,6 +1,4 @@
 import React from 'react';
-import searchIcon from '../../images/icon-search.svg'
-import btnImg from '../../images/btn_search.svg';
 
 function SearchForm ()
 {
@@ -19,7 +17,7 @@ function SearchForm ()
             // name="email"
             // type="email"
             placeholder="Фильм"
-            // required
+            required
             // value={name || ''}
             // onChange={handleChange}
           />
