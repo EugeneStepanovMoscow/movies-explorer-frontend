@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import logo from '../../images/header-logo.svg';
+import HeaderLink from '../HeaderLink/HeaderLink';
 
 function Header() {
   const [navBurger, setNavBurger] = useState(false);
@@ -7,7 +7,7 @@ function Header() {
   return (
     <header className="headerLogin">
       <div className="headerLogin__box">
-        <img className="headerLogin__logo" src={logo} alt='logo'/>
+        <HeaderLink/>
         <nav className={`headerLogin__nav ${navBurger ? 'headerLogin__nav_burger' : ''}`}>
           <ul className="headerLogin__nav-list">
             <li className={navBurger ? 'headerLogin__nav-item_burger' : 'headerLogin__nav-item headerLogin__nav-item_movie'}>

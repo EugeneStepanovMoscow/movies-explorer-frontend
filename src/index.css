@@ -34,6 +34,7 @@
 @import url(./components/HeaderLogin/__nav-burger-line/headerLogin__nav-burger-line.css);
 @import url(./components/HeaderLogin/__nav-burger-line/_burger/headerLogin__nav-burger-line_burger.css);
 
+@import url(./components/HeaderLink/HeaderLink.css);
 
 @import url(./components/Footer/Footer.css);
 @import url(./components/Footer/__bottom/footer__bottom.css);

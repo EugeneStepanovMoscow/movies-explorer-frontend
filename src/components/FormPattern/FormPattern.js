@@ -1,5 +1,5 @@
 import React from "react";
-import logo from '../../images/header-logo.svg';
+import HeaderLink from '../HeaderLink/HeaderLink';
 
 function FormPattern({
   title,
@@ -18,7 +18,7 @@ function FormPattern({
 
   return (
     <div className="form-pattern">
-      <img className="form-pattern__logo" src={logo} alt='logo'/>
+      <HeaderLink/>
       <h2 className="form-pattern__greeting">{formGreeting}</h2>
       <form
         className="form-pattern__form"
