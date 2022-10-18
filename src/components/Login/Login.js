@@ -5,7 +5,7 @@ function Login (
 )
 {
 return (
-  <>
+  <main>
     <FormPattern
       formName={'login'}
       formGreeting = {'Рады видеть!'}
@@ -14,7 +14,7 @@ return (
       footerLinkText = {'Регистрация'}
       errorText = {''}
     />
-  </>
+  </main>
 )
 }
 

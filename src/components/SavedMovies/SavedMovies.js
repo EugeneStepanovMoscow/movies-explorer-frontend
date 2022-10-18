@@ -8,8 +8,10 @@ function SavedMovies ()
 return (
   <>
     <HeaderLogin/>
-    <SearchForm/>
-    {/* <MoviesCardList/> */}
+    <main>
+      <SearchForm/>
+      {/* <MoviesCardList/> */}
+    </main>
     <Footer/>
   </>
 )

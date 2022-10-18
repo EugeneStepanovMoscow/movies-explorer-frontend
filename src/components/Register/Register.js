@@ -25,7 +25,7 @@ function Register ({
   }
 
   return (
-    <>
+    <main>
       <FormPattern
         formName={'register'}
         formGreeting={'Добро пожаловать!'}
@@ -36,7 +36,7 @@ function Register ({
         handleChange={handleChange}
         handleSubmit={handleSubmit}
       />
-    </>
+    </main>
   )
 }
 

@@ -11,10 +11,12 @@ function Main (
   return (
     <>
       <Header/>
-      <Intro/>
-      <AboutProject/>
-      <Tech/>
-      <AboutMe/>
+      <main>
+        <Intro/>
+        <AboutProject/>
+        <Tech/>
+        <AboutMe/>
+      </main>
       <Footer/>
     </>
   )
