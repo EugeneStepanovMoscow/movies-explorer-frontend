@@ -1,0 +1,16 @@
+.headerLogin__nav-item_btn {
+  width: 100px;
+  height: 32px;
+  border: 0;
+  border-radius: 16px;
+  padding: 0;
+  background-color: #F9F9F9;
+  cursor: pointer;
+  display: flex;
+  transition: .5s;
+}
+
+.headerLogin__nav-item_btn:hover {
+  background-color: #ddd;
+  transition: .5s;
+}

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Route, Switch, Redirect, useHistory} from 'react-router-dom';
+import mainApi from '../../utils/mainApi';
 
 // ипорт компонентов
 import Main from '../Main/Main'
@@ -9,7 +10,7 @@ import Register from '../Register/Register'
 import Login from '../Login/Login'
 import Profile from '../Profile/Profile'
 import ErrPage from '../ErrPage/ErrPage';
-import AboutMe from '../AboutMe/AboutMe';
+
 
 function App() {
   //стейт переменная статуса входа пользавателя в систему
@@ -23,6 +24,31 @@ function App() {
   function handleBack () {
    history.goBack();
   }
+
+  //функция регистарции пользователя на сервере
+  function handleRegister(email, password, name) {
+    // console.log(`email: ${email}, пароль: ${password}, имя: ${name}`)
+    mainApi.register(email, password, name)
+      .then((res) => {
+        if (res.statusCode === 400) {
+          // setInfoTooltioStatus(false)
+          // setIsInfoTooltipOpen(true)
+        } else {
+          //действия при успешной регистрации
+          // setInfoTooltioStatus(true)
+          // setIsInfoTooltipOpen(true)
+          history.push('/login')
+        }
+      })
+      .catch(err => {
+        // setInfoTooltioStatus(false)
+        // setIsInfoTooltipOpen(true)
+        console.log(err)
+      })
+  }
+
+
+
 
   return (
     <Switch>
@@ -42,7 +68,9 @@ function App() {
       </Route>
 
       <Route path="/register">
-        <Register/>
+        <Register
+          onRegister={handleRegister}
+        />
       </Route>
 
       <Route path="/login">

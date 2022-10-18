@@ -16,12 +16,24 @@
 @import url(./components/Header/__nav-text_white/header__nav-text_white.css);
 
 @import url(./components/HeaderLogin/HeaderLogin.css);
-@import url(./components/HeaderLogin/__accountButton/headerLogin__accountButton.css);
 @import url(./components/HeaderLogin/__box/headerLogin__box.css);
 @import url(./components/HeaderLogin/__logo/headerLogin__logo.css);
 @import url(./components/HeaderLogin/__nav-movies/headerLogin__nav-movies.css);
 @import url(./components/HeaderLogin/__nav-saved-movies/headerLogin__nav-saved-movies.css);
 @import url(./components/HeaderLogin/__nav/headerLogin__nav.css);
+@import url(./components/HeaderLogin/__nav-list/headerLogin__nav-list.css);
+@import url(./components/HeaderLogin/__nav-item/headerLogin__nav-item.css);
+@import url(./components/HeaderLogin/__nav-item/_btn/headerLogin__nav-item_btn.css);
+@import url(./components/HeaderLogin/__nav-item/_movie/headerLogin__nav-item_movie.css);
+@import url(./components/HeaderLogin/__nav-item/_burger/headerLogin__nav-item_burger.css);
+@import url(./components/HeaderLogin/__nav-text/headerLogin__nav-text.css);
+@import url(./components/HeaderLogin/__nav-text/_btn/headerLogin__nav-text_btn.css);
+@import url(./components/HeaderLogin/__nav-text/_movies/headerLogin__nav-text_movies.css);
+@import url(./components/HeaderLogin/__nav-text/_saved-movies/headerLogin__nav-text_saved-movies.css);
+@import url(./components/HeaderLogin/__nav-burger-btn/headerLogin__nav-burger-btn.css);
+@import url(./components/HeaderLogin/__nav-burger-line/headerLogin__nav-burger-line.css);
+@import url(./components/HeaderLogin/__nav-burger-line/_burger/headerLogin__nav-burger-line_burger.css);
+
 
 @import url(./components/Footer/Footer.css);
 @import url(./components/Footer/__bottom/footer__bottom.css);

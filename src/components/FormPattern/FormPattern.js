@@ -22,8 +22,8 @@ function FormPattern({
       <h2 className="form-pattern__greeting">{formGreeting}</h2>
       <form
         className="form-pattern__form"
-        name={`form-pattern-${formName}`}
-        id={`form-pattern-${formName}`}
+        // name={`form-pattern-${formName}`}
+        // id={`form-pattern-${formName}`}
         onSubmit={handleSubmit}
       >
         <fieldset className="form-pattern__fieldset">
