@@ -1,7 +1,7 @@
 .form-pattern__error {
   height: 11px;
   margin: 0;
-  font-family: inter;
+  font-family: Inter, Arial, sans-serif;
   font-weight: 400;
   font-size: 10px;
   line-height: 12.1px;
