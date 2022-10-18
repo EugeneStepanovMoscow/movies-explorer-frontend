@@ -7,9 +7,15 @@
   flex-wrap: wrap;
   justify-content: space-between;
 }
+
+@media screen and (min-width: 321px) and (max-width: 420px) {
+  .intro__nav {
+    width: 200px;
+  }
+}
+
 @media screen and (max-width: 320px) {
   .intro__nav {
     width: 200px;
-
   }
 }

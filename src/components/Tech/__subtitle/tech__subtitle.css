@@ -1,6 +1,6 @@
 .tech__subtitle {
   margin: 0;
-  width: 460px;
+  max-width: 460px;
   font-family: Inter, Arial, sans-serif;
   font-weight: 400;
   font-size: 14px;
@@ -8,15 +8,16 @@
   letter-spacing: -0.04em;
   text-align: center;
 }
-@media screen and (max-width: 914px) {
+
+@media screen and (max-width: 768px) {
   .tech__subtitle {
-    font-weight: 400;
     font-size: 12px;
     line-height: 18px;
   }
 }
-@media screen and (max-width: 321px) {
+@media screen and (max-width: 420px) {
   .tech__subtitle {
-    width: 100%;
+    font-size: 12px;
+    line-height: 18px;
   }
 }
