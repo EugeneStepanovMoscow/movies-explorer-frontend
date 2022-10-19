@@ -21,6 +21,7 @@
 @import url(./components/HeaderLogin/__nav-movies/headerLogin__nav-movies.css);
 @import url(./components/HeaderLogin/__nav-saved-movies/headerLogin__nav-saved-movies.css);
 @import url(./components/HeaderLogin/__nav/headerLogin__nav.css);
+@import url(./components/HeaderLogin/__nav/_burger/headerLogin__nav_burger.css);
 @import url(./components/HeaderLogin/__nav-list/headerLogin__nav-list.css);
 @import url(./components/HeaderLogin/__nav-item/headerLogin__nav-item.css);
 @import url(./components/HeaderLogin/__nav-item/_btn/headerLogin__nav-item_btn.css);
