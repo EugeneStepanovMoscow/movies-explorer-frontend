@@ -1,5 +1,6 @@
 .about-me__portfolio-link {
   text-decoration: none;
+  color: #000;
   display: flex;
   justify-content: space-between;
 }
