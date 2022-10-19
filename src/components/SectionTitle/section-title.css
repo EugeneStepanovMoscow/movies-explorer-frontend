@@ -4,3 +4,10 @@
   padding-top: 110px;
   border-bottom: 1px solid #000;
 }
+
+@media screen and (max-width: 768px) {
+  .section-title {
+    padding-top: 65px;
+    height: 115px;
+  }
+}

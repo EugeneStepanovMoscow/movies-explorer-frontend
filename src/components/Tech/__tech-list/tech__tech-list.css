@@ -1,13 +1,15 @@
 .tech__tech-list {
-  max-width: 690px;
+  margin: 82px 0 0 0;
+  width: 100%;
+  /* max-width: 690px; */
   list-style-type: none;
   padding: 0;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
 }
-@media screen and (max-width: 321px) {
+@media screen and (max-width: 768px) {
   .tech__tech-list {
-    max-width: 100%;
+    /* max-width: 648px; */
   }
 }

@@ -8,3 +8,16 @@
   justify-content: baseline;
   align-items: center;
 }
+
+@media screen and (max-width: 768px) {
+  .intro__bgr {
+    height: 834px;
+    margin: 20px 20px 0 20px;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .intro__bgr {
+    height: 600px;
+  }
+}

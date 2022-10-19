@@ -7,7 +7,7 @@ function Tech() {
         title={'Технологии'}
       />
       <div className="tech__content">
-        <h3 className="tech__title">7 Технологий</h3>
+        <h3 className="tech__title">7 технологий</h3>
         <p className="tech__subtitle">На курсе веб-разработки мы освоили технологии, которые применили в дипломном проекте.</p>
         <ul className="tech__tech-list">
           <li className="tech__technology">

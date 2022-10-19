@@ -2,3 +2,9 @@
   display: flex;
   max-width: 1140px;
 }
+
+@media screen and (max-width: 768px) {
+  .about-project__time {
+    margin-top: 94px;
+  }
+}

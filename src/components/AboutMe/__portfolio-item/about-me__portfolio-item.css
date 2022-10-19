@@ -9,5 +9,11 @@
 
 .about-me__portfolio-item:last-of-type{
   border-bottom: 0;
-  margin-bottom: 125px;
+  margin-bottom: 160px;
+}
+
+@media screen and (max-width: 768px) {
+  .about-me__portfolio-item {
+    margin-bottom: 30px;
+  }
 }

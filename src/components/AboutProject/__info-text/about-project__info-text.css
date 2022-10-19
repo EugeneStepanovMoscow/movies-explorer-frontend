@@ -3,8 +3,9 @@
   font-weight: 400;
   font-size: 14px;
   line-height: 20px;
+  margin: 0;
 }
-@media screen and (max-width: 914px) {
+@media screen and (max-width: 768px) {
   .about-project__info-text {
     font-weight: 400;
     font-size: 12px;

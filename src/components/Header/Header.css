@@ -3,12 +3,19 @@
   height: 74px;
   display: flex;
   margin: 0 auto;
-  padding-left: 70px;
+  padding: 0 70px 0 70px;
   justify-content: space-between;
   align-items: center;
 }
 
-@media screen and (min-width: 321px) and (max-width: 420px) {
+@media screen and (max-width: 768px) {
+  .header {
+    max-width: 768px;
+    padding: 0 30px 0 30px;
+  }
+}
+
+/* @media screen and (min-width: 321px) and (max-width: 420px) {
   .header {
     max-width: 768px;
     padding-left: 20px;
@@ -20,4 +27,4 @@
     max-width: 250px;
     padding-left: 20px;
   }
-}
+} */

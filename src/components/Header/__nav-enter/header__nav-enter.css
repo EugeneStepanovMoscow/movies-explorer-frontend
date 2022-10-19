@@ -1,13 +1,13 @@
 .header__nav-enter {
   width: 76px;
   height: 32px;
-  margin: 0 70px 0 0;
+  margin: 0;
   background-color: #000;
   border-radius: 3px;
   display: flex;
  }
 
-@media screen and (min-width: 321px) and (max-width: 420px) {
+/* @media screen and (min-width: 321px) and (max-width: 420px) {
   .header__nav-enter {
     width: 56px;
     height: 32px;
@@ -20,4 +20,4 @@
     width: 26px;
     height: 16px;
   }
-}
+} */

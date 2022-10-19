@@ -3,3 +3,8 @@
   flex-direction: row;
   justify-content: space-between;
 }
+@media screen and (max-width: 600px) {
+  .about-project__info {
+    flex-direction: column;
+  }
+}

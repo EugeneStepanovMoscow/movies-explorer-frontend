@@ -9,15 +9,16 @@
   letter-spacing: -0.04em;
   color: #000;
 }
-@media screen and (max-width: 768px) {
+@media screen and (min-width: 601px) and (max-width: 768px) {
   .intro__title {
+    max-width: 680px;
     font-weight: 400;
     font-size: 40px;
     line-height: 52px;
-    margin: auto;
+    margin: 350px auto 314px auto;
   }
 }
-@media screen and (max-width: 420px) {
+@media screen and (max-width: 600px) {
   .intro__title {
     font-weight: 400;
     font-size: 20px;

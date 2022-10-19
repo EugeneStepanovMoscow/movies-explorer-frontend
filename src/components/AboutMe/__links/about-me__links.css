@@ -4,3 +4,9 @@
   padding: 0;
   display: flex;
 }
+
+@media screen and (max-width: 768px) {
+  .about-me__links {
+    margin: 70px 0 0 0;
+  }
+}
