@@ -8,3 +8,10 @@
   display:flex;
   justify-content: space-between;
 }
+
+@media screen and (max-width: 768px) {
+  .searsh-form__border {
+    flex-direction: column;
+    height: 148px;
+  }
+}

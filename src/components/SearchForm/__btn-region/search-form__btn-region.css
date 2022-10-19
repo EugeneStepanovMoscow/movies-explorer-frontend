@@ -2,3 +2,9 @@
   display: flex;
   width: 287px;
 }
+
+/* @media screen and (max-width: 768px) {
+  .search-form__btn-region {
+    flex-direction: column;
+  }
+} */

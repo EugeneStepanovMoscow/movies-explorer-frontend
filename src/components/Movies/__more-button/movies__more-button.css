@@ -12,3 +12,9 @@
   color: #000;
   cursor: pointer;
 }
+
+@media screen and (max-width: 768px) {
+  .movies__more-button {
+    width: 250px;
+  }
+}

@@ -1,8 +1,16 @@
 .search-form__text {
-  margin: 8px 0 0 3px;
+  margin: 8px 30px 0 3px;
   font-family: Inter, Arial, sans-serif;
   font-weight: 400;
   font-size: 13px;
   line-height: 18px;
   color: #000;
+}
+
+@media screen and (max-width: 768px) {
+  .search-form__text {
+    margin: 8px 10px 0 3px;
+    font-size: 10px;
+    line-height: 18px;
+  }
 }

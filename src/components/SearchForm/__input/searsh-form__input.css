@@ -1,9 +1,9 @@
 .searsh-form__input {
   border: 0;
   padding: 0 0 0 63px;
-  margin-right: 10px;
+  margin: 0;
   height: 34px;
-  width: 800px;
+  width: 100%;
   background: url(../../../images/icon-search.svg) no-repeat scroll 24px 5px;
   font-family: Inter, Arial, sans-serif;
   font-weight: 400;
@@ -30,3 +30,10 @@
 .searsh-form__input:focus:-moz-placeholder           {opacity: 0; transition: opacity 0.3s ease;}
 .searsh-form__input:focus:-ms-input-placeholder      {opacity: 0; transition: opacity 0.3s ease;}
 /* ________________________ */
+
+@media screen and (max-width: 650px) {
+  .searsh-form__input {
+    background: url(../../../images/icon-search.svg) no-repeat scroll 10px 5px;
+    padding: 0 0 0 40px;
+  }
+}

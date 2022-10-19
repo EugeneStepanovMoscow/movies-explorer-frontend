@@ -1,6 +1,6 @@
 .movie {
-  width: 364px;
-  height: 271px;
+  max-width: 364px;
+  max-height: 271px;
   background: #FDFDFD;
   box-shadow: 0 4px 30px rgba(0,0,0,0.08);
   overflow: hidden;
