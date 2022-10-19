@@ -112,6 +112,7 @@
 @import url(./components/Movie/Movie.css);
 @import url(./components/Movie/__btn-save/movie__btn-save.css);
 @import url(./components/Movie/__btn-save/__btn-save_active/movie__btn-save_active.css);
+@import url(./components/Movie/__btn-save/__btn-save_delete/movie__btn-save_delete.css);
 @import url(./components/Movie/__head/movie__head.css);
 @import url(./components/Movie/__image/movie__image.css);
 @import url(./components/Movie/__info/movie__info.css);
