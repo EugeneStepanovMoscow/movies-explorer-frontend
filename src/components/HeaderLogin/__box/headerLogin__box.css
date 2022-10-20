@@ -1,8 +1,22 @@
 .headerLogin__box {
-  width: 100%;
-  padding-right: 70px;
+  max-width: 1280px;
+  box-sizing: border-box;
+  margin: 0 auto;
+  padding: 0 0 0 70px;
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+
+@media screen and (min-width: 321px) and (max-width: 768px) {
+  .headerLogin__box {
+    padding: 15px 30px 15px 30px;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .headerLogin__box {
+    padding: 15px 14px 15px 14px;
+  }
 }
 

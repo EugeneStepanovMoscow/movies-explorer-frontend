@@ -1,15 +1,15 @@
 .headerLogin__nav {
   width: 100%;
   height: 100%;
+  box-sizing: border-box;
+  padding: 0 70px 0 0;
+  margin: 0;
 }
 
 @media screen and (max-width: 768px) {
   .headerLogin__nav {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    background-color: #F5F5F5;
+    padding: 159px 90px 90px 90px;
+    background-color: #FFFFFF;
     position: fixed;
     right: -100%;
     top: 0;

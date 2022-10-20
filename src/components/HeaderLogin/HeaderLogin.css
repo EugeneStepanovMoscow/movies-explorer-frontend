@@ -1,14 +1,3 @@
 .headerLogin {
-  max-width: 1280px;
   height: 74px;
-  display: flex;
-  margin: 0 auto;
-  padding-left: 70px;
-  justify-content: space-between;
-  align-items: center;
-}
-@media screen and (max-width: 768px) {
-  .headerLogin {
-    padding-left: 30px;
-  }
 }
