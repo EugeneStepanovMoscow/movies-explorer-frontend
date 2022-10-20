@@ -31,9 +31,10 @@
 .searsh-form__input:focus:-ms-input-placeholder      {opacity: 0; transition: opacity 0.3s ease;}
 /* ________________________ */
 
-@media screen and (max-width: 650px) {
+@media screen and (max-width: 320px) {
   .searsh-form__input {
-    background: url(../../../images/icon-search.svg) no-repeat scroll 10px 5px;
-    padding: 0 0 0 40px;
+    background: none;
+    padding: 0 0 0 19px;
+    font-size: 14px;
   }
 }

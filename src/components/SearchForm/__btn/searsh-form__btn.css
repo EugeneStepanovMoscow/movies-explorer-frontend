@@ -3,7 +3,7 @@
   border: 0;
   padding: 0;
   margin: 0;
-  width: 34px;
+  width: 35px;
   height: 34px;
   -webkit-appearance: none;
   -moz-appearance: none;
@@ -11,20 +11,12 @@
   appearance: none;
   border: 0;
   border-radius: 17px;
-  background: black;
-}
-.searsh-form__btn::before {
-  content: '';
-  position: absolute;
-  top: 10px;
-  left: 14px;
-  width: 20px;
-  height: 20px;
   background-image: url(../../../images/btn_search.svg);
-  background-repeat: no-repeat;
+  background-position: center;
 }
+
 .searsh-form__btn:hover {
-  opacity: .6;
+  background-size: 140%;
   transition: .5s;
   cursor: pointer;
 }

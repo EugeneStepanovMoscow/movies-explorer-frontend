@@ -9,9 +9,9 @@ function Movies ()
   return (
     <>
       <HeaderLogin/>
-      <main>
+      <main className='movies'>
         <SearchForm/>
-        <section className='movies'>
+        <section className='movies__section'>
            <Preloader/>
           <MoviesCardList/>
         </section>

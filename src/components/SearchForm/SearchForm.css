@@ -1,10 +1,15 @@
 .searsh-form {
   margin: 70px auto;
-  padding: 0 70px;
   max-width: 1280px;
 }
-@media screen and (max-width: 768px) {
+@media screen and (min-width: 321px) and (max-width: 768px) {
   .searsh-form {
-    padding: 0 10px
+    margin: 80px auto;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .searsh-form {
+    margin: 75px auto;
   }
 }
