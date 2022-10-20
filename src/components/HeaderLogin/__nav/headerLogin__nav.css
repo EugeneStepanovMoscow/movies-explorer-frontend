@@ -11,12 +11,13 @@
     align-items: center;
     background-color: #F5F5F5;
     position: fixed;
-    left: 0;
-    right: 0;
-    top: -110%;
+    right: -100%;
+    top: 0;
     bottom:0;
-    width: 100%;
+    max-width: 520px;
     height: 100vh;
-    transition: top .5s;
+    transition: right .5s;
   }
 }
+
+
