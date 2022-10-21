@@ -6,3 +6,11 @@
   line-height: 19.36px;
   color: #000;
 }
+
+@media screen and (max-width: 320px) {
+  .err-page__err-text {
+    margin: 10px 0 184px 0;
+    font-size: 12px;
+    line-height: 14.52px;
+  }
+}

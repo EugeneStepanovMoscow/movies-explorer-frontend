@@ -1,4 +1,16 @@
 .err-page {
   text-align: center;
-  padding-top: 249px;
+  padding-top: 246px;
+}
+
+@media screen and (min-width: 321px) and (max-width: 768px) {
+  .err-page {
+    padding-top: 408px;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .err-page {
+    padding-top: 329px;
+  }
 }
