@@ -7,17 +7,9 @@
   display: flex;
  }
 
-/* @media screen and (min-width: 321px) and (max-width: 420px) {
-  .header__nav-enter {
-    width: 56px;
-    height: 32px;
-      margin: 0 70px 0 0;
-  }
-}
-
 @media screen and (max-width: 320px) {
   .header__nav-enter {
-    width: 26px;
-    height: 16px;
+    width: 54px;
+    height: 26px;
   }
-} */
+}
