@@ -1,29 +1,27 @@
 .intro__link {
   width: 96px;
   height: 36px;
+  margin-right: 10px;
   display: flex;
   border-radius: 10px;
   background-color: #E8E8E8;
 }
 
-@media screen and (min-width: 421px) and (max-width: 768px) {
+.intro__link:last-of-type {
+  margin-right: 0;
+}
+
+@media screen and (min-width: 400px) and (max-width: 768px) {
   .intro__link {
-    width: 86px;
+    width: 92px;
     height: 36px;
   }
 }
 
-@media screen and (min-width: 321px) and (max-width: 420px) {
+@media screen and (max-width: 400px) {
   .intro__link {
-    width: 60px;
-    height: 36px;
-  }
-}
-
-
-@media screen and (max-width: 320px) {
-  .intro__link {
-    width: 50px;
+    width: 82px;
     height: 26px;
+    margin-right: 6px;
   }
 }

@@ -8,18 +8,14 @@
   text-decoration: none;
 }
 
-@media screen and (min-width: 321px) and (max-width: 420px) {
+@media screen and (min-width: 321px) and (max-width: 768px) {
   .intro__link-text {
-    font-weight: 400;
-    font-size: 10px;
-    line-height: 12px;
+    font-size: 12px;
   }
 }
 
 @media screen and (max-width: 320px) {
   .intro__link-text {
-    font-weight: 400;
-    font-size: 8px;
-    line-height: 16px;
+    font-size: 10px;
   }
 }
