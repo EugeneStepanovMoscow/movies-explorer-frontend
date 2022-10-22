@@ -1,5 +1,4 @@
 .about-me__info {
-  border: 1px solid red;
   margin: 66px 0 0 0;
   display: grid;
   grid-template-columns: 1fr 270px;
@@ -7,7 +6,6 @@
 
 @media screen and (min-width: 601px) and (max-width: 768px)  {
   .about-me__info {
-    border: 1px solid blue;
     grid-template-columns: 1fr 255px;
   }
 }

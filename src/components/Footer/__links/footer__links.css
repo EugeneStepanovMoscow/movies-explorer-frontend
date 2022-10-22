@@ -1,5 +1,5 @@
 .footer__links {
-  margin: 0;
+  margin: auto 0 auto auto;
   padding: 0;
   list-style: none;
   display:flex;
@@ -7,4 +7,17 @@
 
 .footer__link:last-of-type {
   margin-left: 20px;
+}
+
+@media screen and (max-width: 600px) {
+  .footer__links {
+    flex-direction: column;
+    margin: 0 auto 0 auto;  }
+}
+
+@media screen and (max-width: 600px) {
+  .footer__link:last-of-type {
+    margin: 12px auto 0 auto;
+
+  }
 }

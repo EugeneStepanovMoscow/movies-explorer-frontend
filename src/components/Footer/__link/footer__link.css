@@ -1,0 +1,9 @@
+.footer__link {
+  margin: 10px auto;
+}
+
+@media screen and (max-width: 600px) {
+  .footer__link {
+    margin: auto;
+  }
+}
