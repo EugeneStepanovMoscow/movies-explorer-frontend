@@ -5,7 +5,7 @@ function Login (
 )
 {
 return (
-  <main>
+  <main className="login">
     <FormPattern
       formName={'login'}
       formGreeting = {'Рады видеть!'}

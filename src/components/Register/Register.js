@@ -25,7 +25,7 @@ function Register ({
   }
 
   return (
-    <main>
+    <main className="register">
       <FormPattern
         formName={'register'}
         formGreeting={'Добро пожаловать!'}

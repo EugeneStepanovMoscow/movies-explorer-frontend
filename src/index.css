@@ -132,6 +132,10 @@
 @import url(./components/Profile/__input/profile__input.css);
 @import url(./components/Profile/__title/profile__title.css);
 
+@import url(./components/Login/login.css);
+
+@import url(./components/Register/register.css);
+
 @import url(./components/FormPattern/FormPattern.css);
 @import url(./components/FormPattern/__btn-save/form-pattern__btn-save.css);
 @import url(./components/FormPattern/__error/form-pattern__error.css);

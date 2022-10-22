@@ -15,3 +15,9 @@
   width: 36px;
   height: 36px;
 }
+
+@media screen and (max-width: 320px) {
+  .headerLink {
+    margin: 0 auto;
+  }
+}

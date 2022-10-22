@@ -1,9 +1,15 @@
 .form-pattern__footer-text {
-  margin: 16px auto;
+  margin: 16px auto 0 auto;
   text-align: center;
   font-family: Inter, Arial, sans-serif;
   font-weight: 400;
   font-size: 14px;
   line-height: 16.94px;
   color: #A0A0A0;
+}
+@media screen and (max-width: 320px) {
+  .form-pattern__footer-text {
+    font-size: 12px;
+    line-height: 14.52px;
+  }
 }
