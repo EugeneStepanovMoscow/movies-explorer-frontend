@@ -1,17 +1,24 @@
 .tech__title {
   max-width: 600px;
-  margin: 80px 0 23px 0;
+  margin: 90px 0 0 0;
   font-family: inter, Arial, sans-serif;
   font-weight: 400;
   font-size: 50px;
   line-height: 58px;
   letter-spacing: -0.04em;
+  text-align: center;
 }
 
-@media screen and (max-width: 400px) {
+@media screen and (min-width: 321px) and (max-width: 768px) {
   .tech__title {
-    font-size: 25px;
-    line-height: 30px;
+    margin: 80px 0 0 0;
+  }
+}
+@media screen and (max-width: 320px) {
+  .tech__title {
+    margin: 60px 0 0 0;
+    font-size: 30px;
+    line-height: 36.31px;
   }
 }
 

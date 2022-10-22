@@ -6,7 +6,13 @@
   border-radius: 10px;
   display:flex;
 }
-@media screen and (max-width: 768px) {
+@media screen and (min-width: 321px) and (max-width: 768px) {
+  .tech__technology {
+    width: 84px;
+    height: 57px;
+  }
+}
+@media screen and (max-width: 320px) {
   .tech__technology {
     width: 84px;
     height: 57px;

@@ -1,15 +1,21 @@
 .tech__tech-list {
-  margin: 82px 0 0 0;
-  width: 100%;
-  /* max-width: 690px; */
+  margin: 100px 0 0 0;
   list-style-type: none;
   padding: 0;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
+  gap: 10px;
 }
-@media screen and (max-width: 768px) {
+
+@media screen and (min-width: 321px) and (max-width: 768px) {
   .tech__tech-list {
-    /* max-width: 648px; */
+    margin: 90px 0 0 0;
+  }
+}
+@media screen and (max-width: 320px) {
+  .tech__tech-list {
+    margin: 50px 0 0 0;
+    max-width: 178px;
   }
 }
