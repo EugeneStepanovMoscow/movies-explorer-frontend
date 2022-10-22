@@ -7,14 +7,12 @@
 }
 @media screen and (min-width: 321px) and (max-width: 768px) {
   .about-project {
-    margin: 0 auto;
     padding: 90px 50px 90px 50px;
    }
 }
 
 @media screen and (max-width: 320px) {
   .about-project {
-    margin: 0 auto;
     padding: 70px 18px 70px 18px;
    }
 }

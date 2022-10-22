@@ -1,19 +1,21 @@
 .about-me__portfolio-item {
-  font-family: Inter, Arial, sans-serif;
-  font-weight: 400;
-  font-size: 30px;
-  line-height: 50px;
-  letter-spacing: -0.04em;
+  height: 70px;
   border-bottom: 1px solid #E8E8E8;
+  margin-bottom: 20px;
 }
 
 .about-me__portfolio-item:last-of-type{
   border-bottom: 0;
-  margin-bottom: 160px;
+  margin-bottom: 0;
 }
 
-@media screen and (max-width: 768px) {
+/* @media screen and (min-width: 321px) and (max-width: 768px) {
   .about-me__portfolio-item {
-    margin-bottom: 30px;
+    height: 70px;
+  }
+} */
+@media screen and (max-width: 320px) {
+  .about-me__portfolio-item {
+    height: 48px;
   }
 }

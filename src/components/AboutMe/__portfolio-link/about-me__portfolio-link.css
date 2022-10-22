@@ -10,8 +10,14 @@
   letter-spacing: -0.04em;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (min-width: 321px) and (max-width: 768px) {
   .about-me__portfolio-link {
     font-size: 28px;
+  }
+}
+@media screen and (max-width: 320px) {
+  .about-me__portfolio-link {
+    font-size: 18px;
+    line-height: 28px;
   }
 }

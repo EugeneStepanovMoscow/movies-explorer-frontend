@@ -1,10 +1,17 @@
 .about-me {
   box-sizing: border-box;
-  max-width: 1140px;
+  max-width: 1280px;
   margin: 0 auto;
+  padding: 110px 70px 125px 70px;
 }
-@media screen and (max-width: 768px) {
+@media screen and (min-width: 321px) and (max-width: 768px) {
   .about-me {
-    padding: 25px 50px 0 50px;
+    padding: 90px 50px 90px 50px;
+   }
+}
+
+@media screen and (max-width: 320px) {
+  .about-me {
+    padding: 70px 14px 70px 14px;
    }
 }

@@ -7,10 +7,18 @@
   line-height: 22px;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (min-width: 321px) and (max-width: 768px) {
   .about-me__description {
+    margin: 20px 0 0 0;
+    max-width: 364px;
     margin: 20px 0 0 0;
     font-size: 12px;
     line-height: 18px;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .about-me__description {
+    margin: 20px 0 0 0;
   }
 }

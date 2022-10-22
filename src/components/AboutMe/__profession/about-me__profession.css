@@ -6,9 +6,19 @@
   line-height: 20px;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (min-width: 321px) and (max-width: 768px) {
   .about-me__profession {
+    margin: 16px 0 0 0;
     font-size: 12px;
     line-height: 18px;
   }
 }
+
+@media screen and (max-width: 320px) {
+  .about-me__profession {
+    margin: 20px 0 0 0;
+    font-size: 11px;
+    line-height: 16px;
+  }
+}
+
