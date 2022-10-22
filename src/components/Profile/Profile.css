@@ -1,7 +1,23 @@
 .profile {
   max-width: 1280px;
-  margin: 75px auto;
-  padding: 74px auto;
+  margin: 0 auto;
+  padding: 74px 0 70px 0;
   box-sizing: border-box;
   text-align: center;
+}
+@media screen and (min-width: 601px) and (max-width: 768px) {
+  .profile {
+    padding: 236px 179px 269px 179px;
+  }
+}
+@media screen and (min-width: 321px) and (max-width: 600px) {
+  .profile {
+    padding: 236px 50px 40px 50px;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .profile {
+    padding: 70px 30px 40px 30px;
+  }
 }
