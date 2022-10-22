@@ -1,13 +1,5 @@
 .section-title {
   box-sizing: border-box;
-  height: 160px;
-  padding-top: 110px;
+  height: 50px;
   border-bottom: 1px solid #000;
-}
-
-@media screen and (max-width: 768px) {
-  .section-title {
-    padding-top: 65px;
-    height: 115px;
-  }
 }

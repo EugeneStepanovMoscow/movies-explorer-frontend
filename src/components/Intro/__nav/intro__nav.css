@@ -20,3 +20,8 @@
     /* width: 200px; */
   }
 }
+@media screen and (max-width: 300px) {
+  .intro__nav {
+    flex-direction: column;
+   }
+}
