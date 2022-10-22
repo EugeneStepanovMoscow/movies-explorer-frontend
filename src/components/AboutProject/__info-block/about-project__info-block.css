@@ -7,15 +7,14 @@
   margin-left: 60px
 }
 
-@media screen and (max-width: 600px) {
-  .about-project__info-block:last-of-type {
-    margin-left: 0;
+@media screen and (min-width: 501px) and (max-width: 768px) {
+  .about-project__info-block {
+    /* padding: 70px 0 0 0; */
   }
 }
 
-
-@media screen and (max-width: 768px) {
-  .about-project__info-block {
-    padding: 50px 0 0 0;
+@media screen and (max-width: 500px) {
+  .about-project__info-block:last-of-type {
+    margin-left: 0;
   }
 }

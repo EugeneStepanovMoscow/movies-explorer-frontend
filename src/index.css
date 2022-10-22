@@ -65,16 +65,11 @@
 @import url(./components/AboutMe/__info/about-me__info.css);
 
 @import url(./components/AboutProject/AboutProject.css);
-@import url(./components/AboutProject/__time-text_color_gray/about-project__time-text_color_gray.css);
-@import url(./components/AboutProject/__time-text_color_white/about-project__time-text_color_white.css);
-@import url(./components/AboutProject/__time-text_color_black/about-project__time-text_color_black.css);
-@import url(./components/AboutProject/__time-text/about-project__time-text.css);
-@import url(./components/AboutProject/__text-box_bg_gray/about-project__text-box_bg_gray.css);
-@import url(./components/AboutProject/__text-box_bg_black/about-project__text-box_bg_black.css);
-@import url(./components/AboutProject/__text-box-large/about-project__text-box-large.css);
-@import url(./components/AboutProject/__text-box-small/about-project__text-box-small.css);
-@import url(./components/AboutProject/__text-box/about-project__text-box.css);
-@import url(./components/AboutProject/__time/about-project__time.css);
+@import url(./components/AboutProject/__time-container/about-project__time-container.css);
+@import url(./components/AboutProject/__time-container-block/about-project__time-container-block.css);
+@import url(./components/AboutProject/__time-container-block/_black/about-project__time-container-block_black.css);
+@import url(./components/AboutProject/__time-container-block/_gray/about-project__time-container-block_gray\ .css);
+@import url(./components/AboutProject/__time-block-text/about-project__time-block-text.css);
 @import url(./components/AboutProject/__info-text/about-project__info-text.css);
 @import url(./components/AboutProject/__info-title/about-project__info-title.css);
 @import url(./components/AboutProject/__info-block/about-project__info-block.css);

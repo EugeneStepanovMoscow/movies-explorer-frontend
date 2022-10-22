@@ -1,6 +1,7 @@
 .intro__bgr {
-  height: 493px;
-  margin: 20px 40px 0 40px;
+  box-sizing: border-box;
+  /* height: 493px; */
+  padding: 160px 0 30px 0;
   background-color: #F5F5F5;
   border-radius: 10px;
   display: flex;
@@ -9,15 +10,16 @@
   align-items: center;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (min-width: 321px) and (max-width: 768px) {
   .intro__bgr {
-    height: 834px;
-    margin: 20px 20px 0 20px;
+    /* height: 728px; */
+    padding: 350px 0 30px 0;
   }
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 320px) {
   .intro__bgr {
-    height: 600px;
+    /* height: 586px; */
+    padding: 220px 0 17px 0;
   }
 }
