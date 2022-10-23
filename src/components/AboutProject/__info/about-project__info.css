@@ -1,0 +1,28 @@
+.about-project__info {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 70px 0 0 0;
+}
+
+/* @media screen and (min-width: 321px) and (max-width: 768px) {
+  .about-project__info {
+    padding: 70px 0 0 0;
+  }
+} */
+
+@media screen and (max-width: 320px) {
+  .about-project__info {
+    padding: 60px 0 0 0;
+    flex-direction: column;
+  }
+}
+
+
+@media screen and (max-width: 320px) {
+  .about-project__info {
+    padding: 60px 0 0 0;
+    flex-direction: column;
+  }
+}

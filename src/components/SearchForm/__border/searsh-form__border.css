@@ -1,0 +1,25 @@
+.searsh-form__border {
+  box-sizing: border-box;
+  margin-bottom: 69px;
+  height: 72px;
+  padding: 19px 30px 19px 0;
+  background-color: #F9F9F9;
+  border-radius: 9px;
+  display:flex;
+  justify-content: space-between;
+}
+
+@media screen and (min-width: 601px) and (max-width: 768px) {
+  .searsh-form__border {
+    margin-bottom: 109px;
+    padding: 19px 20px 19px 0;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .searsh-form__border {
+    flex-direction: column;
+    padding: 19px 19px 19px 0;
+    margin-bottom: 109px;
+  }
+}

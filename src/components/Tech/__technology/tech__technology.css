@@ -1,0 +1,21 @@
+.tech__technology {
+  width: 90px;
+  height: 60px;
+  margin: 0 auto;
+  background-color: #E8E8E8;
+  border-radius: 10px;
+  display:flex;
+}
+@media screen and (min-width: 321px) and (max-width: 768px) {
+  .tech__technology {
+    width: 84px;
+    height: 57px;
+  }
+}
+@media screen and (max-width: 320px) {
+  .tech__technology {
+    width: 84px;
+    height: 57px;
+  }
+}
+

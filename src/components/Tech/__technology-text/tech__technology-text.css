@@ -1,0 +1,16 @@
+.tech__technology-text {
+  margin: auto;
+  font-family: Inter, Arial, sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 16.94px;
+  letter-spacing: -0.04em;
+}
+@media screen and (max-width: 768px) {
+  .tech__technology-text {
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 14.52px;
+  }
+}
+

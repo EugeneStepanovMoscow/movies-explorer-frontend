@@ -1,0 +1,16 @@
+.headerLogin__nav-list {
+  list-style: none;
+  margin: 18px auto;
+  padding: 0;
+  display: flex;
+  justify-content: space-between;
+}
+
+@media screen and (max-width: 768px) {
+  .headerLogin__nav-list {
+    height: 100%;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+  }
+}

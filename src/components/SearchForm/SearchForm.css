@@ -1,0 +1,15 @@
+.searsh-form {
+  margin: 70px auto;
+  max-width: 1280px;
+}
+@media screen and (min-width: 321px) and (max-width: 768px) {
+  .searsh-form {
+    margin: 80px auto;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .searsh-form {
+    margin: 75px auto;
+  }
+}

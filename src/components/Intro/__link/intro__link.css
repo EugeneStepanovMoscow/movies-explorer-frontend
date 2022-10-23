@@ -1,0 +1,27 @@
+.intro__link {
+  width: 96px;
+  height: 36px;
+  margin-right: 10px;
+  display: flex;
+  border-radius: 10px;
+  background-color: #E8E8E8;
+}
+
+.intro__link:last-of-type {
+  margin-right: 0;
+}
+
+@media screen and (min-width: 400px) and (max-width: 768px) {
+  .intro__link {
+    width: 92px;
+    height: 36px;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .intro__link {
+    width: 82px;
+    height: 26px;
+    margin-right: 6px;
+  }
+}

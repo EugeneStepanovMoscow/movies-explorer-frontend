@@ -1,0 +1,24 @@
+.header__nav-text {
+  font-family: Inter, Arial, sans-serif;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 16px;
+  color: #000;
+  text-decoration: none;
+}
+
+/* @media screen and (min-width: 321px) and (max-width: 760px) {
+  .header__nav-text {
+    font-weight: 500;
+    font-size: 10px;
+    line-height: 12px;
+  }
+} */
+
+@media screen and (max-width: 320px) {
+  .header__nav-text {
+    font-weight: 500;
+    font-size: 10px;
+    line-height: 16px;
+  }
+}

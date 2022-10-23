@@ -1,0 +1,25 @@
+.intro__bgr {
+  box-sizing: border-box;
+  /* height: 493px; */
+  padding: 160px 0 30px 0;
+  background-color: #F5F5F5;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: baseline;
+  align-items: center;
+}
+
+@media screen and (min-width: 321px) and (max-width: 768px) {
+  .intro__bgr {
+    /* height: 728px; */
+    padding: 350px 0 30px 0;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .intro__bgr {
+    /* height: 586px; */
+    padding: 220px 0 17px 0;
+  }
+}

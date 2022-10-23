@@ -1,0 +1,23 @@
+.headerLink {
+  display: block;
+  width: 38px;
+  height: 38px;
+  cursor: pointer;
+  transition: .2s;
+}
+
+.headerLink:hover {
+  scale: 1.1;
+  transition: .2s;
+}
+
+.headerLink__logo {
+  width: 36px;
+  height: 36px;
+}
+
+@media screen and (max-width: 320px) {
+  .headerLink {
+    margin: 0 auto;
+  }
+}
