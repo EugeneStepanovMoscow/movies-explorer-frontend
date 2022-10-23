@@ -1,0 +1,25 @@
+.tech__subtitle {
+  margin: 26px 0 0 0;
+  max-width: 460px;
+  font-family: Inter, Arial, sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
+  letter-spacing: -0.04em;
+  text-align: center;
+}
+
+@media screen and (min-width: 321px) and (max-width: 768px) {
+  .tech__subtitle {
+    margin: 22px 0 0 0;
+    font-size: 12px;
+    line-height: 18p
+  }
+}
+@media screen and (max-width: 320px) {
+  .tech__subtitle {
+    margin: 24px 0 0 0;
+    font-size: 11px;
+    line-height: 16px;
+  }
+}

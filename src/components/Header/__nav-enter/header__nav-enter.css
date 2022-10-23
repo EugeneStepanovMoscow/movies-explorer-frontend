@@ -1,0 +1,15 @@
+.header__nav-enter {
+  width: 76px;
+  height: 32px;
+  margin: 0;
+  background-color: #000;
+  border-radius: 3px;
+  display: flex;
+ }
+
+@media screen and (max-width: 320px) {
+  .header__nav-enter {
+    width: 54px;
+    height: 26px;
+  }
+}

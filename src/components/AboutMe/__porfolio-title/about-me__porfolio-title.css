@@ -1,0 +1,22 @@
+.about-me__porfolio-title {
+  margin: 100px 0 0 0;
+  font-family: Inter, Arial, sans-serif;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 20px;
+  color: #A0A0A0;
+}
+
+@media screen and (min-width: 601px)and (max-width: 768px) {
+  .about-me__porfolio-title {
+    margin: 90px 0 0 0;
+    font-size: 14px;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .about-me__porfolio-title {
+    margin: 69px 0 0 0;
+    font-size: 14px;
+  }
+}

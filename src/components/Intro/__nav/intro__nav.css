@@ -1,0 +1,27 @@
+.intro__nav {
+  /* width: 308px; */
+  margin: 151px auto 0 auto;
+  list-style-type: none;
+  padding: 0;
+  display: flex;
+  justify-content: space-between;
+}
+
+@media screen and (min-width: 321px) and (max-width: 768px) {
+  .intro__nav {
+    margin: 314px auto 0 auto;
+    /* width: 200px; */
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .intro__nav {
+    margin: 212px auto 0 auto;
+    /* width: 200px; */
+  }
+}
+@media screen and (max-width: 300px) {
+  .intro__nav {
+    flex-direction: column;
+   }
+}

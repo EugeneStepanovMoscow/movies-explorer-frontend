@@ -1,0 +1,40 @@
+.searsh-form__input {
+  border: 0;
+  padding: 0 0 0 63px;
+  margin: 0;
+  height: 34px;
+  width: 100%;
+  background: url(../../../images/icon-search.svg) no-repeat scroll 24px 5px;
+  font-family: Inter, Arial, sans-serif;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 20px;
+  color: #A0A0A0;
+}
+.searsh-form__input:focus {
+  outline: none;
+}
+/* Настройки плейсхолдера */
+/* Цвет текста */
+.searsh-form__input::-webkit-input-placeholder {color:#A0A0A0;}
+.searsh-form__input::-moz-placeholder          {color:#A0A0A0;}/* Firefox 19+ */
+.searsh-form__input:-moz-placeholder           {color:#A0A0A0;}/* Firefox 18- */
+.searsh-form__input:-ms-input-placeholder      {color:#A0A0A0;}
+/* Плавное скрытие */
+.searsh-form__input::-webkit-input-placeholder       {opacity: 1; transition: opacity 0.3s ease;}
+.searsh-form__input::-moz-placeholder                {opacity: 1; transition: opacity 0.3s ease;}
+.searsh-form__input:-moz-placeholder                 {opacity: 1; transition: opacity 0.3s ease;}
+.searsh-form__input:-ms-input-placeholder            {opacity: 1; transition: opacity 0.3s ease;}
+.searsh-form__input:focus::-webkit-input-placeholder {opacity: 0; transition: opacity 0.3s ease;}
+.searsh-form__input:focus::-moz-placeholder          {opacity: 0; transition: opacity 0.3s ease;}
+.searsh-form__input:focus:-moz-placeholder           {opacity: 0; transition: opacity 0.3s ease;}
+.searsh-form__input:focus:-ms-input-placeholder      {opacity: 0; transition: opacity 0.3s ease;}
+/* ________________________ */
+
+@media screen and (max-width: 320px) {
+  .searsh-form__input {
+    background: none;
+    padding: 0 0 0 19px;
+    font-size: 14px;
+  }
+}

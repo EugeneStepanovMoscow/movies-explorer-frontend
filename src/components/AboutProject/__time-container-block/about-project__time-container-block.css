@@ -1,0 +1,22 @@
+.about-project__time-container-block {
+  height: 36px;
+  display: flex;
+  font-family: Suisse Intl, Arial, sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
+  color: #A0A0A0;
+}
+@media screen and (min-width: 321px) and (max-width: 768px) {
+  .about-project__time-container-block {
+    font-size: 14px;
+    line-height: 16.94px;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .about-project__time-container-block {
+    font-size: 11px;
+    line-height: 12.74px;
+  }
+}

@@ -1,0 +1,23 @@
+.about-project__info-text {
+  font-family: Inter, Arial, sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
+  margin: 0 0 110px 0;
+}
+@media screen and (min-width: 321px) and (max-width: 768px) {
+  .about-project__info-text {
+    margin-bottom: 93px;
+    font-size: 12px;
+    line-height: 18px;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .about-project__info-text {
+    margin-bottom: 56px;
+    font-size: 11px;
+    line-height: 16px;
+  }
+}
+

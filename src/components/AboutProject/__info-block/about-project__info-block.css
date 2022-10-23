@@ -1,0 +1,20 @@
+.about-project__info-block {
+  max-width: 550px;
+  display: flex;
+  flex-direction: column;
+}
+.about-project__info-block:last-of-type {
+  margin-left: 60px
+}
+
+@media screen and (min-width: 501px) and (max-width: 768px) {
+  .about-project__info-block {
+    /* padding: 70px 0 0 0; */
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .about-project__info-block:last-of-type {
+    margin-left: 0;
+  }
+}

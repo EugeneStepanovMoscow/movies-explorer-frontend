@@ -1,0 +1,21 @@
+.headerLogin__nav-text {
+  margin: auto;
+  font-family: Inter, Arial, sans-serif;
+  font-weight: 500;
+  font-size: 28px;
+  line-height: 33px;
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+ }
+
+ @media screen and (max-width: 768px) {
+  .headerLogin__nav-text {
+    font-size: 18px;
+    line-height: 21.78px;
+   }
+   .headerLogin__nav-text:hover {
+    text-decoration: underline;
+    text-underline-offset: 4px;
+   }
+}

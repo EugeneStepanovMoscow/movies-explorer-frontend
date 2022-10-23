@@ -1,0 +1,22 @@
+.searsh-form__btn {
+  position: relative;
+  border: 0;
+  padding: 0;
+  margin: 0;
+  width: 35px;
+  height: 34px;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  cursor: pointer;
+  appearance: none;
+  border: 0;
+  border-radius: 17px;
+  background-image: url(../../../images/btn_search.svg);
+  background-position: center;
+}
+
+.searsh-form__btn:hover {
+  background-size: 140%;
+  transition: .5s;
+  cursor: pointer;
+}
