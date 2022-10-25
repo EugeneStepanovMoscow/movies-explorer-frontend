@@ -1,9 +1,10 @@
+import React from 'react';
 import FormPattern from "../FormPattern/FormPattern"
 
-function Login (
-
-)
-{
+function Login () {
+  function handleSubmit(evt) {
+    evt.preventDefault()
+  }
 return (
   <main className="login">
     <FormPattern

@@ -1,7 +1,8 @@
-import HeaderLogin from '../HeaderLogin/HeaderLogin'
-import Footer from '../Footer/Footer'
-import SearchForm from '../SearchForm/SearchForm'
-import MoviesCardList from '../MovisCardList/MoviesCardList'
+import React from 'react';
+import HeaderLogin from '../HeaderLogin/HeaderLogin';
+import Footer from '../Footer/Footer';
+import SearchForm from '../SearchForm/SearchForm';
+import MoviesCardList from '../MovisCardList/MoviesCardList';
 
 function SavedMovies ()
 {

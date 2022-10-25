@@ -17,12 +17,14 @@ function Register ({
   function handleSubmit(evt) {
     evt.preventDefault()
     onRegister(regState.email, regState.password, regState.name)
+    console.log(regState.email)
   }
 
   function handleChange (evt) {
     const {name, value} = evt.target
     setRegState({...regState, [name]: value})
   }
+
 
   return (
     <main className="register">
@@ -33,8 +35,7 @@ function Register ({
         footerText={'Уже зарегистрированы?'}
         footerLinkText={'Войти'}
         errorText={''}
-        handleChange={handleChange}
-        handleSubmit={handleSubmit}
+        handleSubmitMain={handleSubmit}
       />
     </main>
   )

@@ -1,3 +1,4 @@
+import React from 'react';
 import HeaderLink from '../HeaderLink/HeaderLink';
 
 function Header() {
