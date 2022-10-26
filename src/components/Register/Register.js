@@ -34,8 +34,7 @@ function Register ({
         buttonText={'Зарегистрироваться'}
         footerText={'Уже зарегистрированы?'}
         footerLinkText={'Войти'}
-        errorText={''}
-        handleSubmitMain={handleSubmit}
+        onSubmit={onRegister}
       />
     </main>
   )

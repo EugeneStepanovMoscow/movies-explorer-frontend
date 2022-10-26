@@ -7,3 +7,7 @@
   line-height: 12.1px;
   color: #FF4062;
 }
+
+.form-pattern__error_success {
+  color: rgb(3, 203, 3);
+}

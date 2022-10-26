@@ -1,23 +1,25 @@
 import React from 'react';
 import { useState, useEffect } from "react";
 import HeaderLink from '../HeaderLink/HeaderLink';
+import messages from '../../utils/messages';
 
 function FormPattern({
   formName,
   buttonText,
-  handleSubmitMain,
+  onSubmit,
   formGreeting,
   footerText,
   footerLinkText,
 })
 {
+  //  регулярное выражение на почту
   const regexp = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
   // стейт переменная состояния формы
   const [isFormValid, setIsFormValid] = useState(false);
   // стейт переменные состояния инпутов
   const [isNameValid, setIsNameValid] = useState (false);
   const [isEmailValid, setIsEmailValid] = useState (false);
-  const [isPasswordValid, setPasswordValid] = useState (false);
+  const [isPasswordValid, setIsPasswordValid] = useState (false);
   // стейт переменные текстов ошибок
   const [nameErrText, setNameErrText] = useState('');
   const [emailErrText, setEmailErrText] = useState('');
@@ -25,8 +27,16 @@ function FormPattern({
 
   // переменные начений инпутов
   const [nameValue, setNameValue]  = useState('');
-  // const email = '';
-  // const password = '';
+  const [emailValue, setEmailValue]  = useState('');
+  const [passwordValue, setPasswordValue]  = useState('');
+
+  useEffect(() => {
+    if (formName === 'login') {
+      setIsNameValid(true)
+    } else {
+      setIsNameValid(false)
+    }
+  }, [formName])
 
   // при изменении любой стейт переменной импута проверяетс на валидность все инпуты
   useEffect(() => {
@@ -38,58 +48,62 @@ function FormPattern({
   }, [isNameValid, isEmailValid, isPasswordValid]);
 
   function handleChangeName(e) {
-    setNameValue(e.target.value)
     if (!e.target.value.length) {
       setIsNameValid(false)
-      setNameErrText('Поле должно быть заполнено')
+      setNameErrText(messages.error.notEmpty)
     } else if (e.target.value.length < 2) {
       setIsNameValid(false)
-      setNameErrText('Имя должно быть больше 2 символов')
+      setNameErrText(messages.error.minNameLength)
     } else if (e.target.value.length > 30) {
       setIsNameValid(false)
-      setNameErrText('Имя должно быть меньше 30 символов')
+      setNameErrText(messages.error.maxNameLength)
     } else {
+      setNameValue(e.target.value)
       setIsNameValid(true)
-      setNameErrText('Все ОК')
+      setNameErrText(messages.success)
     }
   }
 
   function handleChangeEmail(e) {
     if (!e.target.value.length) {
       setIsEmailValid(false)
-      setEmailErrText('Поле должно быть заполнено')
+      setEmailErrText(messages.error.notEmpty)
     } else if ((!regexp.test(String(e.target.value).toLowerCase()))) {
       setIsEmailValid(false)
-      setEmailErrText('Значение должно быть почтой')
+      setEmailErrText(messages.error.notEmail)
     } else {
+      setEmailValue(e.target.value)
       setIsEmailValid(true)
-      setEmailErrText('Все ОК')
+      setEmailErrText(messages.success)
     }
   }
 
   function handleChangePassword(e) {
     if (!e.target.value.length) {
-      setPasswordValid(false)
-      setPasswordErrText('Поле должно быть заполнено')
+      setIsPasswordValid(false)
+      setPasswordErrText(messages.error.notEmpty)
     } else if (e.target.value.length < 3) {
-      setPasswordValid(false)
-      setPasswordErrText('Значение пароля должно быть больше 3 символов')
+      setIsPasswordValid(false)
+      setPasswordErrText(messages.error.minPsswordLength)
     } else {
-      setPasswordValid(true)
-      setPasswordErrText('Все ОК')
+      setPasswordValue(e.target.value)
+      setIsPasswordValid(true)
+      setPasswordErrText(messages.success)
     }
   }
 
   function handleSubmit(e) {
     e.preventDefault();
-    console.log(nameValue)
-    // if (formName === 'login') {
-    //     onSubmit(email, password);
-    // } else {
-    //     onSubmit(name, email, password);
-    // }
+    if (formName === 'login') {
+        onSubmit(emailValue, passwordValue);
+    } else {
+        onSubmit(nameValue, emailValue, passwordValue);
+    }
   }
-
+// прописать значения переменных импутов в стейт переменные
+// прописать выбор отправляемых переменных в зависимости от названия формы
+// переработать форму. оставить тоько саму формк.
+// попробовать использовать форму в профиле.
 
   return (
     <div className="form-pattern">
@@ -111,7 +125,7 @@ function FormPattern({
             required
           />
           <div className={`form-pattern__inp-err-box ${formName === 'login' ? 'form-pattern__inp-err-box_hide' : ''}`}>
-            <p className="form-pattern__error">{nameErrText}</p>
+            <p className={`form-pattern__error ${isNameValid ? 'form-pattern__error_success' : ''}`}>{nameErrText}</p>
           </div>
 {/* ------------------------------Email */}
           <label className="form-pattern__label">E-mail'</label>
@@ -121,7 +135,7 @@ function FormPattern({
             onChange={handleChangeEmail}
           />
           <div className="form-pattern__inp-err-box">
-            <p className="form-pattern__error">{emailErrText}</p>
+            <p className={`form-pattern__error ${isEmailValid ? 'form-pattern__error_success' : ''}`}>{emailErrText}</p>
           </div>
 {/* -----------------------------password */}
           <label className='form-pattern__label'>Пароль</label>
@@ -131,7 +145,7 @@ function FormPattern({
             onChange={handleChangePassword}
           />
           <div className="form-pattern__inp-err-box">
-            <p className="form-pattern__error" id="nameErr">{passwordErrText}</p>
+            <p className={`form-pattern__error ${isPasswordValid ? 'form-pattern__error_success' : ''}`}>{passwordErrText}</p>
           </div>
 
           <button

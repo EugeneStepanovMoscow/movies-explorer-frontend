@@ -26,8 +26,8 @@ function App() {
   }
 
   //функция регистарции пользователя на сервере
-  function handleRegister(email, password, name) {
-    // console.log(`email: ${email}, пароль: ${password}, имя: ${name}`)
+  function handleRegister(name, email, password) {
+    console.log(`email: ${email}, пароль: ${password}, имя: ${name}`)
     mainApi.register(email, password, name)
       .then((res) => {
         if (res.statusCode === 400) {
