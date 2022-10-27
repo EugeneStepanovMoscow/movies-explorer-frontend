@@ -1,4 +1,5 @@
 import React from 'react';
+import HeaderLink from '../HeaderLink/HeaderLink';
 import FormPattern from "../FormPattern/FormPattern"
 
 function Login ({
@@ -8,6 +9,7 @@ function Login ({
   {
   return (
     <main className="login">
+      <HeaderLink/>
       <FormPattern
         formName={'login'}
         formGreeting = {'Рады видеть!'}

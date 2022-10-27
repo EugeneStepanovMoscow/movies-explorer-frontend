@@ -1,5 +1,6 @@
 import React, {useState} from "react";
 import FormPattern from '../FormPattern/FormPattern';
+import HeaderLink from '../HeaderLink/HeaderLink';
 
 function Register ({
   onRegister,
@@ -29,6 +30,7 @@ function Register ({
 
   return (
     <main className="register">
+      <HeaderLink/>
       <FormPattern
         formName={'register'}
         formGreeting={'Добро пожаловать!'}

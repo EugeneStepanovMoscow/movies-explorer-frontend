@@ -112,8 +112,8 @@ function FormPattern({
 // попробовать использовать форму в профиле.
 
   return (
+    <>
     <div className="form-pattern">
-      <HeaderLink/>
       <h2 className="form-pattern__greeting">{formGreeting}</h2>
       <form
         className="form-pattern__form"
@@ -174,6 +174,8 @@ function FormPattern({
         </p>
       </form>
     </div>
+    </>
+
   )
 }
 

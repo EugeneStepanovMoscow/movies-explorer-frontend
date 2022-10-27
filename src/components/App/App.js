@@ -48,7 +48,6 @@ function App() {
     mainApi.login(email, password)
       .then((res) => {
         setServerErrorMessage('')
-        console.log(res)
         localStorage.setItem('jwt', res.token)
         history.push('/movies')
         window.location.reload()
@@ -65,17 +64,17 @@ function App() {
     history.push('/login')
   }
 
-  //Запрос данных пользователя с сервера при старте
-  // useEffect(() => {
-  //   mainApi.getPersonInfo()
-  //     .then(res => {
-  //       setCurrentUser(res)
-  //       console.log(res)
-  //     })
-  //     .catch(err => {
-  //       console.log(err)
-  //     })
-  // }, [])
+  // Запрос данных пользователя с сервера при старте
+  useEffect(() => {
+    mainApi.getPersonInfo()
+      .then(res => {
+        setCurrentUser(res)
+        console.log(currentUser)
+       })
+      .catch(err => {
+        console.log(err)
+      })
+  }, [])
 
 
 

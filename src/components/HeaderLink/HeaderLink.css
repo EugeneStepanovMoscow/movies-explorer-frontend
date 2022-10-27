@@ -1,23 +1,38 @@
 .headerLink {
   display: block;
-  width: 38px;
   height: 38px;
   cursor: pointer;
   transition: .2s;
+  height: 38px;
+  max-width: 396px;
+  margin: 0 auto;
+    transition: .5s;
+}
+@media screen and (min-width: 321px) and (max-width: 420px) {
+  .headerLink {
+    max-width: 300px;
+  }
 }
 
-.headerLink:hover {
-  scale: 1.1;
-  transition: .2s;
+@media screen and (max-width: 320px) {
+  .headerLink {
+    max-width: 260px;
+  }
 }
 
 .headerLink__logo {
   width: 36px;
   height: 36px;
+  transition: .5s;
 }
 
 @media screen and (max-width: 320px) {
   .headerLink {
     margin: 0 auto;
   }
+}
+
+.headerLink__logo:hover {
+  scale: 1.1;
+  transition: .5s;
 }

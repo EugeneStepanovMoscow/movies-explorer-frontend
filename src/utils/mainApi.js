@@ -34,12 +34,6 @@ class API {
   }
 
 
-
-
-
-
-
-
   //регистрация нового пользователя
   register(email, password, name) {
     const promise = fetch(`${this._baseRegUrl}signup`, {
