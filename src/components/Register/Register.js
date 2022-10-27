@@ -2,7 +2,8 @@ import React, {useState} from "react";
 import FormPattern from '../FormPattern/FormPattern';
 
 function Register ({
-  onRegister
+  onRegister,
+  serverErrorMessage
   })
   {
   //стейт переменная значения для регистрации
@@ -35,6 +36,7 @@ function Register ({
         footerText={'Уже зарегистрированы?'}
         footerLinkText={'Войти'}
         onSubmit={onRegister}
+        serverErrorMessage={serverErrorMessage}
       />
     </main>
   )

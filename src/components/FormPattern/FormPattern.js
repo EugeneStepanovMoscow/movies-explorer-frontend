@@ -10,10 +10,13 @@ function FormPattern({
   formGreeting,
   footerText,
   footerLinkText,
+  serverErrorMessage,
 })
 {
   //  регулярное выражение на почту
-  const regexp = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+  const regExpEmail = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+  const regExpName = /^[A-Za-zА-Яа-я_\s]+$/
+
   // стейт переменная состояния формы
   const [isFormValid, setIsFormValid] = useState(false);
   // стейт переменные состояния инпутов
@@ -57,6 +60,9 @@ function FormPattern({
     } else if (e.target.value.length > 30) {
       setIsNameValid(false)
       setNameErrText(messages.error.maxNameLength)
+    } else if ((!regExpName.test(String(e.target.value).toLowerCase()))) {
+      setIsNameValid(false)
+      setNameErrText(messages.error.notName)
     } else {
       setNameValue(e.target.value)
       setIsNameValid(true)
@@ -68,11 +74,11 @@ function FormPattern({
     if (!e.target.value.length) {
       setIsEmailValid(false)
       setEmailErrText(messages.error.notEmpty)
-    } else if ((!regexp.test(String(e.target.value).toLowerCase()))) {
+    } else if ((!regExpEmail.test(String(e.target.value).toLowerCase()))) {
       setIsEmailValid(false)
       setEmailErrText(messages.error.notEmail)
     } else {
-      setEmailValue(e.target.value)
+      setEmailValue(e.target.value.toLowerCase())
       setIsEmailValid(true)
       setEmailErrText(messages.success)
     }
@@ -146,6 +152,10 @@ function FormPattern({
           />
           <div className="form-pattern__inp-err-box">
             <p className={`form-pattern__error ${isPasswordValid ? 'form-pattern__error_success' : ''}`}>{passwordErrText}</p>
+          </div>
+{/*-------------------------------секция отображения ошибки сервера*/}
+          <div className="form-pattern__server-err-box">
+            <p className='form-pattern__server-err-text'>{serverErrorMessage}</p>
           </div>
 
           <button

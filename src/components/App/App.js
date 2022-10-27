@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Route, Switch, Redirect, useHistory} from 'react-router-dom';
 import mainApi from '../../utils/mainApi';
 
+
 // ипорт компонентов
 import Main from '../Main/Main'
 import Movies from '../Movies/Movies'
@@ -10,9 +11,12 @@ import Register from '../Register/Register'
 import Login from '../Login/Login'
 import Profile from '../Profile/Profile'
 import ErrPage from '../ErrPage/ErrPage';
-
+// перевод кода ошибки от сервера в сообщение
+import serverErrorCode2Message from '../../utils/serverErrorCode2Message';
 
 function App() {
+  const [serverErrorMessage, setServerErrorMessage] = useState('')
+
   //стейт переменная статуса входа пользавателя в систему
   const [loggedIn, setloggedIn] = React.useState(true)
   //стейт переменная массива информации о фильмах
@@ -27,23 +31,16 @@ function App() {
 
   //функция регистарции пользователя на сервере
   function handleRegister(name, email, password) {
-    console.log(`email: ${email}, пароль: ${password}, имя: ${name}`)
     mainApi.register(email, password, name)
       .then((res) => {
-        if (res.statusCode === 400) {
-          // setInfoTooltioStatus(false)
-          // setIsInfoTooltipOpen(true)
-        } else {
-          //действия при успешной регистрации
-          // setInfoTooltioStatus(true)
-          // setIsInfoTooltipOpen(true)
-          history.push('/login')
-        }
-      })
-      .catch(err => {
-        // setInfoTooltioStatus(false)
+        setServerErrorMessage('')
+        //действия при успешной регистрации
+        // setInfoTooltioStatus(true)
         // setIsInfoTooltipOpen(true)
-        console.log(err)
+        history.push('/login')
+      })
+      .catch((err) => {
+        setServerErrorMessage(serverErrorCode2Message(err.status))
       })
   }
 
@@ -51,49 +48,50 @@ function App() {
 
 
   return (
-    <Switch>
 
-      <Route path="/main">
-        <Main/>
-      </Route>
+      <Switch>
+        <Route path="/main">
+          <Main/>
+        </Route>
 
-      <Route path="/movies">
-        <Movies
-          movies={movies}
-        />
-      </Route>
+        <Route path="/movies">
+          <Movies
+            movies={movies}
+          />
+        </Route>
 
-      <Route path="/saved-movies">
-        <SavedMovies/>
-      </Route>
+        <Route path="/saved-movies">
+          <SavedMovies/>
+        </Route>
 
-      <Route path="/register">
-        <Register
-          onRegister={handleRegister}
-        />
-      </Route>
+        <Route path="/register">
+          <Register
+            onRegister={handleRegister}
+            serverErrorMessage={serverErrorMessage}
+          />
+        </Route>
 
-      <Route path="/login">
-        <Login/>
-      </Route>
+        <Route path="/login">
+          <Login/>
+        </Route>
 
-      <Route path="/profile">
-        <Profile/>
-      </Route>
+        <Route path="/profile">
+          <Profile/>
+        </Route>
 
-      <Route exact path="/">
-        {loggedIn ? <Redirect to="/main"/> : <Redirect to="/login"/>}
-      </Route>
+        <Route exact path="/">
+          {loggedIn ? <Redirect to="/main"/> : <Redirect to="/login"/>}
+        </Route>
 
-      <Route path="*">
-        <ErrPage
-          err = {'404'}
-          errText = {'Страница не найдена'}
-          handleBack = {handleBack}
-        />
-      </Route>
+        <Route path="*">
+          <ErrPage
+            err = {'404'}
+            errText = {'Страница не найдена'}
+            handleBack = {handleBack}
+          />
+        </Route>
 
-    </Switch>
+      </Switch>
   );
 }
 

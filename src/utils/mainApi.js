@@ -6,13 +6,15 @@ class API {
   }
 
   _makeRequest(promise) {
-    return promise.then((response) => {
-      if (response.ok) {
-        return response.json()
-      } else {
-        return Promise.reject(`Ошибка: ${response.status}`);
+    return promise.then(
+      (response) => {
+        if (response.ok) {
+          return response
+        } else {
+          return Promise.reject(response);
+        }
       }
-    })
+    )
     .then((obj) => {
       return obj
     })
@@ -20,7 +22,6 @@ class API {
 
   //регистрация нового пользователя
   register(email, password, name) {
-    console.log(`email: ${email}, пароль: ${password}, имя: ${name}`)
     const promise = fetch(`${this._baseRegUrl}signup`, {
       method: 'POST',
       headers: this._headers,
