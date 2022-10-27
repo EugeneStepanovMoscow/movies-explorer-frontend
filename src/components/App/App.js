@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Route, Switch, Redirect, useHistory} from 'react-router-dom';
 import mainApi from '../../utils/mainApi';
 
+import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 
 // ипорт компонентов
 import Main from '../Main/Main'
@@ -15,12 +16,14 @@ import ErrPage from '../ErrPage/ErrPage';
 import serverErrorCode2Message from '../../utils/serverErrorCode2Message';
 
 function App() {
+  // стейт переменная вошедшего пользователя
+  const [currentUser, setCurrentUser] = useState({})
+  // переменная ответов от сервера
   const [serverErrorMessage, setServerErrorMessage] = useState('')
-
   //стейт переменная статуса входа пользавателя в систему
-  const [loggedIn, setloggedIn] = React.useState(true)
+  const [loggedIn, setloggedIn] = useState(true)
   //стейт переменная массива информации о фильмах
-  const [movies, setMovies] = React.useState([])
+  const [movies, setMovies] = useState([])
   //хук перемещения между страницами
   const history = useHistory()
 
@@ -34,21 +37,45 @@ function App() {
     mainApi.register(email, password, name)
       .then((res) => {
         setServerErrorMessage('')
-        //действия при успешной регистрации
-        // setInfoTooltioStatus(true)
-        // setIsInfoTooltipOpen(true)
-        history.push('/login')
+        handleLogin(email, password)
       })
       .catch((err) => {
         setServerErrorMessage(serverErrorCode2Message(err.status))
       })
   }
 
+  function handleLogin(email, password) {
+    mainApi.login(email, password)
+      .then((res) => {
+        setServerErrorMessage('')
+        console.log(res)
+        localStorage.setItem('jwt', res.token)
+        // history.push('/movies')
+        // window.location.reload()
+      })
+      .catch(err => {
+        setServerErrorMessage(serverErrorCode2Message(err.status))
+      })
+  }
+
+  //Запрос данных пользователя с сервера при старте
+  // useEffect(() => {
+  //   mainApi.getPersonInfo()
+  //     .then(res => {
+  //       setCurrentUser(res)
+  //       console.log(res)
+  //     })
+  //     .catch(err => {
+  //       console.log(err)
+  //     })
+  // }, [])
+
+
 
 
 
   return (
-
+    <CurrentUserContext.Provider value={currentUser}>
       <Switch>
         <Route path="/main">
           <Main/>
@@ -72,7 +99,10 @@ function App() {
         </Route>
 
         <Route path="/login">
-          <Login/>
+          <Login
+            onLogin={handleLogin}
+            serverErrorMessage={serverErrorMessage}
+          />
         </Route>
 
         <Route path="/profile">
@@ -92,6 +122,7 @@ function App() {
         </Route>
 
       </Switch>
+      </CurrentUserContext.Provider>
   );
 }
 

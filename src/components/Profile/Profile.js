@@ -1,10 +1,22 @@
-import React from 'react';
-import HeaderLogin from '../HeaderLogin/HeaderLogin'
+import React, {useContext} from 'react';
+import HeaderLogin from '../HeaderLogin/HeaderLogin';
 
-const name = 'Евгений'
+import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 
-function Profile ()
-{
+
+
+function Profile () {
+// подписка на контекст
+const currentUser = useContext(CurrentUserContext);
+//стейт переменные имя и почты
+const [name, setName] = React.useState('Стартовое имя')
+const [email, setEmail] = React.useState('')
+//присвоение стейт переменным значений currentUser, при изменении последнего
+React.useEffect(() =>{
+  setName(currentUser.name)
+  setEmail(currentUser.email)
+}, [currentUser])
+
 return (
   <>
     <HeaderLogin/>
@@ -17,8 +29,8 @@ return (
             name="name"
             type="text"
             required
-            placeholder={name}
-            // value={name}
+            // placeholder={currentUser.name}
+            // value={name || ''}
             // onChange={handleChange}
           />
         </div>
@@ -28,7 +40,8 @@ return (
             name="E-mail"
             type="email"
             required
-            placeholder={name}
+            // value={email || ''}
+            // placeholder={currentUser.email}
             // onChange={handleChange}
           />
         </div>

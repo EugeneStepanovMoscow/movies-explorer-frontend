@@ -5,20 +5,40 @@ class API {
     this._headers = headers;
   }
 
+  // _makeRequest(promise) {
+  //   return promise.then(
+  //     (response) => {
+  //       if (response.ok) {
+  //         return response
+  //       } else {
+  //         return Promise.reject(response);
+  //       }
+  //     }
+  //   )
+  //   .then((obj) => {
+  //     return obj
+  //   })
+  // }
+
   _makeRequest(promise) {
-    return promise.then(
-      (response) => {
-        if (response.ok) {
-          return response
-        } else {
-          return Promise.reject(response);
-        }
+    return promise.then((response) => {
+      if (response.ok) {
+        return response.json()
+      } else {
+        return Promise.reject(response);
       }
-    )
+    })
     .then((obj) => {
       return obj
     })
   }
+
+
+
+
+
+
+
 
   //регистрация нового пользователя
   register(email, password, name) {
@@ -34,7 +54,44 @@ class API {
     return this._makeRequest(promise)
   }
 
+  // запрос на вход, получение токена
+  login(email, password) {
+    // const promise = fetch(`${this._baseRegUrl}/signin`, {
+    const promise = fetch(`${this._baseUrl}signin`, {
+      method: 'POST',
+      headers: this._headers,
+      body: JSON.stringify({
+        password: password,
+        email: email
+      })
+    })
+    return this._makeRequest(promise)
+  }
 
+//---------------------Получение информации о пользователе
+  getPersonInfo() {
+    const promise = fetch(`${this._baseUrl}users/me`, {
+      method: 'GET',
+      headers: this._headers
+    })
+    return this._makeRequest(promise)
+  }
+
+
+
+
+  //запрос проверки токена
+  // jwtCheck(jwt) {
+  //   const promise = fetch(`${this._baseUrl}users/me`, {
+  //     method: 'GET',
+  //     headers: {
+  //       'Content-Type': 'application/json',
+  //       //'Authorization': `Bearer ${jwt}`
+  //       'authorization': jwt,
+  //     }
+  //   })
+  //   return this._makeRequest(promise)
+  // }
 
 
 

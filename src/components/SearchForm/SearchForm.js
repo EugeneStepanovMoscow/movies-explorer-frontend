@@ -26,9 +26,9 @@ function SearchForm ()
           </div>
           <div className="search-form__btn-region">
             {/* <button className="searsh-form__btn" type="image"></button> */}
-            <lable className="searsh-form__switch">
+            <label className="searsh-form__switch">
               <input className="searsh-form__checkbox" type="checkbox"/>
-            </lable>
+            </label>
             <label className="search-form__text">Короткометражки</label>
           </div>
         </div>
