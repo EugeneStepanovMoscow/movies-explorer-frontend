@@ -50,12 +50,19 @@ function App() {
         setServerErrorMessage('')
         console.log(res)
         localStorage.setItem('jwt', res.token)
-        // history.push('/movies')
-        // window.location.reload()
+        history.push('/movies')
+        window.location.reload()
       })
       .catch(err => {
         setServerErrorMessage(serverErrorCode2Message(err.status))
       })
+  }
+
+  //функция выхода пользователя
+  function handleLogOut() {
+    // setloggedIn(false)
+    localStorage.removeItem('jwt')
+    history.push('/login')
   }
 
   //Запрос данных пользователя с сервера при старте
@@ -106,7 +113,9 @@ function App() {
         </Route>
 
         <Route path="/profile">
-          <Profile/>
+          <Profile
+            handleLogOut={handleLogOut}
+          />
         </Route>
 
         <Route exact path="/">

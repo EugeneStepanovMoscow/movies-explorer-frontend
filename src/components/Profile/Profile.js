@@ -5,7 +5,10 @@ import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 
 
 
-function Profile () {
+function Profile ({
+  handleLogOut
+})
+{
 // подписка на контекст
 const currentUser = useContext(CurrentUserContext);
 //стейт переменные имя и почты
@@ -46,8 +49,11 @@ return (
           />
         </div>
         <button className='prifile__btn prifile__btn-edit'>Редактровать</button>
-        <button className='prifile__btn prifile__btn-exit'>Выйти из аккаунта</button>
       </form>
+      <button
+        className='prifile__btn prifile__btn-exit'
+        onClick={handleLogOut}
+      >Выйти из аккаунта</button>
     </main>
   </>
 )
