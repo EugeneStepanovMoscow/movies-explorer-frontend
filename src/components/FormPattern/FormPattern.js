@@ -1,7 +1,8 @@
 import React from 'react';
 import { useState, useEffect } from "react";
-import HeaderLink from '../HeaderLink/HeaderLink';
+
 import messages from '../../utils/messages';
+import regExp from '../../utils/regExp';
 
 function FormPattern({
   formName,
@@ -13,10 +14,6 @@ function FormPattern({
   serverErrorMessage,
 })
 {
-  //  регулярное выражение на почту
-  const regExpEmail = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-  const regExpName = /^[A-Za-zА-Яа-я_\s]+$/
-
   // стейт переменная состояния формы
   const [isFormValid, setIsFormValid] = useState(false);
   // стейт переменные состояния инпутов
@@ -60,7 +57,7 @@ function FormPattern({
     } else if (e.target.value.length > 30) {
       setIsNameValid(false)
       setNameErrText(messages.error.maxNameLength)
-    } else if ((!regExpName.test(String(e.target.value).toLowerCase()))) {
+    } else if ((!regExp.Name.test(String(e.target.value).toLowerCase()))) {
       setIsNameValid(false)
       setNameErrText(messages.error.notName)
     } else {
@@ -74,7 +71,7 @@ function FormPattern({
     if (!e.target.value.length) {
       setIsEmailValid(false)
       setEmailErrText(messages.error.notEmpty)
-    } else if ((!regExpEmail.test(String(e.target.value).toLowerCase()))) {
+    } else if ((!regExp.Email.test(String(e.target.value).toLowerCase()))) {
       setIsEmailValid(false)
       setEmailErrText(messages.error.notEmail)
     } else {

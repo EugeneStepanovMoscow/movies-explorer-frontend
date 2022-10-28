@@ -64,19 +64,20 @@ function App() {
     history.push('/login')
   }
 
+  function handleProfileUpdate(name, email) {
+    setCurrentUser({name: name, email: email})
+  }
+
   // Запрос данных пользователя с сервера при старте
   useEffect(() => {
     mainApi.getPersonInfo()
       .then(res => {
         setCurrentUser(res)
-        console.log(currentUser)
        })
       .catch(err => {
         console.log(err)
       })
   }, [])
-
-
 
 
 
@@ -114,6 +115,7 @@ function App() {
         <Route path="/profile">
           <Profile
             handleLogOut={handleLogOut}
+            onSubmit={handleProfileUpdate}
           />
         </Route>
 
