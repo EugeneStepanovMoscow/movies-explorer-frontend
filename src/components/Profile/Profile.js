@@ -8,14 +8,12 @@ import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 
 function Profile ({
   handleLogOut,
-  onSubmit
+  onSubmit,
+  serverErrorMessage
 })
 {
 // подписка на контекст
 const currentUser = useContext(CurrentUserContext);
-//стейт переменные имя и почты
-const [name, setName] = useState('')
-const [email, setEmail] = useState('')
 
 // стейт переменная состояния формы
 const [isFormValid, setIsFormValid] = useState(true);
@@ -27,10 +25,9 @@ const [isEmailValid, setIsEmailValid] = useState(true);
 const [nameErrText, setNameErrText] = useState('');
 const [emailErrText, setEmailErrText] = useState('');
 
-
-// // переменные начений инпутов
-// const [nameValue, setNameValue]  = useState('');
-// const [emailValue, setEmailValue]  = useState('');
+// переменные начений инпутов
+const [nameValue, setNameValue]  = useState('');
+const [emailValue, setEmailValue]  = useState('');
 
 
 // при изменении любой стейт переменной импута проверяетс на валидность все инпуты
@@ -45,53 +42,61 @@ useEffect(() => {
 
 // присвоение стейт переменным значений currentUser, при изменении последнего
 useEffect(() =>{
-  setName(currentUser.name)
-  setEmail(currentUser.email)
+  setNameValue(currentUser.name)
+  setEmailValue(currentUser.email)
 }, [currentUser])
 
 function handleChangeName(e) {
   if (!e.target.value.length) {
+    setNameValue(e.target.value)
     setIsNameValid(false)
-    setEmailErrText(messages.error.notEmpty)
+    setNameErrText(messages.error.notEmpty)
   } else if (e.target.value.length < 2) {
+    setNameValue(e.target.value)
     setIsNameValid(false)
-    setEmailErrText(messages.error.minNameLength)
+    setNameErrText(messages.error.minNameLength)
   } else if (e.target.value.length > 30) {
+    setNameValue(e.target.value)
     setIsNameValid(false)
-    setEmailErrText(messages.error.maxNameLength)
+    setNameErrText(messages.error.maxNameLength)
   } else if ((!regExp.Name.test(String(e.target.value).toLowerCase()))) {
+    setNameValue(e.target.value)
     setIsNameValid(false)
-    setEmailErrText(messages.error.notName)
+    setNameErrText(messages.error.notName)
   } else {
-    setName(e.target.value)
+    setNameValue(e.target.value)
     setIsNameValid(true)
-    setEmailErrText('')
+    setNameErrText(messages.success)
   }
 }
 
 function handleChangeEmail(e) {
   if (!e.target.value.length) {
+    setEmailValue(e.target.value)
     setIsEmailValid(false)
-    setNameErrText(messages.error.notEmpty)
+    setEmailErrText(messages.error.notEmpty)
   } else if (e.target.value.length < 2) {
+    setEmailValue(e.target.value)
     setIsEmailValid(false)
-    setNameErrText(messages.error.minNameLength)
+    setEmailErrText(messages.error.minNameLength)
   } else if (e.target.value.length > 30) {
+    setEmailValue(e.target.value)
     setIsEmailValid(false)
-    setNameErrText(messages.error.maxNameLength)
+    setEmailErrText(messages.error.maxNameLength)
   } else if ((!regExp.Email.test(String(e.target.value).toLowerCase()))) {
+    setEmailValue(e.target.value)
     setIsEmailValid(false)
-    setNameErrText(messages.error.notName)
+    setEmailErrText(messages.error.notEmail)
   } else {
-    setEmail(e.target.value)
+    setEmailValue(e.target.value)
     setIsEmailValid(true)
-    setNameErrText('')
+    setEmailErrText(messages.success)
   }
 }
 
 function handleSubmit(e) {
   e.preventDefault();
-  onSubmit(name, email);
+  onSubmit(nameValue, emailValue);
 }
 
 return (
@@ -111,9 +116,12 @@ return (
             type="text"
             required
             // placeholder={currentUser.name}
-            value={name || ''}
+            value={nameValue || ''}
             onChange={handleChangeName}
           />
+          <div className='profile__inp-err-box'>
+            <p className={`profile__error ${isNameValid ? 'profile__error_success' : ''}`}>{nameErrText}</p>
+          </div>
         </div>
         <div className='profile__info'>
           <p className='profile__title'>E-mail</p>
@@ -121,12 +129,15 @@ return (
             name="E-mail"
             type="email"
             required
-            value={email || ''}
+            value={emailValue || ''}
             // placeholder={currentUser.email}
             onChange={handleChangeEmail}
           />
+          <div className='profile__inp-err-box'>
+            <p className={`profile__error ${isEmailValid ? 'profile__error_success' : ''}`}>{emailErrText}</p>
+          </div>
         </div>
-        <p className='form-pattern__error'>{emailErrText || nameErrText}</p>
+        <p className='form-pattern__error'>{serverErrorMessage}</p>
         <button
           className='prifile__btn prifile__btn-edit'
           type="submit"

@@ -68,10 +68,15 @@ function App() {
   }
 
   function handleProfileUpdate(name, email) {
-    setCurrentUser({name: name, email: email})
+    // setCurrentUser({name: name, email: email})
     mainApi.profileUpdate(name, email)
-      .then(res => console.log(res))
-      .catch(err => console.log(err))
+      .then(res => {
+        console.log(res)
+        debugger
+      })
+      .catch(err => {
+        setServerErrorMessage(serverErrorCode2Message(err.status))
+      })
   }
 
   // Запрос данных пользователя с сервера при старте и перезагрузке
@@ -127,6 +132,7 @@ function App() {
           loggedIn={loggedIn}
           handleLogOut={handleLogOut}
           onSubmit={handleProfileUpdate}
+          serverErrorMessage={serverErrorMessage}
         />
 
         <Route exact path="/">

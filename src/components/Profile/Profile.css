@@ -22,7 +22,28 @@
   }
 }
 
-.profile__input-box {
-  border: 1px solid red;
-  display: flex;
+
+.profile__inp-err-box {
+  margin-top: 2px;
+  height: 12px;
+  position: absolute;
+  top: 28px;
+  right: 5px;
+}
+.profile__inp-err-box_hide {
+  display: none;
+}
+
+.profile__error {
+  height: 11px;
+  margin: 0;
+  font-family: Inter, Arial, sans-serif;
+  font-weight: 400;
+  font-size: 10px;
+  line-height: 12.1px;
+  color: #FF4062;
+}
+
+.profile__error_success {
+  color: rgb(3, 203, 3);
 }
