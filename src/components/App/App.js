@@ -63,16 +63,17 @@ function App() {
   //функция выхода пользователя
   function handleLogOut() {
     setloggedIn(false)
+    setServerErrorMessage('')
     localStorage.removeItem('jwt')
     history.push('/login')
   }
 
   function handleProfileUpdate(name, email) {
-    // setCurrentUser({name: name, email: email})
     mainApi.profileUpdate(name, email)
       .then(res => {
-        console.log(res)
-        debugger
+        setCurrentUser({name: name, email: email})
+        setServerErrorMessage(res.message)
+        // console.log(res.code)
       })
       .catch(err => {
         setServerErrorMessage(serverErrorCode2Message(err.status))
