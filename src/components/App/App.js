@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Route, Switch, Redirect, useHistory} from 'react-router-dom';
+import { Route, Switch, useHistory} from 'react-router-dom';
 import mainApi from '../../utils/mainApi';
 
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
@@ -24,7 +24,7 @@ function App() {
   //стейт переменная статуса входа пользавателя в систему
   const [loggedIn, setloggedIn] = useState(true)
   //стейт переменная массива информации о фильмах
-  const [movies, setMovies] = useState([])
+  // const [movies, setMovies] = useState([])
   //хук перемещения между страницами
   const history = useHistory()
 
@@ -47,13 +47,13 @@ function App() {
   function handleLogin(email, password) {
     mainApi.login(email, password)
       .then((res) => {
+        setloggedIn(true)
         const user = {name: res.userFromDB.name, email: res.userFromDB.email}
         setCurrentUser(user)
         setServerErrorMessage('')
         localStorage.setItem('jwt', res.token)
-        alert(currentUser.name)
         history.push('/movies')
-        window.location.reload()
+        // window.location.reload()
       })
       .catch(err => {
         setServerErrorMessage(serverErrorCode2Message(err.status))
@@ -62,7 +62,7 @@ function App() {
 
   //функция выхода пользователя
   function handleLogOut() {
-    // setloggedIn(false)
+    setloggedIn(false)
     localStorage.removeItem('jwt')
     history.push('/login')
   }
@@ -74,23 +74,23 @@ function App() {
       .catch(err => console.log(err))
   }
 
-  // Запрос данных пользователя с сервера при старте
-  // useEffect(() => {
-  //   const token = localStorage.getItem('jwt');
-  //   if (token) {
-  //     mainApi.getPersonInfo()
-  //       .then((res) => {
-  //         setCurrentUser({name: res.name, email: res.email})
-  //         history.push('/movies')
-  //       })
-  //       .catch(err => {
-  //         console.log(err)
-  //       })
-  //   } else {
-  //     console.log('переход')
-  //     history.push('/login')
-  //   }
-  // }, [])
+  // Запрос данных пользователя с сервера при старте и перезагрузке
+  useEffect(() => {
+    const token = localStorage.getItem('jwt');
+    if (token) {
+      mainApi.getPersonInfo()
+        .then((res) => {
+          setCurrentUser({name: res.name, email: res.email})
+          setloggedIn(true)
+        })
+        .catch(err => {
+          console.log(err)
+        })
+    } else {
+      setloggedIn(false)
+      history.push('/login')
+    }
+  }, [])
 
   return (
     <CurrentUserContext.Provider value={currentUser}>

@@ -43,12 +43,11 @@ useEffect(() => {
 }, [isNameValid, isEmailValid]);
 
 
-//присвоение стейт переменным значений currentUser, при изменении последнего
+// присвоение стейт переменным значений currentUser, при изменении последнего
 useEffect(() =>{
-  console.log(currentUser.name)
   setName(currentUser.name)
   setEmail(currentUser.email)
-}, [])
+}, [currentUser])
 
 function handleChangeName(e) {
   if (!e.target.value.length) {
@@ -111,8 +110,8 @@ return (
             name="name"
             type="text"
             required
-            placeholder={name}
-            // value={name || ''}
+            // placeholder={currentUser.name}
+            value={name || ''}
             onChange={handleChangeName}
           />
         </div>
@@ -122,8 +121,8 @@ return (
             name="E-mail"
             type="email"
             required
-            // value={email || ''}
-            placeholder={email}
+            value={email || ''}
+            // placeholder={currentUser.email}
             onChange={handleChangeEmail}
           />
         </div>

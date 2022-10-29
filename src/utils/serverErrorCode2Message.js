@@ -1,4 +1,3 @@
-import React from "react";
 
 function serverErrorCode2Message(code) {
   if (code === 400) {
