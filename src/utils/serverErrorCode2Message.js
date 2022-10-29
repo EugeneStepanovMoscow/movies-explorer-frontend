@@ -1,4 +1,3 @@
-
 function serverErrorCode2Message(code) {
   if (code === 400) {
       return 'Введены некорректные данные';

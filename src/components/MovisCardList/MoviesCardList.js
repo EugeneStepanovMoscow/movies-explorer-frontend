@@ -1,15 +1,24 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Movie from "../Movie/Movie"
 
-function MoviesCardList ()
+function MoviesCardList ({
+  moviesList
+})
 
 {
+useEffect(() => {
+  // console.log(moviesList)
+})
+
   return (
     <ul className="movies-card-list">
-      <Movie/>
-      <Movie/>
-      <Movie/>
-      <Movie/>
+      {moviesList.map(movie =>
+              // console.log(movie)
+        <Movie
+          key={movie.id}
+          movieInfo={movie}
+        />
+      )}
     </ul>
   )
 }

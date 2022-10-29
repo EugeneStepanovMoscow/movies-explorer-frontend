@@ -15,6 +15,7 @@ import Profile from '../Profile/Profile'
 import ErrPage from '../ErrPage/ErrPage';
 // перевод кода ошибки от сервера в сообщение
 import serverErrorCode2Message from '../../utils/serverErrorCode2Message';
+import requestProcessing from '../../utils/requestProcessing';
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 
 function App() {
@@ -25,7 +26,7 @@ function App() {
   //стейт переменная статуса входа пользавателя в систему
   const [loggedIn, setloggedIn] = useState(true)
   //стейт переменная массива информации о фильмах
-  // const [movies, setMovies] = useState([])
+  const [moviesList, setMoviesList] = useState([])
   //хук перемещения между страницами
   const history = useHistory()
 
@@ -81,10 +82,13 @@ function App() {
       })
   }
 
-  function handleFilmSearch(movie) {
+  function handleFilmSearch(req) {
     movieApi.get()
       .then(res => {
-        console.log(res)
+        setMoviesList(requestProcessing(req, res))
+      })
+      .catch(err => {
+        setServerErrorMessage(serverErrorCode2Message(err.status))
       })
   }
 
@@ -128,6 +132,7 @@ function App() {
           path='/movies'
           loggedIn={loggedIn}
           onSubmit={handleFilmSearch}
+          moviesList={moviesList}
         />
 
         <ProtectedRoute

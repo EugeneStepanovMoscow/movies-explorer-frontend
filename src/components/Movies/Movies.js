@@ -6,7 +6,8 @@ import Preloader from '../Preloader/Preloader';
 import MoviesCardList from '../MovisCardList/MoviesCardList';
 
 function Movies ({
-  onSubmit
+  onSubmit,
+  moviesList
 })
 {
   return (
@@ -17,8 +18,10 @@ function Movies ({
           onSubmit={onSubmit}
         />
         <section className='movies__section'>
-           <Preloader/>
-          <MoviesCardList/>
+          <Preloader/>
+          <MoviesCardList
+            moviesList={moviesList}
+          />
         </section>
         <section className='movies__more'>
           <button className='movies__more-button'>Ещё</button>
