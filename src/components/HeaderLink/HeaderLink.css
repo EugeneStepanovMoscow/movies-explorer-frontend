@@ -1,18 +1,19 @@
 .headerLink {
+  margin: auto auto auto 0;
   display: block;
   height: 38px;
   cursor: pointer;
   transition: .2s;
   height: 38px;
-  max-width: 396px;
-  margin: 0 auto;
-    transition: .5s;
+  width: 38px;
+  /* margin: 0 auto; */
+  transition: .5s;
 }
-@media screen and (min-width: 321px) and (max-width: 420px) {
+/* @media screen and (min-width: 321px) and (max-width: 420px) {
   .headerLink {
-    max-width: 300px;
+    width: 300px;
   }
-}
+} */
 
 @media screen and (max-width: 320px) {
   .headerLink {

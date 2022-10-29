@@ -71,6 +71,18 @@ class API {
     return this._makeRequest(promise)
   }
 
+//---------------------Обновление прфиля
+  profileUpdate(newName, newAbout) {
+    const promise = fetch(`${this._baseUrl}users/me`, {
+      method: 'PATCH',
+       headers: this._headers,
+       body: JSON.stringify({
+         name: newName,
+         about: newAbout
+       })
+     })
+    return this._makeRequest(promise)
+  }
 
 
 

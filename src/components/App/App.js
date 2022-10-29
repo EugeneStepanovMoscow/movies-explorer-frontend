@@ -14,6 +14,7 @@ import Profile from '../Profile/Profile'
 import ErrPage from '../ErrPage/ErrPage';
 // перевод кода ошибки от сервера в сообщение
 import serverErrorCode2Message from '../../utils/serverErrorCode2Message';
+import ProtectedRoute from '../ProtectedRoute';
 
 function App() {
   // стейт переменная вошедшего пользователя
@@ -36,7 +37,6 @@ function App() {
   function handleRegister(name, email, password) {
     mainApi.register(email, password, name)
       .then((res) => {
-        setServerErrorMessage('')
         handleLogin(email, password)
       })
       .catch((err) => {
@@ -47,8 +47,11 @@ function App() {
   function handleLogin(email, password) {
     mainApi.login(email, password)
       .then((res) => {
+        const user = {name: res.userFromDB.name, email: res.userFromDB.email}
+        setCurrentUser(user)
         setServerErrorMessage('')
         localStorage.setItem('jwt', res.token)
+        alert(currentUser.name)
         history.push('/movies')
         window.location.reload()
       })
@@ -66,38 +69,32 @@ function App() {
 
   function handleProfileUpdate(name, email) {
     setCurrentUser({name: name, email: email})
+    mainApi.profileUpdate(name, email)
+      .then(res => console.log(res))
+      .catch(err => console.log(err))
   }
 
   // Запрос данных пользователя с сервера при старте
-  useEffect(() => {
-    mainApi.getPersonInfo()
-      .then(res => {
-        setCurrentUser(res)
-       })
-      .catch(err => {
-        console.log(err)
-      })
-  }, [])
-
-
+  // useEffect(() => {
+  //   const token = localStorage.getItem('jwt');
+  //   if (token) {
+  //     mainApi.getPersonInfo()
+  //       .then((res) => {
+  //         setCurrentUser({name: res.name, email: res.email})
+  //         history.push('/movies')
+  //       })
+  //       .catch(err => {
+  //         console.log(err)
+  //       })
+  //   } else {
+  //     console.log('переход')
+  //     history.push('/login')
+  //   }
+  // }, [])
 
   return (
     <CurrentUserContext.Provider value={currentUser}>
       <Switch>
-        <Route path="/main">
-          <Main/>
-        </Route>
-
-        <Route path="/movies">
-          <Movies
-            movies={movies}
-          />
-        </Route>
-
-        <Route path="/saved-movies">
-          <SavedMovies/>
-        </Route>
-
         <Route path="/register">
           <Register
             onRegister={handleRegister}
@@ -112,15 +109,28 @@ function App() {
           />
         </Route>
 
-        <Route path="/profile">
-          <Profile
-            handleLogOut={handleLogOut}
-            onSubmit={handleProfileUpdate}
-          />
-        </Route>
+        <ProtectedRoute
+          component={Movies}
+          path='/movies'
+          loggedIn={loggedIn}
+        />
+
+        <ProtectedRoute
+          component={SavedMovies}
+          path='/saved-movies'
+          loggedIn={loggedIn}
+        />
+
+        <ProtectedRoute
+          component={Profile}
+          path='/profile'
+          loggedIn={loggedIn}
+          handleLogOut={handleLogOut}
+          onSubmit={handleProfileUpdate}
+        />
 
         <Route exact path="/">
-          {loggedIn ? <Redirect to="/main"/> : <Redirect to="/login"/>}
+          <Main/>
         </Route>
 
         <Route path="*">

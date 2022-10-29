@@ -1,4 +1,4 @@
-import React, {useContext, useState, useEffect} from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import HeaderLogin from '../HeaderLogin/HeaderLogin';
 
 import regExp from '../../utils/regExp';
@@ -14,14 +14,14 @@ function Profile ({
 // подписка на контекст
 const currentUser = useContext(CurrentUserContext);
 //стейт переменные имя и почты
-const [name, setName] = React.useState('')
-const [email, setEmail] = React.useState('')
+const [name, setName] = useState('')
+const [email, setEmail] = useState('')
 
 // стейт переменная состояния формы
 const [isFormValid, setIsFormValid] = useState(true);
 // стейт переменные состояния инпутов
-const [isNameValid, setIsNameValid] = useState (true);
-const [isEmailValid, setIsEmailValid] = useState (true);
+const [isNameValid, setIsNameValid] = useState(true);
+const [isEmailValid, setIsEmailValid] = useState(true);
 
 // стейт переменные текстов ошибок
 const [nameErrText, setNameErrText] = useState('');
@@ -44,13 +44,13 @@ useEffect(() => {
 
 
 //присвоение стейт переменным значений currentUser, при изменении последнего
-React.useEffect(() =>{
+useEffect(() =>{
+  console.log(currentUser.name)
   setName(currentUser.name)
   setEmail(currentUser.email)
-}, [currentUser])
+}, [])
 
 function handleChangeName(e) {
-  console.log('1111')
   if (!e.target.value.length) {
     setIsNameValid(false)
     setEmailErrText(messages.error.notEmpty)
