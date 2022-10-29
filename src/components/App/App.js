@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Route, Switch, useHistory} from 'react-router-dom';
 import mainApi from '../../utils/mainApi';
+import movieApi from '../../utils/MoviesApi';
 
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 
@@ -14,7 +15,7 @@ import Profile from '../Profile/Profile'
 import ErrPage from '../ErrPage/ErrPage';
 // перевод кода ошибки от сервера в сообщение
 import serverErrorCode2Message from '../../utils/serverErrorCode2Message';
-import ProtectedRoute from '../ProtectedRoute';
+import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 
 function App() {
   // стейт переменная вошедшего пользователя
@@ -80,6 +81,13 @@ function App() {
       })
   }
 
+  function handleFilmSearch(movie) {
+    movieApi.get()
+      .then(res => {
+        console.log(res)
+      })
+  }
+
   // Запрос данных пользователя с сервера при старте и перезагрузке
   useEffect(() => {
     const token = localStorage.getItem('jwt');
@@ -119,6 +127,7 @@ function App() {
           component={Movies}
           path='/movies'
           loggedIn={loggedIn}
+          onSubmit={handleFilmSearch}
         />
 
         <ProtectedRoute

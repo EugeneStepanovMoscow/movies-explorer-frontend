@@ -1,13 +1,22 @@
 import React from 'react';
 
-function SearchForm ()
-{
+function SearchForm ({
+  onSubmit
+})
+  {
+
+  function handleSubmit(e) {
+    e.preventDefault()
+    onSubmit('e.target.value')
+  }
+
   return (
     <form
       className="searsh-form"
       // name={`form-pattern-${formName}`}
       // id={`form-pattern-${formName}`}
-      // onSubmit={handleSubmit}
+      onSubmit={handleSubmit}
+      noValidate
     >
       <fieldset className="searsh-form__fieldset">
         <div className="searsh-form__border">
@@ -22,7 +31,10 @@ function SearchForm ()
               // value={name || ''}
               // onChange={handleChange}
             />
-            <button className="searsh-form__btn" type="image"></button>
+            <button
+              className="searsh-form__btn"
+              type="image">
+            </button>
           </div>
           <div className="search-form__btn-region">
             {/* <button className="searsh-form__btn" type="image"></button> */}

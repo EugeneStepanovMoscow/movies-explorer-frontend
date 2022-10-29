@@ -5,13 +5,17 @@ import SearchForm from '../SearchForm/SearchForm';
 import Preloader from '../Preloader/Preloader';
 import MoviesCardList from '../MovisCardList/MoviesCardList';
 
-function Movies ()
+function Movies ({
+  onSubmit
+})
 {
   return (
     <>
       <HeaderLogin/>
       <main className='movies'>
-        <SearchForm/>
+        <SearchForm
+          onSubmit={onSubmit}
+        />
         <section className='movies__section'>
            <Preloader/>
           <MoviesCardList/>
