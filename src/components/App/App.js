@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Route, Switch, useHistory} from 'react-router-dom';
-import mainApi from '../../utils/mainApi';
+// import mainApi from '../../utils/mainApi';
+import * as mainApi from '../../utils/mainApi'
 import movieApi from '../../utils/MoviesApi';
 
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
@@ -39,15 +40,15 @@ function App() {
   }
 
   //функция регистарции пользователя на сервере
-  function handleRegister(name, email, password) {
-    mainApi.register(email, password, name)
-      .then((res) => {
-        handleLogin(email, password)
-      })
-      .catch((err) => {
-        setServerErrorMessage(serverErrorCode2Message(err.status))
-      })
-  }
+  // function handleRegister(name, email, password) {
+  //   mainApi.register(email, password, name)
+  //     .then((res) => {
+  //       handleLogin(email, password)
+  //     })
+  //     .catch((err) => {
+  //       setServerErrorMessage(serverErrorCode2Message(err.status))
+  //     })
+  // }
 
   function handleLogin(email, password) {
     mainApi.login(email, password)
@@ -65,62 +66,64 @@ function App() {
   }
 
   //функция выхода пользователя
-  function handleLogOut() {
-    setLoggedIn(false)
-    setServerErrorMessage('')
-    setSavedMoviesId([])
-    setCurrentUser({})
-    localStorage.removeItem('jwt')
-    history.push('/login')
-  }
+  // function handleLogOut() {
+  //   setLoggedIn(false)
+  //   setServerErrorMessage('')
+  //   setSavedMoviesId([])
+  //   setMoviesList([])
+  //   setCurrentUser({})
+  //   localStorage.removeItem('jwt')
+  //   history.push('/login')
+  // }
 
-  function handleProfileUpdate(name, email) {
-    mainApi.profileUpdate(name, email)
-      .then(res => {
-        setCurrentUser({name: name, email: email})
-        setServerErrorMessage(res.message)
-        // console.log(res.code)
-      })
-      .catch(err => {
-        setServerErrorMessage(serverErrorCode2Message(err.status))
-      })
-  }
+  // function handleProfileUpdate(name, email) {
+  //   mainApi.profileUpdate(name, email)
+  //     .then(res => {
+  //       setCurrentUser({name: name, email: email})
+  //       setServerErrorMessage(res.message)
+  //       // console.log(res.code)
+  //     })
+  //     .catch(err => {
+  //       setServerErrorMessage(serverErrorCode2Message(err.status))
+  //     })
+  // }
 
-  function handleFilmSearch(req) {
-    movieApi.get()
-      .then(res => {
-        setMoviesList(requestProcessing(req, res))
-      })
-      .catch(err => {
-        setServerErrorMessage(serverErrorCode2Message(err.status))
-      })
-  }
+  // function handleFilmSearch(req) {
+  //   movieApi.get()
+  //     .then(res => {
+  //       setMoviesList(requestProcessing(req, res))
+  //     })
+  //     .catch(err => {
+  //       setServerErrorMessage(serverErrorCode2Message(err.status))
+  //     })
+  // }
 
-  function saveMovie(movieInfo) {
-    console.log(movieInfo)
-    mainApi.saveMovie(movieInfo)
-    .then(res => {
-      console.log(res.id)
-    })
-    .catch(err => {
-      console.log(err)
-    })
-  }
+  // function saveMovie(movieInfo) {
+  //   console.log(movieInfo)
+  //   mainApi.saveMovie(movieInfo)
+  //   .then(res => {
+  //     console.log(res.id)
+  //   })
+  //   .catch(err => {
+  //     console.log(err)
+  //   })
+  // }
 
-  function deleteMovie(movieInfo) {
-    console.log(movieInfo)
-    mainApi.deleteMovie('635eb9dac2673a8fb5f3ad3e')
-      .then(res => {
-        console.log(res)
-      })
-      .catch(err => {
-        console.log(err)
-      })
-  }
+  // function deleteMovie(movieInfo) {
+  //   console.log(movieInfo)
+  //   mainApi.deleteMovie('635eb9dac2673a8fb5f3ad3e')
+  //     .then(res => {
+  //       console.log(res)
+  //     })
+  //     .catch(err => {
+  //       console.log(err)
+  //     })
+  // }
 
   function getUserMovies() {
+    // debugger
     // setSavedMoviesId([])
-    mainApi.getUserMovies()
+    mainApi.getUserMovies(localStorage.getItem('jwt'))
       .then(res => {
         setSavedMoviesId(res)
 
@@ -169,12 +172,12 @@ function App() {
           <Main/>
         </Route>
 
-        <Route path="/register">
+        {/* <Route path="/register">
           <Register
             onRegister={handleRegister}
             serverErrorMessage={serverErrorMessage}
           />
-        </Route>
+        </Route> */}
 
         <Route path="/login">
           <Login
@@ -183,7 +186,7 @@ function App() {
           />
         </Route>
 
-        <ProtectedRoute
+        {/* <ProtectedRoute
           component={Movies}
           path='/movies'
           loggedIn={loggedIn}
@@ -192,22 +195,22 @@ function App() {
           savedMoviesId={savedMoviesId}
           saveMovie={saveMovie}
           deleteMovie={deleteMovie}
-        />
+        /> */}
 
-        <ProtectedRoute
+        {/* <ProtectedRoute
           component={SavedMovies}
           path='/saved-movies'
           loggedIn={loggedIn}
-        />
+        /> */}
 
-        <ProtectedRoute
+        {/* <ProtectedRoute
           component={Profile}
           path='/profile'
           loggedIn={loggedIn}
           handleLogOut={handleLogOut}
           onSubmit={handleProfileUpdate}
           serverErrorMessage={serverErrorMessage}
-        />
+        /> */}
 
         {/* <Route exact path="/">
           <Main/>
