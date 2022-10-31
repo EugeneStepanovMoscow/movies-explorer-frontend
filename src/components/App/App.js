@@ -24,9 +24,12 @@ function App() {
   // переменная ответов от сервера
   const [serverErrorMessage, setServerErrorMessage] = useState('')
   //стейт переменная статуса входа пользавателя в систему
-  const [loggedIn, setloggedIn] = useState(true)
+  const [loggedIn, setLoggedIn] = useState(false)
   //стейт переменная массива информации о фильмах
   const [moviesList, setMoviesList] = useState([])
+
+  const [savedMoviesId, setSavedMoviesId] = useState([])
+
   //хук перемещения между страницами
   const history = useHistory()
 
@@ -49,9 +52,9 @@ function App() {
   function handleLogin(email, password) {
     mainApi.login(email, password)
       .then((res) => {
-        setloggedIn(true)
-        const user = {name: res.userFromDB.name, email: res.userFromDB.email}
-        setCurrentUser(user)
+        console.log(res.userFromDB)
+        setLoggedIn(true)
+        setCurrentUser({name: res.userFromDB.name, email: res.userFromDB.email, id: res.userFromDB._id})
         setServerErrorMessage('')
         localStorage.setItem('jwt', res.token)
         history.push('/movies')
@@ -64,8 +67,10 @@ function App() {
 
   //функция выхода пользователя
   function handleLogOut() {
-    setloggedIn(false)
+    setLoggedIn(false)
     setServerErrorMessage('')
+    setSavedMoviesId([])
+    setCurrentUser({})
     localStorage.removeItem('jwt')
     history.push('/login')
   }
@@ -92,6 +97,45 @@ function App() {
       })
   }
 
+  function saveMovie(movieInfo) {
+    console.log(movieInfo)
+    mainApi.saveMovie(movieInfo)
+    .then(res => {
+      console.log(res.id)
+    })
+    .catch(err => {
+      console.log(err)
+    })
+  }
+
+  function deleteMovie(movieInfo) {
+    console.log(movieInfo)
+    mainApi.deleteMovie('635eb9dac2673a8fb5f3ad3e')
+      .then(res => {
+        console.log(res)
+      })
+      .catch(err => {
+        console.log(err)
+      })
+  }
+
+  function getUserMovies() {
+    setSavedMoviesId([])
+    mainApi.getUserMovies()
+      .then(res => {
+        setSavedMoviesId(res)
+        localStorage.setItem('savedMovies', JSON.stringify(res));
+        // res.forEach((movie) => {
+        //    console.log(movie.movieId)
+        //   //  setSavedMoviesId([...savedMoviesId, movie.movieId]);
+        //    setSavedMoviesId(oldArray => [...oldArray, movie.movieId]);
+        //   })
+      })
+      .catch(err => {
+        console.log(err)
+      })
+  }
+
   // Запрос данных пользователя с сервера при старте и перезагрузке
   useEffect(() => {
     const token = localStorage.getItem('jwt');
@@ -99,16 +143,27 @@ function App() {
       mainApi.getPersonInfo()
         .then((res) => {
           setCurrentUser({name: res.name, email: res.email})
-          setloggedIn(true)
+          setLoggedIn(true)
         })
         .catch(err => {
           console.log(err)
         })
     } else {
-      setloggedIn(false)
+      setLoggedIn(false)
       history.push('/login')
     }
   }, [])
+
+  useEffect(() => {
+    if (loggedIn === true) {
+      console.log('запрос при старте списка сохр фильмов')
+      console.log(loggedIn)
+      getUserMovies();
+    } else {
+      setSavedMoviesId([])
+    }
+  }, [loggedIn])
+
 
   return (
     <CurrentUserContext.Provider value={currentUser}>
@@ -133,6 +188,9 @@ function App() {
           loggedIn={loggedIn}
           onSubmit={handleFilmSearch}
           moviesList={moviesList}
+          savedMoviesId={savedMoviesId}
+          saveMovie={saveMovie}
+          deleteMovie={deleteMovie}
         />
 
         <ProtectedRoute

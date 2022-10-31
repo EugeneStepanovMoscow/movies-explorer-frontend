@@ -1,24 +1,11 @@
+import constants from "./constants";
+
 class API {
   constructor(url, regUrl, headers) {
     this._baseUrl = url;
     this._baseRegUrl = regUrl;
     this._headers = headers;
   }
-
-  // _makeRequest(promise) {
-  //   return promise.then(
-  //     (response) => {
-  //       if (response.ok) {
-  //         return response
-  //       } else {
-  //         return Promise.reject(response);
-  //       }
-  //     }
-  //   )
-  //   .then((obj) => {
-  //     return obj
-  //   })
-  // }
 
   _makeRequest(promise) {
     return promise.then((response) => {
@@ -32,7 +19,6 @@ class API {
       return obj
     })
   }
-
 
   //регистрация нового пользователя
   register(email, password, name) {
@@ -71,6 +57,16 @@ class API {
     return this._makeRequest(promise)
   }
 
+//-----------------Получение списка сохраненных фильмов пользователя
+  getUserMovies() {
+    console.log(this._headers.authorization)
+    const promise = fetch(`${this._baseUrl}movies`, {
+      method: 'GET',
+      headers: this._headers
+    })
+    return this._makeRequest(promise)
+  }
+
 //---------------------Обновление прфиля
   profileUpdate(newName, newEmail) {
     const promise = fetch(`${this._baseUrl}users/me`, {
@@ -84,7 +80,38 @@ class API {
     return this._makeRequest(promise)
   }
 
+  // ---------------------Сохранене фильмаа
+  saveMovie(movieInfo) {
+    const imageUrl = constants.movieApiBaseUrl + movieInfo.image.url;
+    const previewUrl = constants.movieApiBaseUrl + movieInfo.image.formats.thumbnail.url
+    const promise = fetch(`${this._baseUrl}movies`, {
+      method: 'POST',
+      headers: this._headers,
+      body: JSON.stringify({
+        country: movieInfo.country,
+        director: movieInfo.director,
+        duration: movieInfo.duration,
+        year: movieInfo.year,
+        description: movieInfo.description,
+        image: imageUrl,
+        trailerLink: movieInfo.trailerLink,
+        thumbnail: previewUrl,
+        movieId: movieInfo.id,
+        nameRU: movieInfo.nameRU,
+        nameEN: movieInfo.nameEN
+      })
+    })
+    return this._makeRequest(promise)
+  }
 
+// ---------------------Удаление фильма
+  deleteMovie(movieId) {
+    const promise = fetch(`${this._baseUrl}movies/${movieId}`, {
+      method: 'DELETE',
+      headers: this._headers
+    })
+    return this._makeRequest(promise)
+  }
 
   //запрос проверки токена
   // jwtCheck(jwt) {
@@ -98,10 +125,6 @@ class API {
   //   })
   //   return this._makeRequest(promise)
   // }
-
-
-
-
 
 
 //---------------------Получение карточки
@@ -231,7 +254,7 @@ class API {
 const mainApi = new API('http://localhost:3000/', 'http://localhost:3000/', {
   'Accept': 'application/json',
   'Content-Type': 'application/json; charset=utf-8',
-  'authorization': localStorage.jwt
+  'authorization': localStorage.jwt // во все запросы добавляется токен из локального хранилища
 })
 
 export default mainApi
