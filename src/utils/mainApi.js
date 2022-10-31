@@ -59,7 +59,6 @@ class API {
 
 //-----------------Получение списка сохраненных фильмов пользователя
   getUserMovies() {
-    console.log(this._headers.authorization)
     const promise = fetch(`${this._baseUrl}movies`, {
       method: 'GET',
       headers: this._headers
