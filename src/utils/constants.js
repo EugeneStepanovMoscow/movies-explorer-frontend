@@ -1,5 +1,6 @@
 const constants = {
-  movieApiBaseUrl:'https://api.nomoreparties.co'
+  movieApiUrl:'https://api.nomoreparties.co/beatfilm-movies',
+  mainApiBaseUrl:'http://localhost:3000/'
 }
 
 export default constants

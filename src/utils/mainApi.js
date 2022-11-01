@@ -220,19 +220,7 @@
 //   // }
 
 
-//   //запрос на вход, получение токена
-//   // login(password, email) {
-//   //   // const promise = fetch(`${this._baseRegUrl}/signin`, {
-//   //   const promise = fetch(`${this._baseUrl}signin`, {
-//   //     method: 'POST',
-//   //     headers: this._headers,
-//   //     body: JSON.stringify({
-//   //       password: password,
-//   //       email: email
-//   //     })
-//   //   })
-//   //   return this._makeRequest(promise)
-//   // }
+
 //   //запрос проверки токена
 //   // jwtCheck(jwt) {
 //   //   const promise = fetch(`${this._baseUrl}users/me`, {
@@ -261,8 +249,7 @@
 
 // export default mainApi
 
-
-const baseUrl = 'http://localhost:3000/'
+import constants from "./constants";
 
 function headersSet(token) {
   return {
@@ -280,9 +267,19 @@ function responseCheck(res) {
     }
 }
 
-  // запрос на вход, получение токена
+  // запрос проверки токена
+  export function jwtCheck(token) {
+    return fetch(`${constants.mainApiBaseUrl}users/me`, {
+      method: 'GET',
+      headers: headersSet(token),
+      })
+      .then(res => responseCheck(res))
+      .catch(err => console.log(err))
+    }
+
+// запрос на вход, получение токена
 export function login(email, password) {
-  return fetch(`${baseUrl}signin`, {
+  return fetch(`${constants.mainApiBaseUrl}signin`, {
       method: 'POST',
       // headers: headersSet(token),
       headers: {
@@ -300,10 +297,26 @@ export function login(email, password) {
 
 //-----------------Получение списка сохраненных фильмов пользователя
 export function getUserMovies(token) {
-  return fetch(`${baseUrl}movies`, {
+  return fetch(`${constants.mainApiBaseUrl}movies`, {
       method: 'GET',
       headers: headersSet(token),
     })
     .then(res => responseCheck(res))
     .catch(err => console.log(err))
   }
+
+//регистрация нового пользователя
+export function register(email, password, name) {
+  return fetch(`${constants.mainApiBaseUrl}signup`, {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        email: email,
+        password: password,
+        name: name,
+      })
+    })
+}

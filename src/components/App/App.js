@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Route, Switch, useHistory} from 'react-router-dom';
 // import mainApi from '../../utils/mainApi';
 import * as mainApi from '../../utils/mainApi'
-import movieApi from '../../utils/MoviesApi';
+import * as movieApi from '../../utils/MoviesApi';
 
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 
@@ -40,15 +40,15 @@ function App() {
   }
 
   //функция регистарции пользователя на сервере
-  // function handleRegister(name, email, password) {
-  //   mainApi.register(email, password, name)
-  //     .then((res) => {
-  //       handleLogin(email, password)
-  //     })
-  //     .catch((err) => {
-  //       setServerErrorMessage(serverErrorCode2Message(err.status))
-  //     })
-  // }
+  function handleRegister(name, email, password) {
+    mainApi.register(email, password, name)
+      .then((res) => {
+        handleLogin(email, password)
+      })
+      .catch((err) => {
+        setServerErrorMessage(serverErrorCode2Message(err.status))
+      })
+  }
 
   function handleLogin(email, password) {
     mainApi.login(email, password)
@@ -88,15 +88,15 @@ function App() {
   //     })
   // }
 
-  // function handleFilmSearch(req) {
-  //   movieApi.get()
-  //     .then(res => {
-  //       setMoviesList(requestProcessing(req, res))
-  //     })
-  //     .catch(err => {
-  //       setServerErrorMessage(serverErrorCode2Message(err.status))
-  //     })
-  // }
+  function handleFilmSearch(req) {
+    movieApi.getMovies()
+      .then(res => {
+        setMoviesList(requestProcessing(req, res))
+      })
+      .catch(err => {
+        setServerErrorMessage(serverErrorCode2Message(err.status))
+      })
+  }
 
   // function saveMovie(movieInfo) {
   //   console.log(movieInfo)
@@ -172,12 +172,12 @@ function App() {
           <Main/>
         </Route>
 
-        {/* <Route path="/register">
+        <Route path="/register">
           <Register
             onRegister={handleRegister}
             serverErrorMessage={serverErrorMessage}
           />
-        </Route> */}
+        </Route>
 
         <Route path="/login">
           <Login
@@ -186,16 +186,16 @@ function App() {
           />
         </Route>
 
-        {/* <ProtectedRoute
+        <ProtectedRoute
           component={Movies}
           path='/movies'
           loggedIn={loggedIn}
           onSubmit={handleFilmSearch}
           moviesList={moviesList}
           savedMoviesId={savedMoviesId}
-          saveMovie={saveMovie}
-          deleteMovie={deleteMovie}
-        /> */}
+          // saveMovie={saveMovie}
+          // deleteMovie={deleteMovie}
+        />
 
         {/* <ProtectedRoute
           component={SavedMovies}
