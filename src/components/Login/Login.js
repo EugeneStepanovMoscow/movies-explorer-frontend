@@ -1,7 +1,7 @@
-import React, {useEffect} from 'react';
+import React, { useEffect } from 'react';
 import HeaderLink from '../HeaderLink/HeaderLink';
 import FormPattern from "../FormPattern/FormPattern"
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 function Login ({
   onLogin,
@@ -10,11 +10,11 @@ function Login ({
   })
   {
 
-  const history = useHistory()
+  const navigate = useNavigate()
 
   useEffect(() => {
     if (loggedIn) {
-      history.push('/movies')
+      navigate('/movies')
     }
   },[])
 

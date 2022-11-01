@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { Route, Switch, useHistory} from 'react-router-dom';
-// import mainApi from '../../utils/mainApi';
+import { Routes, Route, useNavigate } from 'react-router-dom';
+
 import * as mainApi from '../../utils/mainApi'
 import * as movieApi from '../../utils/MoviesApi';
 
@@ -17,6 +17,7 @@ import ErrPage from '../ErrPage/ErrPage';
 // перевод кода ошибки от сервера в сообщение
 import serverErrorCode2Message from '../../utils/serverErrorCode2Message';
 import requestProcessing from '../../utils/requestProcessing';
+
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 
 function App() {
@@ -32,12 +33,8 @@ function App() {
   const [savedMoviesId, setSavedMoviesId] = useState([])
 
   //хук перемещения между страницами
-  const history = useHistory()
+  const navigate= useNavigate()
 
-  // Функция возврата на предыдущую страницу
-  function handleBack () {
-   history.goBack();
-  }
 
   //функция регистарции пользователя на сервере
   function handleRegister(name, email, password) {
@@ -56,7 +53,7 @@ function App() {
         setCurrentUser({name: res.userFromDB.name, email: res.userFromDB.email, id: res.userFromDB._id})
         setServerErrorMessage('')
         localStorage.setItem('jwt', res.token)
-        history.push('/movies')
+        navigate('movies')
         // window.location.reload()
         setLoggedIn(true)
       })
@@ -73,7 +70,7 @@ function App() {
     setMoviesList([])
     setCurrentUser({})
     localStorage.removeItem('jwt')
-    history.push('/login')
+    navigate('login')
   }
 
   function handleProfileUpdate(name, email) {
@@ -97,6 +94,10 @@ function App() {
       .catch(err => {
         setServerErrorMessage(serverErrorCode2Message(err.status))
       })
+  }
+
+  function handleBack() {
+    navigate.goBack()
   }
 
   // function saveMovie(movieInfo) {
@@ -145,20 +146,17 @@ function App() {
     if (token) {
       mainApi.jwtCheck(token)
         .then((res) => {
-          console.log('токен обработан')
-          console.log(res)
           setCurrentUser({name: res.dataFromDB.name, email: res.dataFromDB.email, id: res.dataFromDB._id})
           setServerErrorMessage('')
-          history.push('/movies')
+          // navigate('movies')
           setLoggedIn(true)
         })
         .catch(err => {
-          console.log('токен НЕОБРАБОТАН')
           console.log(err)
         })
     } else {
       setLoggedIn(false)
-      history.push('/')
+      navigate('')
     }
   }, [])
 
@@ -171,67 +169,70 @@ function App() {
 
   return (
     <CurrentUserContext.Provider value={currentUser}>
-      <Switch>
-
-      <Route exact path="/">
-          <Main/>
+      <Routes>
+        <Route
+          path="register"
+          element={<Register
+                     onRegister={handleRegister}
+                     serverErrorMessage={serverErrorMessage}/>}>
         </Route>
 
-        <Route path="/register">
-          <Register
-            onRegister={handleRegister}
-            serverErrorMessage={serverErrorMessage}
-          />
+        <Route
+          path="login"
+          element={<Login
+                    onLogin={handleLogin}
+                    serverErrorMessage={serverErrorMessage}
+                    loggedIn={loggedIn}/>}>
         </Route>
 
-        <Route path="/login">
-          <Login
-            onLogin={handleLogin}
-            serverErrorMessage={serverErrorMessage}
-            loggedIn={loggedIn}
-          />
+        <Route
+          path='movies'
+          element={<ProtectedRoute
+                    component={Movies}
+                    // path='/movies'
+                    loggedIn={loggedIn}
+                    onSubmit={handleFilmSearch}
+                    moviesList={moviesList}
+                    savedMoviesId={savedMoviesId}
+                    // saveMovie={saveMovie}
+                    // deleteMovie={deleteMovie}
+                    />}>
         </Route>
 
-        <ProtectedRoute
-          component={Movies}
-          path='/movies'
-          loggedIn={loggedIn}
-          onSubmit={handleFilmSearch}
-          moviesList={moviesList}
-          savedMoviesId={savedMoviesId}
-          // saveMovie={saveMovie}
-          // deleteMovie={deleteMovie}
-        />
-
-        <ProtectedRoute
-          // component={SavedMovies}
-          path='/saved-movies'
-          loggedIn={loggedIn}
-        />
-
-        <ProtectedRoute
-          component={Profile}
-          path='/profile'
-          loggedIn={loggedIn}
-          handleLogOut={handleLogOut}
-          onSubmit={handleProfileUpdate}
-          serverErrorMessage={serverErrorMessage}
-        />
-
-        <Route exact path="/">
-          <Main/>
+        <Route
+          path='saved-movies'
+          element={<ProtectedRoute
+                  // component={SavedMovies}
+                  // path='/saved-movies'
+                  loggedIn={loggedIn}/>}>
         </Route>
 
-        <Route path="*">
-          <ErrPage
-            err = {'404'}
-            errText = {'Страница не найдена'}
-            handleBack = {handleBack}
-          />
+        <Route
+          path='profile'
+          element={<ProtectedRoute
+                    component={Profile}
+                    // path='/profile'
+                    loggedIn={loggedIn}
+                    handleLogOut={handleLogOut}
+                    onSubmit={handleProfileUpdate}
+                    serverErrorMessage={serverErrorMessage}/>}>
+        </Route>
+ 
+        <Route
+          path="*"
+          element={<ErrPage
+                      err = {'404'}
+                      errText = {'Страница не найдена'}
+                      handleBack = {handleBack}/>}>
         </Route>
 
-      </Switch>
-      </CurrentUserContext.Provider>
+        <Route
+          exact path=""
+          element={<Main/>}>
+        </Route>
+
+      </Routes>
+    </CurrentUserContext.Provider>
   );
 }
 
