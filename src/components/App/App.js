@@ -140,23 +140,27 @@ function App() {
   }
 
   // Запрос данных пользователя с сервера при старте и перезагрузке
-  // useEffect(() => {
-  //   const token = localStorage.getItem('jwt');
-  //   if (token) {
-  //     mainApi.getPersonInfo()
-  //       .then((res) => {
-  //         setCurrentUser({name: res.name, email: res.email})
-  //         setLoggedIn(true)
-  //       })
-  //       .catch(err => {
-  //         console.log(err)
-  //       })
-  //   } else {
-  //     console.log('не находит токен')
-  //     setLoggedIn(false)
-  //     history.push('/login')
-  //   }
-  // }, [])
+  useEffect(() => {
+    const token = localStorage.getItem('jwt');
+    if (token) {
+      mainApi.jwtCheck(token)
+        .then((res) => {
+          console.log('токен обработан')
+          console.log(res)
+          setCurrentUser({name: res.dataFromDB.name, email: res.dataFromDB.email, id: res.dataFromDB._id})
+          setServerErrorMessage('')
+          history.push('/movies')
+          setLoggedIn(true)
+        })
+        .catch(err => {
+          console.log('токен НЕОБРАБОТАН')
+          console.log(err)
+        })
+    } else {
+      setLoggedIn(false)
+      history.push('/')
+    }
+  }, [])
 
   useEffect(() => {
     if (loggedIn) {
@@ -184,6 +188,7 @@ function App() {
           <Login
             onLogin={handleLogin}
             serverErrorMessage={serverErrorMessage}
+            loggedIn={loggedIn}
           />
         </Route>
 

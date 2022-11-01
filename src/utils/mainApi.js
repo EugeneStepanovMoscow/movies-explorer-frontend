@@ -267,15 +267,15 @@ function responseCheck(res) {
     }
 }
 
-  // запрос проверки токена
-  export function jwtCheck(token) {
-    return fetch(`${constants.mainApiBaseUrl}users/me`, {
-      method: 'GET',
-      headers: headersSet(token),
-      })
-      .then(res => responseCheck(res))
-      .catch(err => console.log(err))
-    }
+// запрос проверки токена
+export function jwtCheck(token) {
+  return fetch(`${constants.mainApiBaseUrl}users/me`, {
+    method: 'GET',
+    headers: headersSet(token),
+    })
+    .then(res => responseCheck(res))
+    .catch(err => console.log(err))
+}
 
 // запрос на вход, получение токена
 export function login(email, password) {

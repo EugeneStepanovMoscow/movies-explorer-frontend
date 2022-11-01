@@ -1,12 +1,23 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import HeaderLink from '../HeaderLink/HeaderLink';
 import FormPattern from "../FormPattern/FormPattern"
+import { useHistory } from 'react-router-dom';
 
 function Login ({
   onLogin,
-  serverErrorMessage
+  serverErrorMessage,
+  loggedIn
   })
   {
+
+  const history = useHistory()
+
+  useEffect(() => {
+    if (loggedIn) {
+      history.push('/movies')
+    }
+  },[])
+
   return (
     <main className="login">
       <HeaderLink/>
