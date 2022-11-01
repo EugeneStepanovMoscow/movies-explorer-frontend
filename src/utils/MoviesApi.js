@@ -39,10 +39,8 @@ import constants from "./constants";
 
 function responseCheck(res) {
   if (res.ok) {
-    console.log('все хорошо')
       return res.json()
     } else {
-      console.log('все плохо')
       return Promise.reject(res);
     }
 }

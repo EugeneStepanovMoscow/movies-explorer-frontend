@@ -65,28 +65,29 @@ function App() {
       })
   }
 
-  //функция выхода пользователя
-  // function handleLogOut() {
-  //   setLoggedIn(false)
-  //   setServerErrorMessage('')
-  //   setSavedMoviesId([])
-  //   setMoviesList([])
-  //   setCurrentUser({})
-  //   localStorage.removeItem('jwt')
-  //   history.push('/login')
-  // }
+  // функция выхода пользователя
+  function handleLogOut() {
+    setLoggedIn(false)
+    setServerErrorMessage('')
+    setSavedMoviesId([])
+    setMoviesList([])
+    setCurrentUser({})
+    localStorage.removeItem('jwt')
+    history.push('/login')
+  }
 
-  // function handleProfileUpdate(name, email) {
-  //   mainApi.profileUpdate(name, email)
-  //     .then(res => {
-  //       setCurrentUser({name: name, email: email})
-  //       setServerErrorMessage(res.message)
-  //       // console.log(res.code)
-  //     })
-  //     .catch(err => {
-  //       setServerErrorMessage(serverErrorCode2Message(err.status))
-  //     })
-  // }
+  function handleProfileUpdate(name, email) {
+    const token = localStorage.getItem('jwt');
+    mainApi.profileUpdate(name, email, token)
+      .then(res => {
+        setCurrentUser({name: res.user.name, email: res.user.email})
+        setServerErrorMessage(res.message)
+        // console.log(res.code)
+      })
+      .catch(err => {
+        setServerErrorMessage(serverErrorCode2Message(err.status))
+      })
+  }
 
   function handleFilmSearch(req) {
     movieApi.getMovies()
@@ -197,24 +198,24 @@ function App() {
           // deleteMovie={deleteMovie}
         />
 
-        {/* <ProtectedRoute
-          component={SavedMovies}
+        <ProtectedRoute
+          // component={SavedMovies}
           path='/saved-movies'
           loggedIn={loggedIn}
-        /> */}
+        />
 
-        {/* <ProtectedRoute
+        <ProtectedRoute
           component={Profile}
           path='/profile'
           loggedIn={loggedIn}
           handleLogOut={handleLogOut}
           onSubmit={handleProfileUpdate}
           serverErrorMessage={serverErrorMessage}
-        /> */}
+        />
 
-        {/* <Route exact path="/">
+        <Route exact path="/">
           <Main/>
-        </Route> */}
+        </Route>
 
         <Route path="*">
           <ErrPage

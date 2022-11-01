@@ -1,5 +1,6 @@
 import React from 'react';
 import HeaderLink from '../HeaderLink/HeaderLink';
+import { NavLink } from 'react-router-dom';
 
 function Header() {
   return (
@@ -8,10 +9,10 @@ function Header() {
       <nav className="header__nav">
         <ul className="header__nav-list">
           <li className="header__nav-register">
-            <a className="header__nav-text" href="register">Регистрация</a>
+            <NavLink className="header__nav-text" to="register">Регистрация</NavLink>
           </li>
           <li className="header__nav-enter">
-            <a className="header__nav-text header__nav-text_white" href="login">Войти</a>
+            <NavLink className="header__nav-text header__nav-text_white" to="login">Войти</NavLink>
           </li>
         </ul>
       </nav>

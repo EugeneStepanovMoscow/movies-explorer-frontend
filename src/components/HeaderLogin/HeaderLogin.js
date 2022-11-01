@@ -15,7 +15,7 @@ function Header() {
             <li className={navBurger ? 'headerLogin__nav-item_burger' : 'headerLogin__nav-item headerLogin__nav-item_hide'}>
               <NavLink
                 className={navBurger ? 'headerLogin__nav-text' : ''}
-                to="/main">
+                to="/">
                 Главная
               </NavLink>
             </li>

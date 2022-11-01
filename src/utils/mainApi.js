@@ -319,4 +319,20 @@ export function register(email, password, name) {
         name: name,
       })
     })
+    .then(res => responseCheck(res))
+    .catch(err => console.log(err))
 }
+
+//---------------------Обновление прфиля
+export function profileUpdate(newName, newEmail, token) {
+    return fetch(`${constants.mainApiBaseUrl}users/me`, {
+      method: 'PATCH',
+       headers: headersSet(token),
+       body: JSON.stringify({
+         name: newName,
+         email: newEmail
+       })
+     })
+     .then(res => responseCheck(res))
+     .catch(err => console.log(err))
+  }
