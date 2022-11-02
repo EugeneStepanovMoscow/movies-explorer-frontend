@@ -336,3 +336,28 @@ export function profileUpdate(newName, newEmail, token) {
      .then(res => responseCheck(res))
      .catch(err => console.log(err))
   }
+
+// ---------------------Сохранене фильмаа
+export function saveMovie(movieInfo, token) {
+    const imageUrl = constants.movieImageUrl + movieInfo.image.url;
+    const previewUrl = constants.movieApiUrl + movieInfo.image.formats.thumbnail.url
+    return fetch(`${constants.mainApiBaseUrl}movies`, {
+      method: 'POST',
+      headers: headersSet(token),
+      body: JSON.stringify({
+        country: movieInfo.country,
+        director: movieInfo.director,
+        duration: movieInfo.duration,
+        year: movieInfo.year,
+        description: movieInfo.description,
+        image: imageUrl,
+        trailerLink: movieInfo.trailerLink,
+        thumbnail: previewUrl,
+        movieId: movieInfo.id,
+        nameRU: movieInfo.nameRU,
+        nameEN: movieInfo.nameEN
+      })
+    })
+    .then(res => responseCheck(res))
+    .catch(err => console.log(err))
+  }

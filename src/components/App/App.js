@@ -30,7 +30,7 @@ function App() {
   //стейт переменная массива информации о фильмах
   const [moviesList, setMoviesList] = useState([])
 
-  const [savedMoviesId, setSavedMoviesId] = useState([])
+  const [savedMoviesList, setSavedMoviesList] = useState([])
 
   //хук перемещения между страницами
   const navigate= useNavigate()
@@ -41,6 +41,7 @@ function App() {
     mainApi.register(email, password, name)
       .then((res) => {
         handleLogin(email, password)
+        setSavedMoviesList([])
       })
       .catch((err) => {
         setServerErrorMessage(serverErrorCode2Message(err.status))
@@ -66,7 +67,7 @@ function App() {
   function handleLogOut() {
     setLoggedIn(false)
     setServerErrorMessage('')
-    setSavedMoviesId([])
+    setSavedMoviesList([])
     setMoviesList([])
     setCurrentUser({})
     localStorage.removeItem('jwt')
@@ -97,19 +98,19 @@ function App() {
   }
 
   function handleBack() {
-    navigate.goBack()
+    navigate(-1)
   }
 
-  // function saveMovie(movieInfo) {
-  //   console.log(movieInfo)
-  //   mainApi.saveMovie(movieInfo)
-  //   .then(res => {
-  //     console.log(res.id)
-  //   })
-  //   .catch(err => {
-  //     console.log(err)
-  //   })
-  // }
+  function saveMovie(movieInfo) {
+    const token = localStorage.getItem('jwt');
+    mainApi.saveMovie(movieInfo, token)
+    .then(res => {
+      setSavedMoviesList([...savedMoviesList, res])
+    })
+    .catch(err => {
+      console.log(err)
+    })
+  }
 
   // function deleteMovie(movieInfo) {
   //   console.log(movieInfo)
@@ -124,15 +125,15 @@ function App() {
 
   function getUserMovies() {
     // debugger
-    // setSavedMoviesId([])
+    // setsavedMoviesListList([])
     mainApi.getUserMovies(localStorage.getItem('jwt'))
       .then(res => {
-        setSavedMoviesId(res)
+        setSavedMoviesList(res)
 
         // res.forEach((movie) => {
         //    console.log(movie.movieId)
-        //   //  setSavedMoviesId([...savedMoviesId, movie.movieId]);
-        //    setSavedMoviesId(oldArray => [...oldArray, movie.movieId]);
+        //   //  setsavedMoviesListList([...savedMoviesListList, movie.movieId]);
+        //    setsavedMoviesList(oldArray => [...oldArray, movie.movieId]);
         //   })
       })
       .catch(err => {
@@ -193,8 +194,8 @@ function App() {
                     loggedIn={loggedIn}
                     onSubmit={handleFilmSearch}
                     moviesList={moviesList}
-                    savedMoviesId={savedMoviesId}
-                    // saveMovie={saveMovie}
+                    savedMoviesList={savedMoviesList}
+                    saveMovie={saveMovie}
                     // deleteMovie={deleteMovie}
                     />}>
         </Route>
@@ -202,7 +203,8 @@ function App() {
         <Route
           path='saved-movies'
           element={<ProtectedRoute
-                  // component={SavedMovies}
+                  component={SavedMovies}
+                  moviesList={savedMoviesList}
                   // path='/saved-movies'
                   loggedIn={loggedIn}/>}>
         </Route>
@@ -217,7 +219,7 @@ function App() {
                     onSubmit={handleProfileUpdate}
                     serverErrorMessage={serverErrorMessage}/>}>
         </Route>
- 
+
         <Route
           path="*"
           element={<ErrPage

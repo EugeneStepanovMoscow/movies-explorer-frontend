@@ -9,7 +9,7 @@ import MoviesCardList from '../MovisCardList/MoviesCardList';
 function Movies ({
   onSubmit,
   moviesList,
-  savedMoviesId,
+  savedMoviesList,
   saveMovie,
   deleteMovie
 
@@ -56,7 +56,7 @@ function Movies ({
           <Preloader/>
           <MoviesCardList
             moviesList={moviesListForDisplay}
-            savedMoviesId={savedMoviesId}
+            savedMoviesList={savedMoviesList}
             placeOfCall={'movies'}
             saveMovie={saveMovie}
             deleteMovie={deleteMovie}

@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from "react";
 import durationTransform from "../../utils/DurationTransform";
+import constants from "../../utils/constants";
 
 function Movie({
   movieInfo,
   placeOfCall,
   saveMovie,
   deleteMovie,
-  savedMoviesId
+  savedMoviesList
 })
  {
 
@@ -14,7 +15,7 @@ function Movie({
 
   function handleClick() {
     if (!isMovieLiked) {
-      console.log('сохранить')
+      console.log(movieInfo)
       saveMovie(movieInfo)
     } else {
       console.log('удалить')
@@ -24,7 +25,9 @@ function Movie({
   }
 
   useEffect(() => {
-    setIsMovieLiked(savedMoviesId.some((savedMovie) => savedMovie.movieId === movieInfo.id))
+    if (placeOfCall === 'movies') {
+      setIsMovieLiked(savedMoviesList.some((savedMovie) => savedMovie.movieId === movieInfo.id))
+    }
   },[])
 
   // const array = [1, 2, 3, 4, 5];
@@ -34,7 +37,17 @@ function Movie({
 
   // console.log(array.some(even));
   // // expected output: true
-
+  function buttonStatus(place) {
+    if (place ==='movies') {
+      if (isMovieLiked) {
+        return 'movie__btn-save_active'
+      } else {
+        return ''
+      }
+    } else {
+      return 'movie__btn-save_delete'
+    }
+  }
 
 
   return (
@@ -45,7 +58,7 @@ function Movie({
           <p className='movie__length'>{durationTransform(movieInfo.duration)}</p>
         </div>
         <button
-          className={`movie__btn-save ${isMovieLiked ? 'movie__btn-save_active' : ''}`}
+          className={`movie__btn-save ${buttonStatus(placeOfCall)}`}
           type='button'
           onClick={handleClick}>
         </button>
@@ -53,7 +66,7 @@ function Movie({
       <a className='movie__image-box' href={movieInfo.trailerLink} target='blank'>
         <img
           className='movie__image'
-          src={`https://api.nomoreparties.co${movieInfo.image.url}`}
+          src={placeOfCall === 'movies'? (constants.movieImageUrl + movieInfo.image.url) : movieInfo.image}
           alt={movieInfo.nameRU}/>
       </a>
     </li>

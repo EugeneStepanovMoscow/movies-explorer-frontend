@@ -3,7 +3,7 @@ import Movie from "../Movie/Movie"
 
 function MoviesCardList ({
   moviesList,
-  savedMoviesId,
+  savedMoviesList,
   placeOfCall,
   saveMovie,
   deleteMovie
@@ -32,12 +32,12 @@ useEffect(() => {
     <ul className="movies-card-list">
       {moviesList.map(movie =>
         <Movie
-          key={movie.id}
+          key={placeOfCall === 'movies' ? movie.id : movie.movieId}
           movieInfo={movie}
           placeOfCall={placeOfCall}
           saveMovie={saveMovie}
           deleteMovie={deleteMovie}
-          savedMoviesId={savedMoviesId}
+          savedMoviesList={savedMoviesList}
         />
       )}
     </ul>

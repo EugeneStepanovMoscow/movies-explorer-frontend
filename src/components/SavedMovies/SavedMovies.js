@@ -4,7 +4,9 @@ import Footer from '../Footer/Footer';
 import SearchForm from '../SearchForm/SearchForm';
 import MoviesCardList from '../MovisCardList/MoviesCardList';
 
-function SavedMovies ()
+function SavedMovies ({
+  moviesList
+})
 {
 return (
   <>
@@ -12,11 +14,17 @@ return (
       <main className='movies'>
         <SearchForm/>
         <section className='movies__section'>
-          <MoviesCardList/>
+          <MoviesCardList
+            moviesList={moviesList}
+            // savedMoviesId={savedMoviesId}
+            placeOfCall={'savedMovies'}
+            // saveMovie={saveMovie}
+            // deleteMovie={deleteMovie}
+          />
         </section>
-        <section className='movies__more'>
+        {/* <section className='movies__more'>
           <button className='movies__more-button'>Ещё</button>
-        </section>
+        </section> */}
       </main>
       <Footer/>
   </>
