@@ -29,8 +29,6 @@ function SearchForm ({
   return (
     <form
       className="searsh-form"
-      // name={`form-pattern-${formName}`}
-      // id={`form-pattern-${formName}`}
       onSubmit={handleSubmit}
       noValidate
     >
@@ -40,11 +38,8 @@ function SearchForm ({
             <input
               className="searsh-form__input"
               type="search"
-              // name="email"
-              // type="email"
               placeholder="Фильм"
               required
-              // value={name || ''}
               onChange={handleChange}
             />
             <button
@@ -53,7 +48,6 @@ function SearchForm ({
             </button>
           </div>
           <div className="search-form__btn-region">
-            {/* <button className="searsh-form__btn" type="image"></button> */}
             <label className="searsh-form__switch">
               <input
                 className="searsh-form__checkbox"

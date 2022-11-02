@@ -29,9 +29,10 @@ function App() {
   const [serverErrorMessage, setServerErrorMessage] = useState('')
   //стейт переменная массива информации о фильмах
   const [moviesList, setMoviesList] = useState([])
-
+  // стейт переменная массива сохраненных фильмов
   const [savedMoviesList, setSavedMoviesList] = useState([])
-
+  // стейт переменная масива поиска в сахраненных фильмах
+  const [savedMoviesListSearch, setSavedMoviesListSearch] = useState([])
   //хук перемещения между страницами
   const navigate= useNavigate()
 
@@ -79,8 +80,6 @@ function App() {
     mainApi.profileUpdate(name, email, token)
       .then(res => {
         setCurrentUser({name: res.user.name, email: res.user.email})
-        setServerErrorMessage(res.message)
-        // console.log(res.code)
       })
       .catch(err => {
         setServerErrorMessage(serverErrorCode2Message(err.status))
@@ -88,6 +87,7 @@ function App() {
   }
 
   function handleFilmSearch(req) {
+    setSavedMoviesListSearch([])
     movieApi.getMovies()
       .then(res => {
         setMoviesList(requestProcessing(req, res))
@@ -95,6 +95,10 @@ function App() {
       .catch(err => {
         setServerErrorMessage(serverErrorCode2Message(err.status))
       })
+  }
+
+  function handleSavedFilmSearch(req) {
+    setSavedMoviesListSearch(requestProcessing(req, savedMoviesList))
   }
 
   function handleBack() {
@@ -124,17 +128,9 @@ function App() {
   }
 
   function getUserMovies() {
-    // debugger
-    // setsavedMoviesListList([])
     mainApi.getUserMovies(localStorage.getItem('jwt'))
       .then(res => {
         setSavedMoviesList(res)
-
-        // res.forEach((movie) => {
-        //    console.log(movie.movieId)
-        //   //  setsavedMoviesListList([...savedMoviesListList, movie.movieId]);
-        //    setsavedMoviesList(oldArray => [...oldArray, movie.movieId]);
-        //   })
       })
       .catch(err => {
         console.log(err)
@@ -149,7 +145,6 @@ function App() {
         .then((res) => {
           setCurrentUser({name: res.dataFromDB.name, email: res.dataFromDB.email, id: res.dataFromDB._id})
           setServerErrorMessage('')
-          // navigate('movies')
           setLoggedIn(true)
         })
         .catch(err => {
@@ -203,9 +198,9 @@ function App() {
           path='saved-movies'
           element={<ProtectedRoute
                   component={SavedMovies}
-                  moviesList={savedMoviesList}
+                  moviesList={savedMoviesListSearch.length > 0 ? savedMoviesListSearch : savedMoviesList}
                   deleteMovie={deleteMovie}
-                  // path='/saved-movies'
+                  onSubmit={handleSavedFilmSearch}
                   loggedIn={loggedIn}/>}>
         </Route>
 

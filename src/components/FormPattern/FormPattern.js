@@ -1,5 +1,6 @@
 import React from 'react';
 import { useState, useEffect } from "react";
+import { NavLink } from 'react-router-dom';
 
 import messages from '../../utils/messages';
 import regExp from '../../utils/regExp';
@@ -159,15 +160,15 @@ function FormPattern({
             className={`form-pattern__btn-save ${!isFormValid ? 'form-pattern__btn-save_disable' : ''}`}
             type="submit"
             disabled={!isFormValid}
-            // document.getElementById('id').classList.add('class');
-            // Element.setAttribute()
-
-            // {...isFormValid ? 'disabled' : ''}
             >{buttonText}
           </button>
         </fieldset>
         <p className="form-pattern__footer-text">{footerText}
-          <a className="form-patter__footer-link" href={formName === 'login' ? '/register' : '/login'}>{footerLinkText}</a>
+          <NavLink
+            className="form-patter__footer-link"
+            to={formName === 'login' ? '/register' : '/login'}>
+            {footerLinkText}
+          </NavLink>
         </p>
       </form>
     </div>

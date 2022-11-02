@@ -12,29 +12,25 @@ function Movies ({
   savedMoviesList,
   saveMovie,
   deleteMovie
-
 })
 {
   const [moviesListForDisplay, setMoviesListForDisplay] = useState([]);
-  const [numberOfMovie, setnumberOfMovie] = useState(3);
+  const [numberOfMovie, setNumberOfMovie] = useState();
   const [moreButtonStatus, setMoreButtonStatus] = useState(false)
 
   function filmsAdd() {
-    setnumberOfMovie(numberOfMovie + 3)
-    setMoviesListForDisplay(moviesList.slice(0, numberOfMovie))
-    console.log(numberOfMovie.length)
+    setNumberOfMovie(numberOfMovie + 3)
   }
 
   function handleSubmit(req) {
     onSubmit(req)
-    setnumberOfMovie(3)
+    setNumberOfMovie(3)
   }
 
   useEffect(() => {
     // переделать
     setMoviesListForDisplay(moviesList.slice(0, numberOfMovie))
-    // setMoreButtonStatus(true)
-  }, [moviesList])
+  }, [moviesList, numberOfMovie])
 
 
   useEffect(() => {
@@ -51,6 +47,7 @@ function Movies ({
       <main className='movies'>
         <SearchForm
           onSubmit={handleSubmit}
+          placeOfCall={'movies'}
         />
         <section className='movies__section'>
           <Preloader/>

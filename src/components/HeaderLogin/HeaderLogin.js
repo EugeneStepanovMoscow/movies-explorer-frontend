@@ -35,11 +35,11 @@ function Header() {
             </li>
             <li className={navBurger ? 'headerLogin__nav-item_burger' : 'headerLogin__nav-item_btn'}>
               {/* <a className={navBurger ? 'headerLogin__nav-text headerLogin__nav-text_burgerBtn' : 'headerLogin__nav-text_btn'} href="/profile">Аккаунт</a> */}
-              <Link
+              <NavLink
                 className={navBurger ? 'headerLogin__nav-text headerLogin__nav-text_burgerBtn' : 'headerLogin__nav-text_btn'}
                 to="/profile"
                 >Аккаунт
-              </Link>
+              </NavLink>
             </li>
           </ul>
         </nav>

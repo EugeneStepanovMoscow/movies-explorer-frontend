@@ -5,6 +5,7 @@ import SearchForm from '../SearchForm/SearchForm';
 import MoviesCardList from '../MovisCardList/MoviesCardList';
 
 function SavedMovies ({
+  onSubmit,
   moviesList,
   deleteMovie
 })
@@ -13,18 +14,17 @@ return (
   <>
       <HeaderLogin/>
       <main className='movies'>
-        <SearchForm/>
+        <SearchForm
+          onSubmit={onSubmit}
+          placeOfCall={'savedMovies'}
+        />
         <section className='movies__section'>
           <MoviesCardList
             moviesList={moviesList}
-            // savedMoviesId={savedMoviesId}
             placeOfCall={'savedMovies'}
             deleteMovie={deleteMovie}
           />
         </section>
-        {/* <section className='movies__more'>
-          <button className='movies__more-button'>Ещё</button>
-        </section> */}
       </main>
       <Footer/>
   </>
