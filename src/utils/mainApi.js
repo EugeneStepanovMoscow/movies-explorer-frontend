@@ -361,3 +361,13 @@ export function saveMovie(movieInfo, token) {
     .then(res => responseCheck(res))
     .catch(err => console.log(err))
   }
+
+// ---------------------Удаление фильма
+export function deleteMovie(movieId, token) {
+  return fetch(`${constants.mainApiBaseUrl}movies/${movieId}`, {
+    method: 'DELETE',
+    headers: headersSet(token)
+  })
+  .then(res => responseCheck(res))
+  .catch(err => console.log(err))
+}

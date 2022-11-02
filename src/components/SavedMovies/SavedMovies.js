@@ -5,7 +5,8 @@ import SearchForm from '../SearchForm/SearchForm';
 import MoviesCardList from '../MovisCardList/MoviesCardList';
 
 function SavedMovies ({
-  moviesList
+  moviesList,
+  deleteMovie
 })
 {
 return (
@@ -18,8 +19,7 @@ return (
             moviesList={moviesList}
             // savedMoviesId={savedMoviesId}
             placeOfCall={'savedMovies'}
-            // saveMovie={saveMovie}
-            // deleteMovie={deleteMovie}
+            deleteMovie={deleteMovie}
           />
         </section>
         {/* <section className='movies__more'>

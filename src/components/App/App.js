@@ -112,16 +112,16 @@ function App() {
     })
   }
 
-  // function deleteMovie(movieInfo) {
-  //   console.log(movieInfo)
-  //   mainApi.deleteMovie('635eb9dac2673a8fb5f3ad3e')
-  //     .then(res => {
-  //       console.log(res)
-  //     })
-  //     .catch(err => {
-  //       console.log(err)
-  //     })
-  // }
+  function deleteMovie(savedMovie) {
+    const token = localStorage.getItem('jwt');
+    mainApi.deleteMovie(savedMovie._id, token)
+      .then(res => {
+        getUserMovies()
+      })
+      .catch(err => {
+        console.log(err)
+      })
+  }
 
   function getUserMovies() {
     // debugger
@@ -190,13 +190,12 @@ function App() {
           path='movies'
           element={<ProtectedRoute
                     component={Movies}
-                    // path='/movies'
                     loggedIn={loggedIn}
                     onSubmit={handleFilmSearch}
                     moviesList={moviesList}
                     savedMoviesList={savedMoviesList}
                     saveMovie={saveMovie}
-                    // deleteMovie={deleteMovie}
+                    deleteMovie={deleteMovie}
                     />}>
         </Route>
 
@@ -205,6 +204,7 @@ function App() {
           element={<ProtectedRoute
                   component={SavedMovies}
                   moviesList={savedMoviesList}
+                  deleteMovie={deleteMovie}
                   // path='/saved-movies'
                   loggedIn={loggedIn}/>}>
         </Route>

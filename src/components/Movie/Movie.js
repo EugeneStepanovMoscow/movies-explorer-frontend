@@ -11,22 +11,28 @@ function Movie({
 })
  {
 
-  const [isMovieLiked, setIsMovieLiked] = useState(false)
+  const [isMovieLiked, setIsMovieLiked] = useState(false);
+  const [buttonDeletStatus, setButtonDeletStatus] = useState(false)
 
   function handleClick() {
-    if (!isMovieLiked) {
-      console.log(movieInfo)
-      saveMovie(movieInfo)
-    } else {
-      console.log('удалить')
+    if (buttonDeletStatus) {
       deleteMovie(movieInfo)
+    } else {
+      if (!isMovieLiked) {
+        saveMovie(movieInfo)
+      } else {
+        deleteMovie(savedMoviesList.find((el) => el.movieId === movieInfo.id))
+      }
+      setIsMovieLiked(!isMovieLiked)
     }
-    setIsMovieLiked(!isMovieLiked)
   }
 
   useEffect(() => {
     if (placeOfCall === 'movies') {
+      setButtonDeletStatus(false)
       setIsMovieLiked(savedMoviesList.some((savedMovie) => savedMovie.movieId === movieInfo.id))
+    } else {
+      setButtonDeletStatus(true)
     }
   },[])
 
@@ -37,7 +43,7 @@ function Movie({
 
   // console.log(array.some(even));
   // // expected output: true
-  function buttonStatus(place) {
+  function buttonClass(place) {
     if (place ==='movies') {
       if (isMovieLiked) {
         return 'movie__btn-save_active'
@@ -58,7 +64,7 @@ function Movie({
           <p className='movie__length'>{durationTransform(movieInfo.duration)}</p>
         </div>
         <button
-          className={`movie__btn-save ${buttonStatus(placeOfCall)}`}
+          className={`movie__btn-save ${buttonClass(placeOfCall)}`}
           type='button'
           onClick={handleClick}>
         </button>
