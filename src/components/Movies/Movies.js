@@ -4,7 +4,7 @@ import Footer from '../Footer/Footer';
 import SearchForm from '../SearchForm/SearchForm';
 import Preloader from '../Preloader/Preloader';
 import MoviesCardList from '../MovisCardList/MoviesCardList';
-
+import WindowWidthCheck from '../../utils/windowWidthCheck'
 
 function Movies ({
   onSubmit,
@@ -17,14 +17,20 @@ function Movies ({
   const [moviesListForDisplay, setMoviesListForDisplay] = useState([]);
   const [numberOfMovie, setNumberOfMovie] = useState();
   const [moreButtonStatus, setMoreButtonStatus] = useState(false)
+  // настройки отображения и добавления карточек фильмов
+  const [settings, setSettings] = useState({})
+
+  function setWidth(values) {
+    setSettings(values)
+  }
 
   function filmsAdd() {
-    setNumberOfMovie(numberOfMovie + 3)
+    setNumberOfMovie(numberOfMovie + settings.add)
   }
 
   function handleSubmit(req) {
     onSubmit(req)
-    setNumberOfMovie(3)
+    setNumberOfMovie(settings.start)
   }
 
   useEffect(() => {
@@ -39,10 +45,14 @@ function Movies ({
     } else {
       setMoreButtonStatus(false)
     }
+    // console.log(WindowWidthCheck())
   }, [moviesListForDisplay])
 
   return (
     <>
+      <WindowWidthCheck
+        setWidth={setWidth}
+      />
       <HeaderLogin/>
       <main className='movies'>
         <SearchForm
