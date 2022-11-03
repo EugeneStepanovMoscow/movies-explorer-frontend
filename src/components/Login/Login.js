@@ -20,7 +20,9 @@ function Login ({
 
   return (
     <main className="login">
-      <HeaderLink/>
+      <div className='login__link-box'>
+        <HeaderLink/>
+      </div>
       <FormPattern
         formName={'login'}
         formGreeting = {'Рады видеть!'}

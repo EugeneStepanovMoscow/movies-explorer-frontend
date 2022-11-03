@@ -12,7 +12,6 @@ function WindowWidthCheck({
 
   useEffect(() => {
     window.addEventListener('resize', widthSet)
-    console.log(windowWidth)
     if (768 < windowWidth) {
       setWidth({start: 12, add: 3})
     } else if (480 < windowWidth <= 768) {
