@@ -87,6 +87,6 @@
     animation: preloader-inside-red 1s ease-in-out infinite;
 }
 
-.preloader__status_off {
+/* .preloader__status_off {
   display: none;
-}
+} */

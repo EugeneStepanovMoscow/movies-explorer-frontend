@@ -11,7 +11,8 @@ function Movies ({
   moviesList,
   savedMoviesList,
   saveMovie,
-  deleteMovie
+  deleteMovie,
+  isLoading
 })
 {
   const [moviesListForDisplay, setMoviesListForDisplay] = useState([]);
@@ -60,7 +61,7 @@ function Movies ({
           placeOfCall={'movies'}
         />
         <section className='movies__section'>
-          <Preloader/>
+          {isLoading ? <Preloader/> : ''}
           <MoviesCardList
             moviesList={moviesListForDisplay}
             savedMoviesList={savedMoviesList}

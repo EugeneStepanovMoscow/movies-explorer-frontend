@@ -33,8 +33,11 @@ function App() {
   const [savedMoviesList, setSavedMoviesList] = useState([])
   // стейт переменная масива поиска в сахраненных фильмах
   const [savedMoviesListSearch, setSavedMoviesListSearch] = useState([])
+  // стейт переменная загрузки фильмов
+  const [isLoading, setIsLoading] = useState(false);
   //хук перемещения между страницами
   const navigate= useNavigate()
+
 
 
   //функция регистарции пользователя на сервере
@@ -88,6 +91,7 @@ function App() {
 
   function handleFilmSearch(req) {
     setSavedMoviesListSearch([])
+    setIsLoading(true)
     movieApi.getMovies()
       .then(res => {
         setMoviesList(requestProcessing(req, res))
@@ -95,6 +99,7 @@ function App() {
       .catch(err => {
         setServerErrorMessage(serverErrorCode2Message(err.status))
       })
+      .finally(() => setIsLoading(false))
   }
 
   function handleSavedFilmSearch(req) {
@@ -152,7 +157,7 @@ function App() {
         })
     } else {
       setLoggedIn(false)
-      navigate('')
+      navigate('/')
     }
   }, [])
 
@@ -191,6 +196,7 @@ function App() {
                     savedMoviesList={savedMoviesList}
                     saveMovie={saveMovie}
                     deleteMovie={deleteMovie}
+                    isLoading={isLoading}
                     />}>
         </Route>
 
