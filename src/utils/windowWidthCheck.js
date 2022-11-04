@@ -1,4 +1,4 @@
-import Rect, {useState, useEffect} from 'react'
+import {useState, useEffect} from 'react'
 
 function WindowWidthCheck({
   setWidth
