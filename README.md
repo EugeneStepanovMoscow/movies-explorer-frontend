@@ -5,3 +5,6 @@ https://disk.yandex.com/d/e7lz2vfMHz4f1g
 
 ссылка на пулреквест:
 https://github.com/EugeneStepanovMoscow/movies-explorer-frontend/pull/2
+
+ссылка на проект:
+http://steugene.nomoredomains.icu
