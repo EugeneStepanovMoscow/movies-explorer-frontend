@@ -224,14 +224,15 @@ function App() {
         <Route
           path="*"
           element={<ErrPage
-                      err = {'404'}
-                      errText = {'Страница не найдена'}
-                      handleBack = {handleBack}/>}>
+                    err = {'404'}
+                    errText = {'Страница не найдена'}
+                    handleBack = {handleBack}/>}>
         </Route>
 
         <Route
           exact path=""
-          element={<Main/>}>
+          element={<Main
+                    loggedIn={loggedIn}/>}>
         </Route>
 
       </Routes>
