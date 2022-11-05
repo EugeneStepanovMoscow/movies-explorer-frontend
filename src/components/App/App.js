@@ -36,6 +36,10 @@ function App() {
   const [savedMoviesListSearch, setSavedMoviesListSearch] = useState([])
   // стейт переменная загрузки фильмов
   const [isLoading, setIsLoading] = useState(false);
+  // стейт переменная первого поиска
+  const [isFirstSearch, setIsFirstSearch] = useState(true);
+  // стейт переменная массива фильмов первого запроса
+  const [moviesDB, setMoviesDB] = useState([])
   //хук перемещения между страницами
   const navigate= useNavigate()
 
@@ -75,6 +79,8 @@ function App() {
     setSavedMoviesList([])
     setMoviesList([])
     setCurrentUser({})
+    setIsFirstSearch(true)
+    setMoviesDB([])
     localStorage.removeItem('jwt')
     navigate('/')
   }
@@ -89,18 +95,25 @@ function App() {
         setServerErrorMessage(serverErrorCode2Message(err.status))
       })
   }
-
+// поиск фильмов на сттранице movies
   function handleFilmSearch(req) {
     setSavedMoviesListSearch([])
     setIsLoading(true)
-    movieApi.getMovies()
-      .then(res => {
-        setMoviesList(requestProcessing(req, res))
-      })
-      .catch(err => {
-        setServerErrorMessage(serverErrorCode2Message(err.status))
-      })
-      .finally(() => setIsLoading(false))
+    if (isFirstSearch) {
+      movieApi.getMovies()
+        .then(res => {
+          setMoviesDB(res)
+          setIsFirstSearch(false)
+          setMoviesList(requestProcessing(req, res))
+        })
+        .catch(err => {
+          setServerErrorMessage(serverErrorCode2Message(err.status))
+        })
+        .finally(() => setIsLoading(false))
+    } else {
+      setMoviesList(requestProcessing(req, moviesDB))
+      setIsLoading(false)
+    }
   }
 
   function handleSavedFilmSearch(req) {
