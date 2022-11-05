@@ -153,7 +153,7 @@ function FormPattern({
           </div>
 {/*-------------------------------секция отображения ошибки сервера*/}
           <div className="form-pattern__server-err-box">
-            <p className='form-pattern__server-err-text'>{serverErrorMessage}</p>
+            <p className='form-pattern__server-err-text'></p>
           </div>
 
           <button

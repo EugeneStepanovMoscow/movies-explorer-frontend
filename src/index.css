@@ -153,3 +153,5 @@
 @import url(./components/ErrPage/__exit/err-page__exit.css);
 @import url(./components/ErrPage/__err/err-page__err.css);
 @import url(./components/ErrPage/__err-text/err-page__err-text.css);
+
+@import url(./components/InfoMessageBox/infoMessage.css)

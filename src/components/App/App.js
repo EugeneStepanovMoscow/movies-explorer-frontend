@@ -14,6 +14,7 @@ import Register from '../Register/Register'
 import Login from '../Login/Login'
 import Profile from '../Profile/Profile'
 import ErrPage from '../ErrPage/ErrPage';
+import InfoMessageBox from '../InfoMessageBox/InfoMessageBox';
 import messages from '../../utils/messages';
 // перевод кода ошибки от сервера в сообщение
 import serverErrorCode2Message from '../../utils/serverErrorCode2Message';
@@ -40,6 +41,7 @@ function App() {
   const [isFirstSearch, setIsFirstSearch] = useState(true);
   // стейт переменная массива фильмов первого запроса
   const [moviesDB, setMoviesDB] = useState([])
+  const [isInfoMessageOpen, setIsInfoMessageOpen] = useState(false)
   //хук перемещения между страницами
   const navigate= useNavigate()
 
@@ -95,6 +97,15 @@ function App() {
         setServerErrorMessage(serverErrorCode2Message(err.status))
       })
   }
+
+// проверка на пустой ответ
+  function isNotFound(req) {
+   if (req.length === 0) {
+    setServerErrorMessage(messages.error.notFoundMovies)
+    }
+  }
+
+
 // поиск фильмов на сттранице movies
   function handleFilmSearch(req) {
     setSavedMoviesListSearch([])
@@ -104,20 +115,26 @@ function App() {
         .then(res => {
           setMoviesDB(res)
           setIsFirstSearch(false)
-          setMoviesList(requestProcessing(req, res))
+          let data = requestProcessing(req, res)
+          isNotFound(data)
+          setMoviesList(data)
         })
         .catch(err => {
           setServerErrorMessage(serverErrorCode2Message(err.status))
         })
         .finally(() => setIsLoading(false))
     } else {
-      setMoviesList(requestProcessing(req, moviesDB))
+      let data = requestProcessing(req, moviesDB)
+      isNotFound(data)
+      setMoviesList(data)
       setIsLoading(false)
     }
   }
 
   function handleSavedFilmSearch(req) {
-    setSavedMoviesListSearch(requestProcessing(req, savedMoviesList))
+    let data = requestProcessing(req, savedMoviesList)
+    isNotFound(data)
+    setSavedMoviesListSearch(data)
   }
 
   function handleBack() {
@@ -182,6 +199,18 @@ function App() {
     }
   }, [loggedIn])
 
+
+  useEffect(() => {
+    if (serverErrorMessage.length > 0) {
+      setIsInfoMessageOpen(true)
+      setTimeout(() => {
+        setIsInfoMessageOpen(false)
+        setServerErrorMessage('')
+      }, 2500)
+    } else {
+      setIsInfoMessageOpen(false)
+    }
+  },[serverErrorMessage])
 
   return (
     <CurrentUserContext.Provider value={currentUser}>
@@ -255,6 +284,9 @@ function App() {
         </Route>
 
       </Routes>
+
+      <InfoMessageBox messageText={serverErrorMessage} messageStatus={'ok'} active={isInfoMessageOpen}/>
+
     </CurrentUserContext.Provider>
   );
 }
