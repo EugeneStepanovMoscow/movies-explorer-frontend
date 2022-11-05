@@ -14,6 +14,7 @@ import Register from '../Register/Register'
 import Login from '../Login/Login'
 import Profile from '../Profile/Profile'
 import ErrPage from '../ErrPage/ErrPage';
+import messages from '../../utils/messages';
 // перевод кода ошибки от сервера в сообщение
 import serverErrorCode2Message from '../../utils/serverErrorCode2Message';
 import requestProcessing from '../../utils/requestProcessing';
@@ -153,7 +154,8 @@ function App() {
           setLoggedIn(true)
         })
         .catch(err => {
-          console.log(err)
+          console.log(messages.error.tokenError)
+          handleLogOut()
         })
     } else {
       setLoggedIn(false)
