@@ -75,7 +75,7 @@ function App() {
     setMoviesList([])
     setCurrentUser({})
     localStorage.removeItem('jwt')
-    navigate('login')
+    navigate('/')
   }
 
   function handleProfileUpdate(name, email) {
@@ -230,7 +230,7 @@ function App() {
         </Route>
 
         <Route
-          exact path=""
+          exact path="/"
           element={<Main
                     loggedIn={loggedIn}/>}>
         </Route>
