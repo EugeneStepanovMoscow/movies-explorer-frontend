@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Routes, Route, useNavigate } from 'react-router-dom';
+import { Routes, Route, useNavigate, Navigate } from 'react-router-dom';
 
 import * as mainApi from '../../utils/mainApi'
 import * as movieApi from '../../utils/MoviesApi';
@@ -187,18 +187,22 @@ function App() {
     <CurrentUserContext.Provider value={currentUser}>
       <Routes>
         <Route
-          path="register"
-          element={<Register
-                     onRegister={handleRegister}
-                     serverErrorMessage={serverErrorMessage}/>}>
+          path='register'
+          element={!loggedIn
+                    ? <Register
+                       onRegister={handleRegister}
+                       serverErrorMessage={serverErrorMessage}/>
+                    : <Navigate to='/movies'/>}>
         </Route>
 
         <Route
-          path="login"
-          element={<Login
-                    onLogin={handleLogin}
-                    serverErrorMessage={serverErrorMessage}
-                    loggedIn={loggedIn}/>}>
+          path='login'
+          element={!loggedIn
+                    ? <Login
+                        onLogin={handleLogin}
+                        serverErrorMessage={serverErrorMessage}
+                        loggedIn={loggedIn}/>
+                    : <Navigate to='/movies'/>}>
         </Route>
 
         <Route
