@@ -28,6 +28,8 @@ const [emailErrText, setEmailErrText] = useState('');
 // переменные начений инпутов
 const [nameValue, setNameValue]  = useState('');
 const [emailValue, setEmailValue]  = useState('');
+// переменная изменеия значений инпутов
+const [isDataChange, setIsDataChange] = useState(false)
 
 
 // при изменении любой стейт переменной импута проверяетс на валидность все инпуты
@@ -38,6 +40,14 @@ useEffect(() => {
     setIsFormValid(false);
     }
 }, [isNameValid, isEmailValid]);
+
+useEffect(() => {
+  if (nameValue === currentUser.name && emailValue === currentUser.email) {
+    setIsDataChange (false)
+  } else {
+    setIsDataChange (true)
+  }
+}, [nameValue, emailValue])
 
 
 // присвоение стейт переменным значений currentUser, при изменении последнего
@@ -99,6 +109,8 @@ function handleSubmit(e) {
   onSubmit(nameValue, emailValue);
 }
 
+
+
 return (
   <>
     <HeaderLogin/>
@@ -137,11 +149,11 @@ return (
             <p className={`profile__error ${isEmailValid ? 'profile__error_success' : ''}`}>{emailErrText}</p>
           </div>
         </div>
-        <p className='form-pattern__error'>{serverErrorMessage}</p>
+        <p className='form-pattern__error'></p>
         <button
           className='prifile__btn prifile__btn-edit'
           type="submit"
-          disabled={!isFormValid}
+          disabled={!isDataChange || !isFormValid}
           >Редактровать
         </button>
       </form>
