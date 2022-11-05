@@ -1,7 +1,8 @@
 import React, { useState, useEffect} from 'react';
 
 function SearchForm ({
-  onSubmit
+  onSubmit,
+  isLoading
 })
   {
 
@@ -32,7 +33,7 @@ function SearchForm ({
       onSubmit={handleSubmit}
       noValidate
     >
-      <fieldset className="searsh-form__fieldset">
+      <fieldset className="searsh-form__fieldset" disabled={isLoading ? true : false}>
         <div className="searsh-form__border">
           <div className="search-form_inp-region">
             <input

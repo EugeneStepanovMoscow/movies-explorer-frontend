@@ -7,7 +7,8 @@ import MoviesCardList from '../MovisCardList/MoviesCardList';
 function SavedMovies ({
   onSubmit,
   moviesList,
-  deleteMovie
+  deleteMovie,
+  isLoading
 })
 {
 return (
@@ -17,6 +18,7 @@ return (
         <SearchForm
           onSubmit={onSubmit}
           placeOfCall={'savedMovies'}
+          isLoading={isLoading}
         />
         <section className='movies__section'>
           <MoviesCardList

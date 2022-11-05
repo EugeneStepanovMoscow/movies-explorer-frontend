@@ -211,8 +211,7 @@ function App() {
                     savedMoviesList={savedMoviesList}
                     saveMovie={saveMovie}
                     deleteMovie={deleteMovie}
-                    isLoading={isLoading}
-                    />}>
+                    isLoading={isLoading}/>}>
         </Route>
 
         <Route
@@ -222,7 +221,8 @@ function App() {
                   moviesList={savedMoviesListSearch.length > 0 ? savedMoviesListSearch : savedMoviesList}
                   deleteMovie={deleteMovie}
                   onSubmit={handleSavedFilmSearch}
-                  loggedIn={loggedIn}/>}>
+                  loggedIn={loggedIn}
+                  isLoading={isLoading}/>}>
         </Route>
 
         <Route

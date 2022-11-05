@@ -59,6 +59,7 @@ function Movies ({
         <SearchForm
           onSubmit={handleSubmit}
           placeOfCall={'movies'}
+          isLoading={isLoading}
         />
         <section className='movies__section'>
           {isLoading ? <Preloader/> : ''}
