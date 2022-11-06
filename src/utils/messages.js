@@ -9,7 +9,9 @@ const messages = {
     tokenError: 'Тоекн неверный, или повреждён',
     notFoundMovies: 'Фильмы не найдены',
   },
-  success: 'Ok'
+  success: 'Ok',
+  profileUpdate: 'Информация о пользователе обновлена',
+  profileCreate: 'Пользователь зарегистрирован',
 }
 
 export default messages

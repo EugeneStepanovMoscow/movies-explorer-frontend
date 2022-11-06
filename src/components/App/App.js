@@ -45,8 +45,6 @@ function App() {
   //хук перемещения между страницами
   const navigate= useNavigate()
 
-
-
   //функция регистарции пользователя на сервере
   function handleRegister(name, email, password) {
     mainApi.register(email, password, name)
@@ -84,6 +82,8 @@ function App() {
     setIsFirstSearch(true)
     setMoviesDB([])
     localStorage.removeItem('jwt')
+    localStorage.removeItem('req')
+    localStorage.removeItem('result')
     navigate('/')
   }
 
@@ -92,6 +92,7 @@ function App() {
     mainApi.profileUpdate(name, email, token)
       .then(res => {
         setCurrentUser({name: res.user.name, email: res.user.email})
+        setServerErrorMessage(messages.profileUpdate)
       })
       .catch(err => {
         setServerErrorMessage(serverErrorCode2Message(err.status))
@@ -108,6 +109,7 @@ function App() {
 
 // поиск фильмов на сттранице movies
   function handleFilmSearch(req) {
+    localStorage.setItem('req', JSON.stringify(req))
     setSavedMoviesListSearch([])
     setIsLoading(true)
     if (isFirstSearch) {
@@ -118,6 +120,7 @@ function App() {
           let data = requestProcessing(req, res)
           isNotFound(data)
           setMoviesList(data)
+          localStorage.setItem('result', JSON.stringify(data))
         })
         .catch(err => {
           setServerErrorMessage(serverErrorCode2Message(err.status))
@@ -127,6 +130,7 @@ function App() {
       let data = requestProcessing(req, moviesDB)
       isNotFound(data)
       setMoviesList(data)
+      localStorage.setItem('result', JSON.stringify(data))
       setIsLoading(false)
     }
   }
@@ -173,7 +177,7 @@ function App() {
       })
   }
 
-  // Запрос данных пользователя с сервера при старте и перезагрузке
+  // Запрос данных пользователя с сервера и из локального хранилища при старте и перезагрузке
   useEffect(() => {
     const token = localStorage.getItem('jwt');
     if (token) {
@@ -191,6 +195,8 @@ function App() {
       setLoggedIn(false)
       navigate('/')
     }
+
+    setMoviesList(JSON.parse(localStorage.getItem('result')))
   }, [])
 
   useEffect(() => {

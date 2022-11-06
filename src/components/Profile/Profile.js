@@ -105,6 +105,7 @@ function handleChangeEmail(e) {
 }
 
 function handleSubmit(e) {
+  setIsDataChange(false)
   e.preventDefault();
   onSubmit(nameValue, emailValue);
 }
