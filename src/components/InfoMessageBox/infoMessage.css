@@ -14,8 +14,8 @@
 }
 
 .infoMessage__text {
-  margin: 85px;
-  max-width: 730px;
+  margin: 85px auto 0 auto;
+  /* max-width: 730px; */
   text-align: center;
   font-family: inter;
   font-weight: 500;

@@ -27,6 +27,8 @@ function App() {
   const [currentUser, setCurrentUser] = useState({})
   //стейт переменная статуса входа пользавателя в систему
   const [loggedIn, setLoggedIn] = useState(false)
+  // переменная проверки токена на валидность
+  const [isTokenChecked, setIsTokenChecked] = useState(false)
   // переменная ответов от сервера
   const [serverErrorMessage, setServerErrorMessage] = useState('')
   //стейт переменная массива информации о фильмах
@@ -186,20 +188,25 @@ function App() {
           setCurrentUser({name: res.dataFromDB.name, email: res.dataFromDB.email, id: res.dataFromDB._id})
           setServerErrorMessage('')
           setLoggedIn(true)
+          console.log(`прверка токена и перевод в true`)
+          console.log(`только сейчас перевоим в true`)
         })
         .catch(err => {
           console.log(messages.error.tokenError)
           handleLogOut()
         })
+        .finally(() => setIsTokenChecked(true))
     } else {
       setLoggedIn(false)
       navigate('/')
+      setIsTokenChecked(true)
     }
 
     setMoviesList(JSON.parse(localStorage.getItem('result')))
   }, [])
 
   useEffect(() => {
+    console.log(`Изменение логин ${loggedIn}`)
     if (loggedIn) {
       getUserMovies();
     }
@@ -220,77 +227,79 @@ function App() {
 
   return (
     <CurrentUserContext.Provider value={currentUser}>
-      <Routes>
-        <Route
-          path='register'
-          element={!loggedIn
-                    ? <Register
-                       onRegister={handleRegister}
-                       serverErrorMessage={serverErrorMessage}/>
-                    : <Navigate to='/movies'/>}>
-        </Route>
+      {/* отрисовываем только после проверки токена */}
+      {isTokenChecked &&
+        <Routes>
+          <Route
+            path='/register'
+            element={!loggedIn
+                      ? <Register
+                        onRegister={handleRegister}
+                        serverErrorMessage={serverErrorMessage}/>
+                      : <Navigate to='/movies'/>}>
+          </Route>
 
-        <Route
-          path='login'
-          element={!loggedIn
-                    ? <Login
-                        onLogin={handleLogin}
-                        serverErrorMessage={serverErrorMessage}
-                        loggedIn={loggedIn}/>
-                    : <Navigate to='/movies'/>}>
-        </Route>
+          <Route
+            path='/login'
+            element={!loggedIn
+                      ? <Login
+                          onLogin={handleLogin}
+                          serverErrorMessage={serverErrorMessage}
+                          loggedIn={loggedIn}/>
+                      : <Navigate to='/movies'/>}>
+          </Route>
 
-        <Route
-          path='movies'
-          element={<ProtectedRoute
-                    component={Movies}
-                    loggedIn={loggedIn}
-                    onSubmit={handleFilmSearch}
-                    moviesList={moviesList}
-                    savedMoviesList={savedMoviesList}
-                    saveMovie={saveMovie}
+          <Route
+            path='/movies'
+            element={<ProtectedRoute
+                      component={Movies}
+                      loggedIn={loggedIn}
+                      onSubmit={handleFilmSearch}
+                      moviesList={moviesList}
+                      savedMoviesList={savedMoviesList}
+                      saveMovie={saveMovie}
+                      deleteMovie={deleteMovie}
+                      isLoading={isLoading}/>}>
+          </Route>
+
+          <Route
+            path='/saved-movies'
+            element={<ProtectedRoute
+                    component={SavedMovies}
+                    moviesList={savedMoviesListSearch.length > 0 ? savedMoviesListSearch : savedMoviesList}
                     deleteMovie={deleteMovie}
-                    isLoading={isLoading}/>}>
-        </Route>
-
-        <Route
-          path='saved-movies'
-          element={<ProtectedRoute
-                  component={SavedMovies}
-                  moviesList={savedMoviesListSearch.length > 0 ? savedMoviesListSearch : savedMoviesList}
-                  deleteMovie={deleteMovie}
-                  onSubmit={handleSavedFilmSearch}
-                  loggedIn={loggedIn}
-                  isLoading={isLoading}/>}>
-        </Route>
-
-        <Route
-          path='profile'
-          element={<ProtectedRoute
-                    component={Profile}
-                    // path='/profile'
+                    onSubmit={handleSavedFilmSearch}
                     loggedIn={loggedIn}
-                    handleLogOut={handleLogOut}
-                    onSubmit={handleProfileUpdate}
-                    serverErrorMessage={serverErrorMessage}/>}>
-        </Route>
+                    isLoading={isLoading}/>}>
+          </Route>
 
-        <Route
-          path="*"
-          element={<ErrPage
-                    err = {'404'}
-                    errText = {'Страница не найдена'}
-                    handleBack = {handleBack}/>}>
-        </Route>
+          <Route
+            path='/profile'
+            element={<ProtectedRoute
+                      component={Profile}
+                      // path='/profile'
+                      loggedIn={loggedIn}
+                      handleLogOut={handleLogOut}
+                      onSubmit={handleProfileUpdate}
+                      serverErrorMessage={serverErrorMessage}/>}>
+          </Route>
 
-        <Route
-          exact path="/"
-          element={<Main
-                    loggedIn={loggedIn}/>}>
-        </Route>
+          <Route
+            path="*"
+            element={<ErrPage
+                      err = {'404'}
+                      errText = {'Страница не найдена'}
+                      handleBack = {handleBack}/>}>
+          </Route>
 
-      </Routes>
+          <Route
+            exact path="/"
+            element={<Main
+                      loggedIn={loggedIn}/>}>
+          </Route>
 
+        </Routes>
+      }
       <InfoMessageBox messageText={serverErrorMessage} messageStatus={'ok'} active={isInfoMessageOpen}/>
 
     </CurrentUserContext.Provider>
