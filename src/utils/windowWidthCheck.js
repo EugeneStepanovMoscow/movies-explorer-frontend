@@ -1,4 +1,5 @@
 import {useState, useEffect} from 'react'
+import constants from './constants';
 
 function WindowWidthCheck({
   setWidth
@@ -13,11 +14,12 @@ function WindowWidthCheck({
   useEffect(() => {
     window.addEventListener('resize', widthSet)
     if (768 < windowWidth) {
-      setWidth({start: 12, add: 3})
+      setWidth(constants.movieShowConstants.more768)
     } else if (480 < windowWidth <= 768) {
-      setWidth({start: 8, add: 2})
+      setWidth(constants.movieShowConstants.less768)
     } else if (windowWidth <= 480) {
-      setWidth({start: 5, add: 2})
+      setWidth(constants.movieShowConstants.less480)
+      // setWidth({start: 5, add: 2})
     }
   }, [windowWidth])
 }

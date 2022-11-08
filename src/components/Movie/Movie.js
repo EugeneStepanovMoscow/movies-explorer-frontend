@@ -64,7 +64,7 @@ function Movie({
       <a className='movie__image-box' href={movieInfo.trailerLink} target='blank'>
         <img
           className='movie__image'
-          src={placeOfCall === 'movies'? (constants.movieImageUrl + movieInfo.image.url) : movieInfo.image}
+          src={placeOfCall === 'movies'? (constants.MovieImageUrl + movieInfo.image.url) : movieInfo.image}
           alt={movieInfo.nameRU}/>
       </a>
     </li>

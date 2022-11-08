@@ -18,7 +18,7 @@ function responseCheck(res) {
 
 // запрос проверки токена
 export function jwtCheck(token) {
-  return fetch(`${constants.mainApiBaseUrl}users/me`, {
+  return fetch(`${constants.MainApiBaseUrl}users/me`, {
     method: 'GET',
     headers: headersSet(token),
     })
@@ -27,7 +27,7 @@ export function jwtCheck(token) {
 
 // запрос на вход, получение токена
 export function login(email, password) {
-  return fetch(`${constants.mainApiBaseUrl}signin`, {
+  return fetch(`${constants.MainApiBaseUrl}signin`, {
       method: 'POST',
       // headers: headersSet(token),
       headers: {
@@ -44,7 +44,7 @@ export function login(email, password) {
 
 //-----------------Получение списка сохраненных фильмов пользователя
 export function getUserMovies(token) {
-  return fetch(`${constants.mainApiBaseUrl}movies`, {
+  return fetch(`${constants.MainApiBaseUrl}movies`, {
       method: 'GET',
       headers: headersSet(token),
     })
@@ -53,7 +53,7 @@ export function getUserMovies(token) {
 
 //регистрация нового пользователя
 export function register(email, password, name) {
-  return fetch(`${constants.mainApiBaseUrl}signup`, {
+  return fetch(`${constants.MainApiBaseUrl}signup`, {
       method: 'POST',
       headers: {
         'Accept': 'application/json',
@@ -70,7 +70,7 @@ export function register(email, password, name) {
 
 //---------------------Обновление прфиля
 export function profileUpdate(newName, newEmail, token) {
-    return fetch(`${constants.mainApiBaseUrl}users/me`, {
+    return fetch(`${constants.MainApiBaseUrl}users/me`, {
       method: 'PATCH',
        headers: headersSet(token),
        body: JSON.stringify({
@@ -83,9 +83,9 @@ export function profileUpdate(newName, newEmail, token) {
 
 // ---------------------Сохранене фильмаа
 export function saveMovie(movieInfo, token) {
-    const imageUrl = constants.movieImageUrl + movieInfo.image.url;
-    const previewUrl = constants.movieApiUrl + movieInfo.image.formats.thumbnail.url
-    return fetch(`${constants.mainApiBaseUrl}movies`, {
+    const imageUrl = constants.MovieImageUrl + movieInfo.image.url;
+    const previewUrl = constants.MovieApiUrl + movieInfo.image.formats.thumbnail.url
+    return fetch(`${constants.MainApiBaseUrl}movies`, {
       method: 'POST',
       headers: headersSet(token),
       body: JSON.stringify({
@@ -107,7 +107,7 @@ export function saveMovie(movieInfo, token) {
 
 // ---------------------Удаление фильма
 export function deleteMovie(movieId, token) {
-  return fetch(`${constants.mainApiBaseUrl}movies/${movieId}`, {
+  return fetch(`${constants.MainApiBaseUrl}movies/${movieId}`, {
     method: 'DELETE',
     headers: headersSet(token)
   })

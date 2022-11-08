@@ -22,16 +22,17 @@ function Movies ({
   const [settings, setSettings] = useState({})
 
   function setWidth(values) {
+    // принимает значеня из WindowWidthCheck
     setSettings(values)
   }
 
   function filmsAdd() {
-    setNumberOfMovie(numberOfMovie + settings.add)
+    setNumberOfMovie(numberOfMovie + settings.AddedQuantity)
   }
 
   function handleSubmit(req) {
     onSubmit(req)
-    setNumberOfMovie(settings.start)
+    setNumberOfMovie(settings.InitialQuantity)
   }
 
   useEffect(() => {

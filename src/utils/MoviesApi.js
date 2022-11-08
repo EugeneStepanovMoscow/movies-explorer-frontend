@@ -10,7 +10,7 @@ function responseCheck(res) {
 
   // запрос проверки токена
   export function getMovies() {
-    return fetch(constants.movieApiUrl, {
+    return fetch(constants.MovieApiUrl, {
       method: 'GET',
       headers: {
         'Accept': 'application/json',
