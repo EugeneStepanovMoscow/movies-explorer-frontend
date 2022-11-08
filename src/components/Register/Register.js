@@ -4,7 +4,8 @@ import HeaderLink from '../HeaderLink/HeaderLink';
 
 function Register ({
   onRegister,
-  serverErrorMessage
+  serverErrorMessage,
+  isLoading
   })
   {
   return (
@@ -20,6 +21,7 @@ function Register ({
         footerLinkText={'Войти'}
         onSubmit={onRegister}
         serverErrorMessage={serverErrorMessage}
+        isLoading={isLoading}
       />
     </main>
   )

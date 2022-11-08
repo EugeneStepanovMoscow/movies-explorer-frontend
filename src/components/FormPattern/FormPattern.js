@@ -12,7 +12,7 @@ function FormPattern({
   formGreeting,
   footerText,
   footerLinkText,
-  serverErrorMessage,
+  isLoading,
 })
 {
   // стейт переменная состояния формы
@@ -114,7 +114,7 @@ function FormPattern({
         noValidate
         onSubmit={handleSubmit}
       >
-        <fieldset className="form-pattern__fieldset">
+        <fieldset className="form-pattern__fieldset" disabled={isLoading ? true : false}>
 {/* ------------------------------Имя */}
           <label className={`form-pattern__label ${formName === 'login' ? 'form-pattern__lable_hide' : ''}`}>Имя</label>
           <input

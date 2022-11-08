@@ -49,6 +49,7 @@ function App() {
 
   //функция регистарции пользователя на сервере
   function handleRegister(name, email, password) {
+    setIsLoading(true)
     mainApi.register(email, password, name)
       .then((res) => {
         handleLogin(email, password)
@@ -57,9 +58,11 @@ function App() {
       .catch((err) => {
         setServerErrorMessage(serverErrorCode2Message(err.status))
       })
+      .finally(() => setIsLoading(false))
   }
 
   function handleLogin(email, password) {
+    setIsLoading(true)
     mainApi.login(email, password)
       .then((res) => {
         setCurrentUser({name: res.userFromDB.name, email: res.userFromDB.email, id: res.userFromDB._id})
@@ -72,6 +75,7 @@ function App() {
       .catch(err => {
         setServerErrorMessage(serverErrorCode2Message(err.status))
       })
+      .finally(() => setIsLoading(false))
   }
 
   // функция выхода пользователя
@@ -90,6 +94,7 @@ function App() {
   }
 
   function handleProfileUpdate(name, email) {
+    setIsLoading(true)
     const token = localStorage.getItem('jwt');
     mainApi.profileUpdate(name, email, token)
       .then(res => {
@@ -99,6 +104,8 @@ function App() {
       .catch(err => {
         setServerErrorMessage(serverErrorCode2Message(err.status))
       })
+      .finally(() => setIsLoading(false))
+
   }
 
 // проверка на пустой ответ
@@ -235,7 +242,8 @@ function App() {
             element={!loggedIn
                       ? <Register
                         onRegister={handleRegister}
-                        serverErrorMessage={serverErrorMessage}/>
+                        serverErrorMessage={serverErrorMessage}
+                        isLoading={isLoading}/>
                       : <Navigate to='/movies'/>}>
           </Route>
 

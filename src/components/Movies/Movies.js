@@ -36,17 +36,19 @@ function Movies ({
 
   useEffect(() => {
     // переделать
-    if (moviesList.length > 0) {
+    if (moviesList) {
       setMoviesListForDisplay(moviesList.slice(0, numberOfMovie))
     }
   }, [moviesList, numberOfMovie])
 
 
   useEffect(() => {
-    if (moviesList.length > moviesListForDisplay.length) {
-      setMoreButtonStatus(true)
-    } else {
-      setMoreButtonStatus(false)
+    if (moviesList) {
+      if (moviesList.length > moviesListForDisplay.length) {
+        setMoreButtonStatus(true)
+      } else {
+        setMoreButtonStatus(false)
+      }
     }
   }, [moviesListForDisplay])
 
