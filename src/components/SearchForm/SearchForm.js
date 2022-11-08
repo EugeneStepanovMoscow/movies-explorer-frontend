@@ -17,9 +17,13 @@ function SearchForm ({
   function handleSubmit(e) {
     e.preventDefault()
     if (isFerstSearch) {
-      setRequest({search: oldReq.search, shortFilms: oldReq.shortFilms})
-      onSubmit({search: oldReq.search, shortFilms: oldReq.shortFilms})
-      setIsFerstSearch(false)
+      if (oldReq) {
+        setRequest({search: oldReq.search, shortFilms: oldReq.shortFilms})
+        onSubmit({search: oldReq.search, shortFilms: oldReq.shortFilms})
+        setIsFerstSearch(false)
+      } else {
+        onSubmit(request)
+      }
     } else {
       onSubmit(request)
     }

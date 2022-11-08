@@ -190,7 +190,7 @@ function App() {
           setLoggedIn(true)
         })
         .catch(err => {
-          console.log(messages.error.tokenError)
+          setServerErrorMessage(messages.error.tokenError)
           handleLogOut()
         })
         .finally(() => setIsTokenChecked(true))
