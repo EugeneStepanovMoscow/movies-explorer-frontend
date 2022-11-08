@@ -266,6 +266,9 @@ function App() {
             path='/saved-movies'
             element={<ProtectedRoute
                     component={SavedMovies}
+                    // при проверке отправляем сохраненные фильмы для отображения
+                    // при старте страици отображаются все сохраненные пользователем фильмы
+                    // не совсем понимаю повторное замечание
                     moviesList={savedMoviesListSearch.length > 0 ? savedMoviesListSearch : savedMoviesList}
                     deleteMovie={deleteMovie}
                     onSubmit={handleSavedFilmSearch}

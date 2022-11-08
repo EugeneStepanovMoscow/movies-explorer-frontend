@@ -48,7 +48,6 @@ function Movies ({
     } else {
       setMoreButtonStatus(false)
     }
-    // console.log(WindowWidthCheck())
   }, [moviesListForDisplay])
 
   return (
