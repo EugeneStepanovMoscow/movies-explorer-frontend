@@ -36,7 +36,9 @@ function Movies ({
 
   useEffect(() => {
     // переделать
-    setMoviesListForDisplay(moviesList.slice(0, numberOfMovie))
+    if (moviesList.length > 0) {
+      setMoviesListForDisplay(moviesList.slice(0, numberOfMovie))
+    }
   }, [moviesList, numberOfMovie])
 
 

@@ -190,7 +190,10 @@ function App() {
           setLoggedIn(true)
         })
         .catch(err => {
+          // в этом блоке описываются действия если токен не прошел проверку (поврежден, отредактирован итд)
+          // не совсем понимаю повторное замечание
           setServerErrorMessage(messages.error.tokenError)
+          // вызываем логаут и следовательно все подчищается. Пользователь становиться неавторизованным
           handleLogOut()
         })
         .finally(() => setIsTokenChecked(true))
