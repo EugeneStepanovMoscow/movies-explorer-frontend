@@ -8,23 +8,30 @@ function SearchForm ({
   {
 
   const [isShortFilms, setIsShortFilms] = useState(false)
-  const [request, setRequest] = useState({search: '', shortFilms: false});
-  const [searchValue, setSearchValue] = useState('')
-  const [shortFilmsStatus, setShortFilmsStatus] = useState(false)
+  const [request, setRequest] = useState({search: '', shortFilms: true});
+  const [searchValue, setSearchValue] = useState('');
+  const [isFerstSearch, setIsFerstSearch] = useState(true);
 
   const oldReq = JSON.parse(localStorage.getItem('req'))
 
   function handleSubmit(e) {
     e.preventDefault()
-    onSubmit(request)
+    if (isFerstSearch) {
+      setRequest({search: oldReq.search, shortFilms: oldReq.shortFilms})
+      onSubmit({search: oldReq.search, shortFilms: oldReq.shortFilms})
+      setIsFerstSearch(false)
+    } else {
+      onSubmit(request)
+    }
   }
 
   function changeShortFilmsStatus() {
-    setIsShortFilms(!shortFilmsStatus)
-    setShortFilmsStatus(!shortFilmsStatus)
+    setIsFerstSearch(false)
+    setIsShortFilms(!isShortFilms)
   }
 
   function handleChange(e) {
+    setIsFerstSearch(false)
     setSearchValue(e.target.value)
   }
 
@@ -32,7 +39,7 @@ function SearchForm ({
     if (placeOfCall ==='movies') {
       if (oldReq) {
         setSearchValue(oldReq.search)
-        setShortFilmsStatus(true)
+        setIsShortFilms(oldReq.shortFilms)
       }
     }
   },[])
@@ -70,7 +77,7 @@ function SearchForm ({
                 className="searsh-form__checkbox"
                 type="checkbox"
                 onChange={changeShortFilmsStatus}
-                checked={shortFilmsStatus}
+                checked={isShortFilms}
               />
             </label>
             <label className="search-form__text">Короткометражки</label>

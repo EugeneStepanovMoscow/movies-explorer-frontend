@@ -188,8 +188,6 @@ function App() {
           setCurrentUser({name: res.dataFromDB.name, email: res.dataFromDB.email, id: res.dataFromDB._id})
           setServerErrorMessage('')
           setLoggedIn(true)
-          console.log(`прверка токена и перевод в true`)
-          console.log(`только сейчас перевоим в true`)
         })
         .catch(err => {
           console.log(messages.error.tokenError)
@@ -206,7 +204,6 @@ function App() {
   }, [])
 
   useEffect(() => {
-    console.log(`Изменение логин ${loggedIn}`)
     if (loggedIn) {
       getUserMovies();
     }
