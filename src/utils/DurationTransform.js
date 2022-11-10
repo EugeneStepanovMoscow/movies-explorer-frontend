@@ -1,6 +1,8 @@
+import constants from "./constants"
+
 function durationTransform(duration) {
-  const hour = Math.trunc(duration / 60)
-  const minute = duration - (hour * 60)
+  const hour = Math.trunc(duration / constants.sixtyMinutes)
+  const minute = duration - (hour * constants.sixtyMinutes)
   return `${hour} ч. ${minute} мин.`
 }
 

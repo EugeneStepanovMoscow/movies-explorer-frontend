@@ -13,13 +13,12 @@ function WindowWidthCheck({
 
   useEffect(() => {
     window.addEventListener('resize', widthSet)
-    if (768 < windowWidth) {
+    if (constants.window.width768 < windowWidth) {
       setWidth(constants.movieShowConstants.more768)
-    } else if (480 < windowWidth <= 768) {
+    } else if (constants.window.width480 < windowWidth <= constants.window.width768) {
       setWidth(constants.movieShowConstants.less768)
-    } else if (windowWidth <= 480) {
+    } else if (windowWidth <= constants.window.width480) {
       setWidth(constants.movieShowConstants.less480)
-      // setWidth({start: 5, add: 2})
     }
   }, [windowWidth])
 }
