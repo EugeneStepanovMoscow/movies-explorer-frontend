@@ -22,6 +22,8 @@ import requestProcessing from '../../utils/requestProcessing';
 
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 
+import constants from '../../utils/constants';
+
 function App() {
   // стейт переменная вошедшего пользователя
   const [currentUser, setCurrentUser] = useState({})
@@ -226,7 +228,7 @@ function App() {
       setTimeout(() => {
         setIsInfoMessageOpen(false)
         setServerErrorMessage('')
-      }, 2500)
+      }, constants.lifetime)
     } else {
       setIsInfoMessageOpen(false)
     }

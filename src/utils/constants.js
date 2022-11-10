@@ -17,8 +17,8 @@ const constants = {
   },
   // минуты для расчета отображения длительности фильмаж
   sixtyMinutes: 60,
-
-
+  // время отображения нформационного окна
+  lifetime: 2000
 }
 
 export default constants
