@@ -184,12 +184,12 @@ function App() {
     mainApi.getUserMovies(localStorage.getItem('jwt'))
       .then(res => {
         setSavedMoviesList(res)
-
       })
       .catch(err => {
         console.log(err)
       })
-      .finally(() => setIsSavedMoviesListChecked(true))
+      .finally(() => {
+        setIsSavedMoviesListChecked(true)})
   }
 
   // Запрос данных пользователя с сервера и из локального хранилища при старте и перезагрузке
@@ -208,7 +208,6 @@ function App() {
         })
         .finally(() => setIsTokenChecked(true))
     } else {
-      // при отсутствии токена вызываем логаут
       handleLogOut()
       setIsTokenChecked(true)
     }
@@ -235,8 +234,8 @@ function App() {
 
   return (
     <CurrentUserContext.Provider value={currentUser}>
-      {/* отрисовываем только после проверки токена и получения списка сохраненных файлов*/}
-      {isTokenChecked && isSavedMoviesListChecked &&
+      {/* отрисовываем только после проверки токена*/}
+      {isTokenChecked &&
         <Routes>
           <Route
             path='/register'
@@ -254,7 +253,8 @@ function App() {
                       ? <Login
                           onLogin={handleLogin}
                           serverErrorMessage={serverErrorMessage}
-                          loggedIn={loggedIn}/>
+                          loggedIn={loggedIn}
+                          isLoading={isLoading}/>
                       : <Navigate to='/movies'/>}>
           </Route>
 
@@ -268,7 +268,8 @@ function App() {
                       savedMoviesList={savedMoviesList}
                       saveMovie={saveMovie}
                       deleteMovie={deleteMovie}
-                      isLoading={isLoading}/>}>
+                      isLoading={isLoading}
+                      isSavedMoviesListChecked={isSavedMoviesListChecked}/>}>
           </Route>
 
           <Route
@@ -289,7 +290,7 @@ function App() {
             path='/profile'
             element={<ProtectedRoute
                       component={Profile}
-                      // path='/profile'
+                      isLoading={isLoading}
                       loggedIn={loggedIn}
                       handleLogOut={handleLogOut}
                       onSubmit={handleProfileUpdate}

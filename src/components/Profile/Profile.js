@@ -9,7 +9,7 @@ import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 function Profile ({
   handleLogOut,
   onSubmit,
-  serverErrorMessage
+  isLoading
 })
 {
 // подписка на контекст
@@ -122,41 +122,43 @@ return (
         noValidate
         onSubmit={handleSubmit}
       >
-        <div className='profile__info'>
-          <p className='profile__title'>Имя</p>
-          <input className='profile__input'
-            name="name"
-            type="text"
-            required
-            // placeholder={currentUser.name}
-            value={nameValue || ''}
-            onChange={handleChangeName}
-          />
-          <div className='profile__inp-err-box'>
-            <p className={`profile__error ${isNameValid ? 'profile__error_success' : ''}`}>{nameErrText}</p>
+        <fieldset className='profile__fieldset' disabled={isLoading ? true : false}>
+          <div className='profile__info'>
+            <p className='profile__title'>Имя</p>
+            <input className='profile__input'
+              name="name"
+              type="text"
+              required
+              // placeholder={currentUser.name}
+              value={nameValue || ''}
+              onChange={handleChangeName}
+            />
+            <div className='profile__inp-err-box'>
+              <p className={`profile__error ${isNameValid ? 'profile__error_success' : ''}`}>{nameErrText}</p>
+            </div>
           </div>
-        </div>
-        <div className='profile__info'>
-          <p className='profile__title'>E-mail</p>
-          <input className='profile__input'
-            name="E-mail"
-            type="email"
-            required
-            value={emailValue || ''}
-            // placeholder={currentUser.email}
-            onChange={handleChangeEmail}
-          />
-          <div className='profile__inp-err-box'>
-            <p className={`profile__error ${isEmailValid ? 'profile__error_success' : ''}`}>{emailErrText}</p>
+          <div className='profile__info'>
+            <p className='profile__title'>E-mail</p>
+            <input className='profile__input'
+              name="E-mail"
+              type="email"
+              required
+              value={emailValue || ''}
+              // placeholder={currentUser.email}
+              onChange={handleChangeEmail}
+            />
+            <div className='profile__inp-err-box'>
+              <p className={`profile__error ${isEmailValid ? 'profile__error_success' : ''}`}>{emailErrText}</p>
+            </div>
           </div>
-        </div>
-        <p className='form-pattern__error'></p>
-        <button
-          className='prifile__btn prifile__btn-edit'
-          type="submit"
-          disabled={!isDataChange || !isFormValid}
-          >Редактровать
-        </button>
+          <p className='form-pattern__error'></p>
+          <button
+            className='prifile__btn prifile__btn-edit'
+            type="submit"
+            disabled={!isDataChange || !isFormValid}
+            >Редактровать
+          </button>
+        </fieldset>
       </form>
       <button
         className='prifile__btn prifile__btn-exit'

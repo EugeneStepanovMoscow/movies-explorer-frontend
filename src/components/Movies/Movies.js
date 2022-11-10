@@ -12,7 +12,8 @@ function Movies ({
   savedMoviesList,
   saveMovie,
   deleteMovie,
-  isLoading
+  isLoading,
+  isSavedMoviesListChecked
 })
 {
   const [moviesListForDisplay, setMoviesListForDisplay] = useState([]);
@@ -55,35 +56,40 @@ function Movies ({
 
   return (
     <>
-      <WindowWidthCheck
-        setWidth={setWidth}
-      />
-      <HeaderLogin/>
-      <main className='movies'>
-        <SearchForm
-          onSubmit={handleSubmit}
-          placeOfCall={'movies'}
-          isLoading={isLoading}
-        />
-        <section className='movies__section'>
-          {isLoading ? <Preloader/> : ''}
-          <MoviesCardList
-            moviesList={moviesListForDisplay}
-            savedMoviesList={savedMoviesList}
-            placeOfCall={'movies'}
-            saveMovie={saveMovie}
-            deleteMovie={deleteMovie}
+      {/* отрисовываем только после загрузки списка сохраненных фильмов*/}
+      {isSavedMoviesListChecked &&
+        <>
+          <WindowWidthCheck
+            setWidth={setWidth}
           />
-        </section>
-        <section className='movies__more'>
-          {/* выделить в отдельный компонент */}
-          <button
-            className={`movies__more-button ${moreButtonStatus ? '' : 'movies__more-button_hide'}`}
-            onClick={filmsAdd}
-          >Ещё</button>
-        </section>
-      </main>
-      <Footer/>
+          <HeaderLogin/>
+          <main className='movies'>
+            <SearchForm
+              onSubmit={handleSubmit}
+              placeOfCall={'movies'}
+              isLoading={isLoading}
+            />
+            <section className='movies__section'>
+              {isLoading ? <Preloader/> : ''}
+              <MoviesCardList
+                moviesList={moviesListForDisplay}
+                savedMoviesList={savedMoviesList}
+                placeOfCall={'movies'}
+                saveMovie={saveMovie}
+                deleteMovie={deleteMovie}
+              />
+            </section>
+            <section className='movies__more'>
+              {/* выделить в отдельный компонент */}
+              <button
+                className={`movies__more-button ${moreButtonStatus ? '' : 'movies__more-button_hide'}`}
+                onClick={filmsAdd}
+              >Ещё</button>
+            </section>
+          </main>
+          <Footer/>
+        </>
+      }
     </>
   )
 }

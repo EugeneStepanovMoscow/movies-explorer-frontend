@@ -6,7 +6,8 @@ import { useNavigate } from 'react-router-dom';
 function Login ({
   onLogin,
   serverErrorMessage,
-  loggedIn
+  loggedIn,
+  isLoading
   })
   {
 
@@ -32,6 +33,7 @@ function Login ({
         errorText = {''}
         onSubmit={onLogin}
         serverErrorMessage={serverErrorMessage}
+        isLoading={isLoading}
       />
     </main>
   )
