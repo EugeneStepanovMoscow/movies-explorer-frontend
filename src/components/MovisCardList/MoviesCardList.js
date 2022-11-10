@@ -8,8 +8,9 @@ function MoviesCardList ({
   saveMovie,
   deleteMovie
 })
-
 {
+
+
   return (
     <ul className="movies-card-list">
       {moviesList.map(movie =>

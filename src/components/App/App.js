@@ -37,6 +37,8 @@ function App() {
   const [moviesList, setMoviesList] = useState([])
   // стейт переменная массива сохраненных фильмов
   const [savedMoviesList, setSavedMoviesList] = useState([])
+  // стейт переменная получения списка сохраненных фильмов
+  const [isSavedMoviesListChecked, setIsSavedMoviesListChecked] = useState(false)
   // стейт переменная масива поиска в сахраненных фильмах
   const [savedMoviesListSearch, setSavedMoviesListSearch] = useState([])
   // стейт переменная загрузки фильмов
@@ -182,10 +184,12 @@ function App() {
     mainApi.getUserMovies(localStorage.getItem('jwt'))
       .then(res => {
         setSavedMoviesList(res)
+
       })
       .catch(err => {
         console.log(err)
       })
+      .finally(() => setIsSavedMoviesListChecked(true))
   }
 
   // Запрос данных пользователя с сервера и из локального хранилища при старте и перезагрузке
@@ -208,7 +212,6 @@ function App() {
       handleLogOut()
       setIsTokenChecked(true)
     }
-
     setMoviesList(JSON.parse(localStorage.getItem('result')))
   }, [])
 
@@ -232,8 +235,8 @@ function App() {
 
   return (
     <CurrentUserContext.Provider value={currentUser}>
-      {/* отрисовываем только после проверки токена */}
-      {isTokenChecked &&
+      {/* отрисовываем только после проверки токена и получения списка сохраненных файлов*/}
+      {isTokenChecked && isSavedMoviesListChecked &&
         <Routes>
           <Route
             path='/register'
