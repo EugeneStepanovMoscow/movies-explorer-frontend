@@ -1,23 +1,34 @@
 .headerLink {
+  margin: 0 auto 0 0;
   display: block;
-  width: 38px;
   height: 38px;
+  max-width: 396px;
   cursor: pointer;
   transition: .2s;
+  height: 38px;
+  transition: .5s;
 }
 
-.headerLink:hover {
-  scale: 1.1;
-  transition: .2s;
+@media screen and (max-width: 320px) {
+  .headerLink {
+    max-width: 38px;
+    margin: 0 auto;
+  }
 }
 
 .headerLink__logo {
   width: 36px;
   height: 36px;
+  transition: .5s;
 }
 
 @media screen and (max-width: 320px) {
   .headerLink {
     margin: 0 auto;
   }
+}
+
+.headerLink__logo:hover {
+  scale: 1.1;
+  transition: .5s;
 }

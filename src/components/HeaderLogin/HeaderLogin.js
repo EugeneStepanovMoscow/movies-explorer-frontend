@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { NavLink } from 'react-router-dom';
 import HeaderLink from '../HeaderLink/HeaderLink';
 
 function Header() {
@@ -12,16 +13,33 @@ function Header() {
         <nav className={`headerLogin__nav ${navBurger ? 'headerLogin__nav_burger' : ''}`}>
           <ul className="headerLogin__nav-list">
             <li className={navBurger ? 'headerLogin__nav-item_burger' : 'headerLogin__nav-item headerLogin__nav-item_hide'}>
-              <a className={navBurger ? 'headerLogin__nav-text' : ''} href="/main">Главная</a>
+              <NavLink
+                className={navBurger ? 'headerLogin__nav-text' : ''}
+                to="/">
+                Главная
+              </NavLink>
             </li>
             <li className={navBurger ? 'headerLogin__nav-item_burger' : 'headerLogin__nav-item headerLogin__nav-item_movie'}>
-              <a className={navBurger ? 'headerLogin__nav-text' : 'headerLogin__nav-text__movies'} href="/movies">Фильмы</a>
+              <NavLink
+                className={navBurger ? 'headerLogin__nav-text' : 'headerLogin__nav-text__movies'}
+                to="/movies">
+                Фильмы
+              </NavLink>
             </li>
             <li className={navBurger ? 'headerLogin__nav-item_burger' : 'headerLogin__nav-item'}>
-              <a className={navBurger ? 'headerLogin__nav-text' : 'headerLogin__nav-text__saved-movies'} href="/saved-movies">Сохраненные фильмы</a>
+              <NavLink
+                className={navBurger ? 'headerLogin__nav-text' : 'headerLogin__nav-text__saved-movies'}
+                to="/saved-movies">
+                Сохраненные фильмы
+              </NavLink>
             </li>
             <li className={navBurger ? 'headerLogin__nav-item_burger' : 'headerLogin__nav-item_btn'}>
-              <a className={navBurger ? 'headerLogin__nav-text headerLogin__nav-text_burgerBtn' : 'headerLogin__nav-text_btn'} href="/profile">Аккаунт</a>
+              {/* <a className={navBurger ? 'headerLogin__nav-text headerLogin__nav-text_burgerBtn' : 'headerLogin__nav-text_btn'} href="/profile">Аккаунт</a> */}
+              <NavLink
+                className={navBurger ? 'headerLogin__nav-text headerLogin__nav-text_burgerBtn' : 'headerLogin__nav-text_btn'}
+                to="/profile"
+                >Аккаунт
+              </NavLink>
             </li>
           </ul>
         </nav>

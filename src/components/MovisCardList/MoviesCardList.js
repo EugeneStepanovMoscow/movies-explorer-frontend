@@ -1,14 +1,28 @@
+import React from 'react';
 import Movie from "../Movie/Movie"
 
-function MoviesCardList ()
-
+function MoviesCardList ({
+  moviesList,
+  savedMoviesList,
+  placeOfCall,
+  saveMovie,
+  deleteMovie
+})
 {
+
+
   return (
     <ul className="movies-card-list">
-      <Movie/>
-      <Movie/>
-      <Movie/>
-      <Movie/>
+      {moviesList.map(movie =>
+        <Movie
+          key={placeOfCall === 'movies' ? movie.id : movie.movieId}
+          movieInfo={movie}
+          placeOfCall={placeOfCall}
+          saveMovie={saveMovie}
+          deleteMovie={deleteMovie}
+          savedMoviesList={savedMoviesList}
+        />
+      )}
     </ul>
   )
 }

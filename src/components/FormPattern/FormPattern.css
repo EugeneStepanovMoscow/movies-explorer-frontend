@@ -13,3 +13,13 @@
     max-width: 260px;
   }
 }
+
+.form-pattern__inp-err-box {
+  margin-top: 2px;
+  height: 12px;
+}
+.form-pattern__inp-err-box_hide {
+  display: none;
+}
+
+

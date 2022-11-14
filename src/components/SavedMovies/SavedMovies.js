@@ -1,20 +1,31 @@
-import HeaderLogin from '../HeaderLogin/HeaderLogin'
-import Footer from '../Footer/Footer'
-import SearchForm from '../SearchForm/SearchForm'
-import MoviesCardList from '../MovisCardList/MoviesCardList'
+import React from 'react';
+import HeaderLogin from '../HeaderLogin/HeaderLogin';
+import Footer from '../Footer/Footer';
+import SearchForm from '../SearchForm/SearchForm';
+import MoviesCardList from '../MovisCardList/MoviesCardList';
 
-function SavedMovies ()
+function SavedMovies ({
+  onSubmit,
+  moviesList,
+  deleteMovie,
+  isLoading
+})
 {
 return (
   <>
       <HeaderLogin/>
       <main className='movies'>
-        <SearchForm/>
+        <SearchForm
+          onSubmit={onSubmit}
+          placeOfCall={'savedMovies'}
+          isLoading={isLoading}
+        />
         <section className='movies__section'>
-          <MoviesCardList/>
-        </section>
-        <section className='movies__more'>
-          <button className='movies__more-button'>Ещё</button>
+          <MoviesCardList
+            moviesList={moviesList}
+            placeOfCall={'savedMovies'}
+            deleteMovie={deleteMovie}
+          />
         </section>
       </main>
       <Footer/>

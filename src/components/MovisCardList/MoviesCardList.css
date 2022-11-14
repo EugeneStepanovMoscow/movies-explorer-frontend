@@ -7,17 +7,20 @@
   /* grid-template-columns: repeat(3, 1fr); */
   grid-template-columns: repeat(auto-fit,minmax(364px,1fr));
   /* grid-template-rows: repeat(2, 1fr); */
-  column-gap: 24px;
-  row-gap: 30px;
+  justify-items: center;
+  grid-gap: 27px 24px;
+  gap: 27px 24px;
 }
-@media screen and (min-width: 801px) and (max-width: 1200px) {
+/* @media screen and (min-width: 801px) and (max-width: 1200px) {
   .movies-card-list {
     max-width: 818px;
   }
-}
-@media screen and (max-width: 800px) {
+} */
+@media screen and (max-width: 892px) {
   .movies-card-list {
-    max-width: 400px;
-    grid-template-columns: repeat(auto-fit,minmax(300px,1fr));
+    /* max-width: 400px; */
+    grid-template-columns: repeat(auto-fit,minmax(339px,1fr));
+    grid-gap: 33px 30px;
+    gap: 33px 30px;
   }
 }

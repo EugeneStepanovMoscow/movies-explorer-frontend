@@ -1,3 +1,4 @@
+import React from 'react';
 import SectionTitle from "../SectionTitle/SectionTitle";
 import foto from "../../images/200.jpg"
 

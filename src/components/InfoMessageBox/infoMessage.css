@@ -1,0 +1,30 @@
+.infoMessage {
+  border-radius: 50px;
+  width: 100%;
+  background-color: #E8E8E8;
+  box-shadow: 10px 5px 5px #969494;
+  height: 150px;
+  z-index: 3;
+  position: fixed;
+  right: 0;
+  left: 0;
+  top: -100%;
+  bottom: 0;
+  transition: top .5s;
+}
+
+.infoMessage__text {
+  margin: 85px auto 0 auto;
+  /* max-width: 730px; */
+  text-align: center;
+  font-family: inter;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 22px;
+  letter-spacing: -0.04em;
+  color: red
+}
+
+.infoMessage_active {
+  top: -5%;
+}
